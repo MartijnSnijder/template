@@ -3,7 +3,7 @@ var app = angular.module('myApp', []);
 
 app.controller('PosController', function ($scope) {
 
-    $scope.drinks = [{
+    $scope.dranken = [{
         id: 0,
         name: "Spa Blauw",
         price: "1",
@@ -44,7 +44,7 @@ app.controller('PosController', function ($scope) {
         price: "1.90",
     }];
 
-    $scope.foods = [{
+    $scope.eten = [{
         id: 8,
         name: "Tosti",
         price: "1.50",
@@ -138,15 +138,15 @@ app.controller('PosController', function ($scope) {
 
     $scope.addNewItem = function (item) {
         if (item.category === "Dranken") {
-            item.id = $scope.drinks.length + $scope.foods.length
-            $scope.drinks.push(item)
-            $scope.new = []
-            $('#myTab a[href="#drink"]').tab('show')
+            item.id = $scope.dranken.length + $scope.eten.length
+            $scope.dranken.push(item)
+            $scope.nieuw = []
+            $('#myTab').find('a[href="#dranken"]').tab('show')
         } else if (item.category === "Eten") {
-            item.id = $scope.drinks.length + $scope.foods.length
-            $scope.foods.push(item)
-            $scope.new = []
-            $('#myTab a[href="#food"]').tab('show')
+            item.id = $scope.eten.length + $scope.eten.length
+            $scope.eten.push(item)
+            $scope.nieuw = []
+            $('#myTab').find('a[href="#eten"]').tab('show')
         }
     };
 
