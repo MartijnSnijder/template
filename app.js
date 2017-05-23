@@ -5,12 +5,12 @@ app.controller('PosController', function ($scope) {
 
     $scope.drinks = [{
         id: 0,
-        name: "Still Water",
+        name: "Spa Blauw",
         price: "1",
     },
     {
         id: 1,
-        name: "Sparkling Water",
+        name: "Spa Rood",
         price: "1.10",
     },
     {
@@ -25,54 +25,39 @@ app.controller('PosController', function ($scope) {
     },
     {
         id: 4,
-        name: "Tea",
+        name: "Thee",
         price: "1.90",
     },
     {
         id: 5,
-        name: "Hot Chocolate",
+        name: "Warme chocolademelk",
         price: "2.10",
     },
     {
         id: 6,
-        name: "Coke",
+        name: "Cola",
         price: "2.00",
     },
     {
         id: 7,
-        name: "Orange Juice",
+        name: "Sinaasappelsap",
         price: "1.90",
     }];
 
     $scope.foods = [{
         id: 8,
-        name: "Waffle",
+        name: "Tosti",
         price: "1.50",
     },
     {
         id: 9,
-        name: "Brioche",
+        name: "Taart",
         price: "1.30",
     },
     {
         id: 10,
-        name: "Cheesecake",
+        name: "Nacho's",
         price: "1.70",
-    },
-    {
-        id: 11,
-        name: "Sandwich",
-        price: "2.70",
-    },
-    {
-        id: 12,
-        name: "Donuts",
-        price: "1.90",
-    },
-    {
-        id: 13,
-        name: "Tortilla",
-        price: "1.90",
     }];
 
     $scope.order = [];
@@ -146,18 +131,18 @@ app.controller('PosController', function ($scope) {
     };
 
     $scope.checkout = function (index) {
-        alert($scope.getDate() + " - Order Number: " + ($scope.totOrders+1) + "\n\nOrder amount: $" + $scope.getTotal().toFixed(2) + "\n\nPayment received. Thanks.");
+        alert($scope.getDate() + " - Ordernummer: " + ($scope.totOrders+1) + "\n\nTotaalbedrag: €" + $scope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
         $scope.order = [];
         $scope.totOrders += 1;
     };
 
     $scope.addNewItem = function (item) {
-        if (item.category === "Drinks") {
+        if (item.category === "Dranken") {
             item.id = $scope.drinks.length + $scope.foods.length
             $scope.drinks.push(item)
             $scope.new = []
             $('#myTab a[href="#drink"]').tab('show')
-        } else if (item.category === "Foods") {
+        } else if (item.category === "Eten") {
             item.id = $scope.drinks.length + $scope.foods.length
             $scope.foods.push(item)
             $scope.new = []
