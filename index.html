@@ -117,7 +117,12 @@
                         </ul>
                     </div>
                     <div class="panel-body" style="max-height:320px; overflow:auto;" ng-show="order.length">
-                        <span class="btn btn-default btn-marginTop" ng-click="submit()" ng-disabled="!order.length">Plaatsen</span>
+                        <form class="form" name="formComment" novalidate>
+                                <label>Opmerkingen:</label>
+                                <input type="text" class="form-control" ng-disabled="!order.length"/>
+                                <!--TODO create submitComment() method in app.js, to place and save comment-->
+                                <button class="btn btn-default btn-marginTop" data-ng-click="submitComment()" data-ng-disabled="formComment.$invalid">Plaatsen</button>
+                        </form>
                     </div>
                     <div class="panel-footer" ng-show="order.length">
                         <h3><span class="label label-primary">Totaal: {{getTotal() | currency:"€":0}}</span></h3>
