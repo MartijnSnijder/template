@@ -1,3 +1,4 @@
+// ieks
 var app = angular.module('myApp', []);
 
 app.controller('PosController', function ($scope) {
