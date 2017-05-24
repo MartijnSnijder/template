@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
+    <!DOCTYPE html>
+    <html ng-app="myApp">
+    <head>
     <title>Cafepos.nl | De beste kassasoftware van Nederland!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -9,142 +9,162 @@
     <link href="style.css" rel="stylesheet" />
     <meta charset="UTF-8">
     <script src="app.js"></script>
-</head>
-<body data-ng-controller="PosController">
+    </head>
+    <body data-ng-controller="PosController">
     <div class="col-md-12">
-        <div class="row">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">Cafepos.nl | De beste kassasoftware van Nederland!</a>
-                        </div>
+    <div class="row">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Cafepos.nl | De beste kassasoftware van Nederland!</a>
                     </div>
-                </nav>
-           
-        </div>
+                </div>
+            </nav>
+
+    </div>
     </div>
     <div class="col-md-12">
-        <div class="row">
-            <!-- Producten -->
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-body">
-                        <ul id="myTab" class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#dranken" role="tab" data-toggle="tab">Dranken</a></li>
-                            <li role="presentation"><a href="#eten" role="tab" data-toggle="tab">Eten</a></li>
-                            <li role="presentation"><a href="#nieuw" role="tab" data-toggle="tab">Nieuw product</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="dranken">
-                                <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="item in dranken" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="eten">
-                                <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="item in eten" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="nieuw">
-                                <br />
-                                <form class="form" name="formCreate" novalidate>
-                                    <div class="col-md-4">
-                                        <label>Naam*</label>
-                                        <input type="text" class="form-control" data-ng-model="nieuw.name" required />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label>Prijs*</label>
-                                        <input type="number" class="form-control" data-ng-model="nieuw.price" required />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label>Categorie*</label>
-                                        <select class="form-control" data-ng-model="nieuw.category" required>
-                                            <option>Dranken</option>
-                                            <option>Eten</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <br />
-                                        <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)" data-ng-disabled="formCreate.$invalid">Toevoegen</button>
-                                    </div>
-                                </form>
-                            </div>
+    <div class="row">
+        <!-- Producten -->
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#dranken" role="tab" data-toggle="tab">Dranken</a></li>
+                        <li role="presentation"><a href="#eten" role="tab" data-toggle="tab">Eten</a></li>
+                        <li role="presentation"><a href="#nieuw" role="tab" data-toggle="tab">Nieuw product</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="dranken">
+                            <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="item in dranken" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
                         </div>
-                    </div>
-                    <div class="panel-footer"></div>
-                </div>
-            </div>
-            <!-- Bestellingsoverzicht -->
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-4"><span class="panel-title">Bestellingsoverzicht</span></div>
-                            <div class="col-md-4"><span>Datum: {{getDate()}}</span></div>
-                            <div class="col-md-3 col-md-push-1"><span>Totaal aantal orders - </span><span class="badge">{{totOrders}}</span></div>
+                        <div role="tabpanel" class="tab-pane" id="eten">
+                            <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="item in eten" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
                         </div>
-                    </div>
-                    <div class="panel-body" style="max-height:320px; overflow:auto;">
-                        <div class="text-warning" ng-hide="order.length">
-                            Nog geen producten geselecteerd!
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="item in order">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <span class="badge badge-left" ng-bind="item.qty"></span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        {{item.name}}
-                                    </div>
-                                    <div class="col-md-1">
-                                        <div class="label label-success">{{item.price * item.qty | currency:"€":0}}</div>
-                                    </div>
-                                    <div class="col-md-1 col-md-push-1">
-                                        <div class="label label-warning">{{item.price | currency:"€":0}}</div>
-                                    </div>
-                                    <div class="col-md-2 col-md-push-2">
-                                        <button class="btn btn-success btn-xs" ng-click="addToOrder(item,1)">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                        <button class="btn btn-warning btn-xs" ng-click="removeOneEntity(item)">
-                                            <span class="glyphicon glyphicon-minus"></span>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-1 col-md-push-2">
-                                        <button class="btn btn-danger btn-xs" ng-click="removeItem(item)">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                    </div>
+                        <div role="tabpanel" class="tab-pane" id="nieuw">
+                            <br />
+                            <form class="form" name="formCreate" novalidate>
+                                <div class="col-md-4">
+                                    <label>Naam*</label>
+                                    <input type="text" class="form-control" data-ng-model="nieuw.name" required />
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="panel-body" style="max-height:320px; overflow:auto;" ng-show="order.length">
-                        <form class="form" name="formMessage" novalidate>
-                                <label>Opmerkingen:</label>
-                                <input type="text" class="form-control" ng-disabled="!order.length"/>
-                                <!--TODO create submitComment() method in app.js, to place comment-->
-                                <button class="btn btn-default btn-marginTop" data-ng-click="submitComment()" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
-                        </form>
-                    </div>
-                    <div class="panel-footer" ng-show="order.length">
-                        <h3><span class="label label-primary">Totaal: {{getTotal() | currency:"€":0}}</span></h3>
-                    </div>
-                    <div class="panel-footer" ng-show="order.length">
-                        <div>
-                            <span class="btn btn-default btn-marginTop" ng-click="clearOrder()" ng-disabled="!order.length">Wissen</span>
-                            <span class="btn btn-danger btn-marginTop" ng-click="checkout()" ng-disabled="!order.length">Betalen</span>
+                                <div class="col-md-3">
+                                    <label>Prijs*</label>
+                                    <input type="number" class="form-control" data-ng-model="nieuw.price" required />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Categorie*</label>
+                                    <select class="form-control" data-ng-model="nieuw.category" required>
+                                        <option>Dranken</option>
+                                        <option>Eten</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <br />
+                                    <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)" data-ng-disabled="formCreate.$invalid">Toevoegen</button>
+                                </div>
+                            </form>
                         </div>
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <!-- Bestellingsoverzicht -->
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4"><span class="panel-title">Bestellingsoverzicht</span></div>
+                        <div class="col-md-4"><span>Datum: {{getDate()}}</span></div>
+                        <div class="col-md-3 col-md-push-1"><span>Totaal aantal orders - </span><span class="badge">{{totOrders}}</span></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="max-height:320px; overflow:auto;">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-1 quantity-sign">
+                                <p class="">Aantal</p>
+                            </div>
+                            <div class="col-md-4 product-sign">
+                                <p>Product</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p>Aanpassen</p>
+                            </div>
+                            <div class="col-md-1 col-md-push-1">
+                                <p>stukpr</p>
+                            </div>
+                            <div class="col-md-1 col-md-push-2">
+                                <p>Totaal</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-warning" ng-hide="order.length">
+                        Nog geen producten geselecteerd!
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="item in order">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <span class="badge badge-left" ng-bind="item.qty"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    {{item.name}}
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button class="btn btn-success btn-xs" ng-click="addToOrder(item,1)">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <button class="btn btn-warning btn-xs" ng-click="removeOneEntity(item)">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                    <button class="btn btn-danger btn-xs" ng-click="removeItem(item)">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                                <div class="col-md-1 col-md-push-1 ">
+                                    <div class="">{{item.price | currency:"€":0}}</div>
+                                </div>
+                                <div class="col-md-1 col-md-push-2">
+                                    <div class="">{{item.price * item.qty | currency:"€":0}}</div>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body" style="max-height:320px; overflow:auto;" ng-show="order.length">
+                    <form class="form" name="formMessage" novalidate>
+                            <label>Opmerkingen:</label>
+                            <input type="text" class="form-control" ng-disabled="!order.length"/>
+                            <!--TODO create submitComment() method in app.js, to place comment-->
+                            <button class="btn btn-default btn-marginTop" data-ng-click="submitComment()" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
+                    </form>
+                </div>
+                <div class="panel-footer" ng-show="order.length">
+                    <h3><span class="label label-warning">Totaal: {{getTotal() | currency:"€":0}}</span></h3>
+                </div>
+                <div class="panel-footer" ng-show="order.length">
+                    <div>
+                        <span class="btn btn-default btn-marginTop" ng-click="clearOrder()" ng-disabled="!order.length">Annuleren</span>
+                        <span class="btn btn-primary btn-marginTop" ng-click="checkout()" ng-disabled="!order.length">Toevoegen aan tafel</span>
+                        <span class="btn btn-success btn-marginTop btn-direct-checkout" ng-click="checkout()" ng-disabled="!order.length">Direct afrekenen</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
-<script>
+    </div>
+    </body>
+    </html>
+    <script>
     $(document).ready(function () {
-        $("#myTab a").click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
+    $("#myTab a").click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
     });
-</script>
+    });
+    </script>
 

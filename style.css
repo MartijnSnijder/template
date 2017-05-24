@@ -7,22 +7,35 @@
 .btn-pos{
     padding:20px 31px;
     font-size:20px;
-    border-radius:0px;
     margin-right:1px;
 }
 
-btn-summary{
+.btn-summary{
     margin-right:5px;
 }
 
-btn-marginTop{
+.btn-marginTop{
     margin-top:5px;
 }
 
 .badge-left{
     float:none
 }
+
+.quantity-sign p{
+    margin-left: 15px;
+}
+
+.product-sign p {
+    margin-left: 25px;
+}
+
 .list-group-item > .badge{
+    margin-top: 2%;
     float:none;
+}
+
+.btn-direct-checkout{
+    float: right;
 }
 
