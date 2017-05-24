@@ -39,6 +39,27 @@
     float: right;
 }
 
+/* @@@@@@ DASHBOARD SECTION @@@@@@@ */
+.btn-dashboard-first{
+    margin-top: 20%;
+}
+
+.btn-dashboard {
+    font-size: 40px;
+    min-width: 60%;
+    margin-left: 70%;
+    margin-bottom: 1%;
+
+}
+
+.p-dashboard {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 70%;
+    margin-bottom: 1%;
+}
+
+/* @@@@@@ MOBILE SCREEN SECTION @@@@@@@ */
 @media (max-width: 800px) {
     .mobile-hide {
         display: none;
@@ -46,5 +67,18 @@
 
     .btn-center-text {
         text-align: center !important;
+    }
+
+    /* @@@@@@ DASHBOARD SECTION @@@@@@@ */
+    .btn-dashboard-first {
+        margin-top: 20%;
+    }
+
+    .btn-dashboard {
+        font-size: 12px;
+        min-width: 90%;
+        margin-left: 5% !important;
+        margin-bottom: 1%;
+
     }
 }
