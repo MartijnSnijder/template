@@ -140,14 +140,14 @@
                 <div class="panel-body" style="max-height:320px; overflow:auto;" ng-show="order.length">
                     <form class="form" name="formMessage" novalidate>
                             <label>Opmerkingen:</label>
-                            <input type="text" class="form-control" ng-disabled="!order.length"/>
+                            <input type="text" class="form-control" ng-disabled="!order.length" id = "comment"/>
                             <!--TODO create submitComment() method in app.js, to place comment-->
-                            <button class=" btn btn-default btn-marginTop" data-ng-click="submitComment()" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
+                            <button class=" btn btn-default btn-marginTop" data-ng-click="console.log(comment)" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
                     </form>
                     <br />
                     <div class="table-select">
                         <label class="col-md-12 col-xs-12">Selecteer bijbehorende tafel:</label>
-                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2 btn-center-text" data-ng-repeat="item in tafels" data-ng-bind="item.name"></button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-repeat="item in tafels" data-ng-bind="item.name"></button>
                     </div>
                 </div>
                 <div class="panel-footer" ng-show="order.length">

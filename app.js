@@ -75,8 +75,9 @@ app.controller('PosController', function ($scope) {
     }];
 
     $scope.order = [];
-    $scope.new = {};
+    $scope.nieuw = {};
     $scope.totOrders = 0;
+    $scope.comments = {};
 
     var url = window.location.protocol + "://" + window.location.host + "/" + window.location.pathname;
 
@@ -174,5 +175,10 @@ app.controller('PosController', function ($scope) {
             $('#myTab').find('a[href="#eten"]').tab('show')
         }
     };
+
+    $scope.submitComment = function (comment) {
+        $scope.comments.push(comment);
+        return $scope.comments;
+    }
 
 });
