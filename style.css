@@ -39,3 +39,12 @@
     float: right;
 }
 
+@media (max-width: 800px) {
+    .mobile-hide {
+        display: none;
+    }
+
+    .btn-center-text {
+        text-align: center !important;
+    }
+}

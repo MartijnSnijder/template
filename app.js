@@ -30,7 +30,7 @@ app.controller('PosController', function ($scope) {
     },
     {
         id: 5,
-        name: "Warme chocolademelk",
+        name: "Chocolademelk",
         price: "2.10"
     },
     {
@@ -60,17 +60,17 @@ app.controller('PosController', function ($scope) {
         price: "1.70"
     }];
 
-    $scope.tables = [{
+    $scope.tafels = [{
         id: 11,
-        name: "Tafel 1"
+        name: "1"
         },
         {
             id: 12,
-            name: "Tafel 2"
+            name: "2"
         },
         {
         id: 13,
-        name: "Tafel 3"
+        name: "3"
 
     }];
 
@@ -146,7 +146,9 @@ app.controller('PosController', function ($scope) {
 
     $scope.addToTable = function () {
         alert($scope.getDate() + " - Ordernummer: " + ($scope.totOrders+1) + "\n\n Toegevoegd aan tafel!");
+        $scope.order= [];
         $scope.totOrders += 1;
+
     };
 
     $scope.checkout = function (index) {

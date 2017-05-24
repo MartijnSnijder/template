@@ -36,10 +36,10 @@
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="dranken">
-                            <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="item in dranken" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in dranken" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="eten">
-                            <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="item in eten" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in eten" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="nieuw">
                             <br />
@@ -65,6 +65,9 @@
                                 </div>
                             </form>
                         </div>
+                        <div role="tabpanel" class="ieks" name="zoeken" id="zoeken">
+                            <input type="text" placeholder="zoeken...">
+                        </div>
                     </div>
                 </div>
                 <div class="panel-footer"></div>
@@ -82,23 +85,21 @@
                 </div>
                 <div class="panel-body" style="max-height:320px; overflow:auto;">
                     <div class="row">
-                        <div class="row">
-                            <div class="col-md-1 quantity-sign">
+                            <div class="col-md-1 quantity-sign mobile-hide" >
                                 <p class="">Aantal</p>
                             </div>
-                            <div class="col-md-4 product-sign">
+                            <div class="col-md-4 product-sign mobile-hide">
                                 <p>Product</p>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 mobile-hide">
                                 <p>Aanpassen</p>
                             </div>
-                            <div class="col-md-1 col-md-push-1">
+                            <div class="col-md-1 col-md-push-1 mobile-hide">
                                 <p>stukpr</p>
                             </div>
-                            <div class="col-md-1 col-md-push-2">
+                            <div class="col-md-1 col-md-push-2 mobile-hide">
                                 <p>Totaal</p>
                             </div>
-                        </div>
                     </div>
                     <div class="text-warning" ng-hide="order.length">
                         Nog geen producten geselecteerd!
@@ -106,14 +107,14 @@
                     <ul class="list-group">
                         <li class="list-group-item" ng-repeat="item in order">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-1 col-xs-1 ">
                                     <span class="badge badge-left" ng-bind="item.qty"></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-xs-3">
                                     {{item.name}}
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-md-2 col-xs-4">
                                     <button class="btn btn-success btn-xs" ng-click="addToOrder(item,1)">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
@@ -124,10 +125,10 @@
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </div>
-                                <div class="col-md-1 col-md-push-1 ">
+                                <div class="col-md-1 col-md-push-1 col-xs-1 ">
                                     <div class="">{{item.price | currency:"€":0}}</div>
                                 </div>
-                                <div class="col-md-1 col-md-push-2">
+                                <div class="col-md-1 col-md-push-2 col-xs-1">
                                     <div class="">{{item.price * item.qty | currency:"€":0}}</div>
                                 </div>
 
@@ -140,21 +141,24 @@
                             <label>Opmerkingen:</label>
                             <input type="text" class="form-control" ng-disabled="!order.length"/>
                             <!--TODO create submitComment() method in app.js, to place comment-->
-                            <button class="btn btn-default btn-marginTop" data-ng-click="submitComment()" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
+                            <button class=" btn btn-default btn-marginTop" data-ng-click="submitComment()" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
                     </form>
                     <br />
                     <div class="table-select">
-                        <label>Selecteer bijbehorende tafel:</label>
+                        <label class="col-md-12 col-xs-12">Selecteer bijbehorende tafel:</label>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2 btn-center-text" data-ng-repeat="item in tafels" data-ng-bind="item.name"></button>
                     </div>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
                     <h3><span class="label label-warning">Totaal: {{getTotal() | currency:"€":0}}</span></h3>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
-                    <div>
-                        <span class="btn btn-default btn-marginTop" ng-click="clearOrder()" ng-disabled="!order.length">Annuleren</span>
-                        <span class="btn btn-primary btn-marginTop" ng-click="addToTable()" ng-disabled="!order.length">Toevoegen aan tafel</span>
-                        <span class="btn btn-success btn-marginTop btn-direct-checkout" ng-click="checkout()" ng-disabled="!order.length">Direct afrekenen</span>
+                    <div class="row">
+                        <div class="md-col-12">
+                            <span class="btn btn-default btn-marginTop col-md-3 col-xs-6" ng-click="clearOrder()" ng-disabled="!order.length">Annuleren</span>
+                            <span class="btn btn-primary btn-marginTop col-md-3 col-xs-6" ng-click="addToTable()" ng-disabled="!order.length">Toevoegen aan tafel</span>
+                            <span class="btn btn-success btn-marginTop btn-direct-checkout col-md-3 col-xs-12" ng-click="checkout()" ng-disabled="!order.length">Direct afrekenen</span>
+                        </div>
                     </div>
                 </div>
             </div>
