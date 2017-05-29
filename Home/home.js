@@ -17,7 +17,7 @@ app.controller('PosController', function ($scope) {
     },{
         id: 17,
         name: "Koffie verkeerd",
-        price: "4,20"
+        price: "4.20"
     }
 
     ];
