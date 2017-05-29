@@ -4,23 +4,23 @@ app.controller('PosController', function ($scope) {
 
     $scope.dranken = [{
         id: 0,
-        name: "Spa Blauw",
-        price: "1"
+        name: "Cola",
+        price: "1.50"
     },
     {
         id: 1,
-        name: "Spa Rood",
-        price: "1.10"
+        name: "Sinas",
+        price: "1.50"
     },
     {
         id: 2,
         name: "Espresso",
-        price: "1.20"
+        price: "2.50"
     },
     {
         id: 3,
         name: "Cappuccino",
-        price: "1.30"
+        price: "2.50"
     },
     {
         id: 4,
@@ -29,18 +29,18 @@ app.controller('PosController', function ($scope) {
     },
     {
         id: 5,
-        name: "Chocolademelk",
-        price: "2.10"
-    },
-    {
-        id: 6,
-        name: "Cola",
+        name: "Koffie",
         price: "2.00"
     },
     {
+        id: 6,
+        name: "Bier",
+        price: "2.40"
+    },
+    {
         id: 7,
-        name: "Sinaasappelsap",
-        price: "1.90"
+        name: "Radler",
+        price: "2.70"
     }];
 
     $scope.eten = [{
