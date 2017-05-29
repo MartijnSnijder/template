@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('MyApp')
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
