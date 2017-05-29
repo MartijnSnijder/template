@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="MyApp">
 <head>
     <meta charset="utf-8" />
     <title>Cafepos.nl | De beste kassasoftware van Nederland!</title>
@@ -7,7 +7,17 @@
     <link href="//cdn.rawgit.com/cornflourblue/angular-registration-login-example/master/app-content/app.css" rel="stylesheet" />
 </head>
 <body>
-
+<div class="col-md-12">
+    <div class="row">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Cafepos.nl | De beste kassasoftware van Nederland!</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
 <div class="jumbotron">
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2">
@@ -18,7 +28,7 @@
 </div>
 <div class="credits text-center">
     <p>
-        <a href="cafepos.nl" target="_top">cafepos.nl</a>
+        <a href="http://www.cafepos.nl" target="_top">cafepos.nl</a>
     </p>
 </div>
 
@@ -32,6 +42,7 @@
 
 <script src="./app-services/user.service.js"></script>
 
+<script src="./Dashboard/dashboard.js"></script>
 <script src="./Home/home.js"></script>
 <script src="./Login/login.js"></script>
 <script src="./Register/register.js"></script>
