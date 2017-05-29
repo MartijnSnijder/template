@@ -2,6 +2,23 @@ var app = angular.module('myApp', []);
 
 app.controller('PosController', function ($scope) {
 
+    $scope.favorieten = [{
+        id: 15,
+        name: "Rode wijn (glas)",
+        price: "4"
+
+    }, {
+        id: 16,
+        name: "Rode wijn (fles)",
+        price: "14"
+    },{
+        id: 17,
+        name: "Koffie verkeerd",
+        price: "4,20"
+    }
+
+    ];
+
     $scope.dranken = [{
         id: 0,
         name: "Cola",
@@ -172,6 +189,10 @@ app.controller('PosController', function ($scope) {
             $scope.eten.push(item);
             $scope.nieuw = [];
             $('#myTab').find('a[href="#eten"]').tab('show')
+        } else if(item.category === "favorieten"){
+            item.id = $scope.favorieten.length + $scope.eten.length;
+            $scope.favorieten.push(item);
+            $scope.nieuw = [];
         }
     };
 
