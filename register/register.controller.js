@@ -16,7 +16,7 @@
             UserService.Create(vm.user)
                 .then(function (response) {
                     if (response.success) {
-                        FlashService.Success('Registration successful', true);
+                        FlashService.Success('Registratie voltooid!', true);
                         $location.path('/login');
                     } else {
                         FlashService.Error(response.message);

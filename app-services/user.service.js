@@ -19,27 +19,27 @@
         return service;
 
         function GetAll() {
-            return $http.get('/api/users').then(handleSuccess, handleError('Error getting all users'));
+            return $http.get('/api/users').then(handleSuccess, handleError('Error bij het ophalen van alle gebruikers'));
         }
 
         function GetById(id) {
-            return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+            return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error bij het ophalen van gebruiker bij id'));
         }
 
         function GetByUsername(username) {
-            return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+            return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error bij het ophalen van gebruiker bij username'));
         }
 
         function Create(user) {
-            return $http.post('/api/users', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('/api/users', user).then(handleSuccess, handleError('Error bij het aanmaken van gebruiker'));
         }
 
         function Update(user) {
-            return $http.put('/api/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+            return $http.put('/api/users/' + user.id, user).then(handleSuccess, handleError('Error bij het updaten van gebruiker'));
         }
 
         function Delete(id) {
-            return $http.delete('/api/users/' + id).then(handleSuccess, handleError('Error deleting user'));
+            return $http.delete('/api/users/' + id).then(handleSuccess, handleError('Error bij het verwijderen van gebruiker'));
         }
 
         // private functions
