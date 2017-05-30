@@ -34,8 +34,8 @@
             })
 
             .when('/tableview',{
-                controller: 'TableController',
-                templateUrl: 'tafeloverzicht/tablieView.html',
+                controller: 'tableViewController',
+                templateUrl: 'tableview/tableview.view.html',
                 controllerAs: 'vm'
             })
 

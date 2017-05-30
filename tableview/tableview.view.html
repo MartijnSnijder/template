@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>Cafepos.nl | De beste kassasoftware van Nederland!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.0-rc.2/angular.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <script src="tableview.controller.js"></script>
+</head>
+
+<!-- Angular JS controller -->
+<body data-ng-controller="tableViewController">
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class=" col-md-2 col-xs-6">
+                <div role="tabpanel" class="tab-pane active" id="tafelsA">
+                    <button class="btn btn-success btn-pos btn-marginTop" data-ng-repeat="table in tableSectionA" data-ng-bind="table.name" data-ng-click=""></button>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <div role="tabpanel" class="tab-pane active" id="tafelsB">
+                    <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tableSectionB" data-ng-bind="table.name" data-ng-click="getTotal()"></button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+<div class="col-md-6">
+    <ul class="row">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="table in tableSectionB" ng-show="table.id == getTable()">
+                <div class="row">
+                    <div class="col-md-1 col=md-push-1 col-xs-1">
+                        {{table.name}}
+                    </div>
+
+                    <ul class="list-group-item col-md-12" ng-repeat="order in table.order">
+                        <li><!--{{order.name}}, {{order.price}}, {{order.qty}}, {{order.price * order.qty}}-->
+
+                            <div class="col-md-1 col-xs-3">
+                                <div class="">{{order.name}}</div>
+                            </div>
+                            <div class="col-md-1 col-md-push-1 col-xs-1 ">
+                                <div class="">{{order.price | currency:"€":0}}</div>
+                            </div>
+                            <div class="col-md-1 col-md-push-2 col-xs-1">
+                                <div class="">{{order.price * order.qty | currency:"€":0}}</div>
+                            </div>
+                         </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+
+</html>
