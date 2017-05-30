@@ -1,11 +1,8 @@
-/**
- * Created by Martijn on 29-5-2017.
- */
-(function () {
+﻿(function () {
     'use strict';
 
     angular
-        .module('MyApp')
+        .module('app')
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];

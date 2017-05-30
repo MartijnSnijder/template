@@ -1,8 +1,8 @@
-(function () {
+﻿(function () {
     'use strict';
 
     angular
-        .module('MyApp', ['ngRoute', 'ngCookies'])
+        .module('app', ['ngRoute', 'ngCookies'])
         .config(config)
         .run(run);
 
@@ -10,35 +10,30 @@
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                controller: 'PosController',
-                templateUrl: 'Home/home.html',
+                controller: 'HomeController',
+                templateUrl: 'home/home.view.html',
                 controllerAs: 'vm'
             })
 
             .when('/login', {
                 controller: 'LoginController',
-                templateUrl: 'Login/login.html',
+                templateUrl: 'login/login.view.html',
                 controllerAs: 'vm'
             })
 
             .when('/register', {
                 controller: 'RegisterController',
-                templateUrl: 'Register.register.html',
-                controllerAs: 'vm'
-            })
-            .when('/dashboard', {
-                controller: 'DashboardController',
-                templateUrl: 'Dashboard.dashboard.html',
+                templateUrl: 'register/register.view.html',
                 controllerAs: 'vm'
             })
 
             .otherwise({ redirectTo: '/login' });
     }
 
-    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http) {
+    run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
+    function run($rootScope, $location, $cookies, $http) {
         // keep user logged in after page refresh
-        $rootScope.globals = $cookieStore.get('globals') || {};
+        $rootScope.globals = $cookies.getObject('globals') || {};
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }

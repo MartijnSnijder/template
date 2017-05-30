@@ -1,11 +1,8 @@
-/**
- * Created by Martijn on 29-5-2017.
- */
-(function () {
+﻿(function () {
     'use strict';
 
     angular
-        .module('MyApp')
+        .module('app')
         .factory('FlashService', FlashService);
 
     FlashService.$inject = ['$rootScope'];
@@ -40,7 +37,7 @@
         function Success(message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
-                type: 'success',
+                type: 'success', 
                 keepAfterLocationChange: keepAfterLocationChange
             };
         }
