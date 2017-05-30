@@ -49,7 +49,7 @@
                 GetByUsername(user.username)
                     .then(function (duplicateUser) {
                         if (duplicateUser !== null) {
-                            deferred.resolve({ success: false, message: 'Username "' + user.username + '" is already taken' });
+                            deferred.resolve({ success: false, message: 'Gebruikersnaam "' + user.username + '" is al in gebruik' });
                         } else {
                             var users = getUsers();
 
