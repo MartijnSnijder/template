@@ -53,7 +53,11 @@ app.controller('tableViewController', function ($scope) {
     }, {
         id: 24,
         name: "B-2",
-        order: []
+        order: [{
+            name: "BIER",
+            price: "2",
+            qty: "25"
+        }]
     }, {
         id: 25,
         name: "B-3",
