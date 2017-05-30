@@ -2,7 +2,7 @@
  * Created by r_fli on 29-5-2017.
  */
 
-var app = angular.module('myApp', []);
+var app = angular.module('app', []);
 
 app.controller('tableViewController', function ($scope) {
 
