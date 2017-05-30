@@ -1,3 +1,4 @@
-#AngularJS Point of Sale
+Cafepos.nl | De beste kassasoftware van Nederland!
+==============================
 
-Author: Martijn Snijder
+Code door Ryan Flierman & Martijn Snijder

@@ -1,17 +1,4 @@
-    <!DOCTYPE html>
-    <html ng-app="myApp">
-    <head>
-    <title>Cafepos.nl | De beste kassasoftware van Nederland!</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.0-rc.2/angular.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <link href="../style.css" rel="stylesheet" />
-    <meta charset="UTF-8">
-    <script src="home.js"></script>
-    </head>
-    <body data-ng-controller="PosController">
-    <div class="col-md-12">
+﻿<div class="col-md-12">
     <div class="row">
         <!-- Producten -->
         <div class="col-md-6">
@@ -78,21 +65,21 @@
                 </div>
                 <div class="panel-body" style="max-height:320px; overflow:auto;">
                     <div class="row">
-                            <div class="col-md-1 quantity-sign mobile-hide" >
-                                <p class="">Aantal</p>
-                            </div>
-                            <div class="col-md-4 product-sign mobile-hide">
-                                <p>Product</p>
-                            </div>
-                            <div class="col-md-2 mobile-hide">
-                                <p>Aanpassen</p>
-                            </div>
-                            <div class="col-md-1 col-md-push-1 mobile-hide">
-                                <p>stukpr</p>
-                            </div>
-                            <div class="col-md-1 col-md-push-2 mobile-hide">
-                                <p>Totaal</p>
-                            </div>
+                        <div class="col-md-1 quantity-sign mobile-hide" >
+                            <p class="">Aantal</p>
+                        </div>
+                        <div class="col-md-4 product-sign mobile-hide">
+                            <p>Product</p>
+                        </div>
+                        <div class="col-md-2 mobile-hide">
+                            <p>Aanpassen</p>
+                        </div>
+                        <div class="col-md-1 col-md-push-1 mobile-hide">
+                            <p>stukpr</p>
+                        </div>
+                        <div class="col-md-1 col-md-push-2 mobile-hide">
+                            <p>Totaal</p>
+                        </div>
                     </div>
                     <div class="text-warning" ng-hide="order.length">
                         Nog geen producten geselecteerd!
@@ -131,10 +118,10 @@
                 </div>
                 <div class="panel-body" style="max-height:320px; overflow:auto;" ng-show="order.length">
                     <form class="form" name="formMessage" novalidate>
-                            <label>Opmerkingen:</label>
-                            <input type="text" class="form-control" ng-disabled="!order.length" id = "comment"/>
-                            <!--TODO create submitComment() method in app.js, to place comment-->
-                            <button class=" btn btn-default btn-marginTop" data-ng-click="console.log(comment)" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
+                        <label>Opmerkingen:</label>
+                        <input type="text" class="form-control" ng-disabled="!order.length" id = "comment"/>
+                        <!--TODO create submitComment() method in home.controller, to place comment-->
+                        <button class=" btn btn-default btn-marginTop" data-ng-click="console.log(comment)" data-ng-disabled="formMessage.$invalid">Plaatsen</button>
                     </form>
                     <br />
                     <div class="table-select">
@@ -157,15 +144,13 @@
             </div>
         </div>
     </div>
-    </div>
-    </body>
-    </html>
-    <script>
+</div>
+<script>
     $(document).ready(function () {
-    $("#myTab a").click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
+        $("#myTab a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
     });
-    });
-    </script>
+</script>
 
