@@ -7,7 +7,7 @@
     <link href="app-content/app.css" rel="stylesheet" />
 </head>
 <body>
-<div class="col-md-12">
+<!--<div class="col-md-12">
     <div class="row">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -17,7 +17,16 @@
             </div>
         </nav>
     </div>
-</div>
+</div>-->
+<nav class="navbar navbar-default" role="navigation" bs-navbar>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Cafepos.nl | De beste kassasoftware van Nederland!</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li data-match-route="/$"><a href="#!/">Bestellingsoverzicht</a></li>
+        <li data-match-route="/page-two.*"><a href="#!/tableview">Tafeloverzicht</a></li>
+    </ul>
+</nav>
 
 <div class="col-md-12">
     <div class="row">

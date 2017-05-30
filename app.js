@@ -27,12 +27,6 @@
                 controllerAs: 'vm'
             })
 
-            .when('/dashboard', {
-                controller: 'DashboardController',
-                templateUrl: 'dashboard/dashboard.view.html',
-                controllerAs: 'vm'
-            })
-
             .when('/tableview',{
                 controller: 'tableViewController',
                 templateUrl: 'tableview/tableview.view.html',
