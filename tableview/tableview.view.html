@@ -33,7 +33,7 @@
 
     </div>
 <div class="col-md-6">
-    <ul class="row">
+    <div class="row">
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="table in tableSectionB">
                 <div class="row">
@@ -117,7 +117,7 @@
                                 <div class="">{{order.price | currency:"€":0}}</div>
                             </div>
                             <div class="col-md-1 col-md-push-2 col-xs-1">
-                                <div class="">{{order.price * order.qty | currency:"€":0}}</div>
+                                <div class="">{{order.price * item.qty | currency:"€":0}}</div>
                             </div>
 
 
@@ -138,7 +138,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
 
 
 
