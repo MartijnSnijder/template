@@ -27,6 +27,18 @@
                 controllerAs: 'vm'
             })
 
+            .when('/dashboard', {
+                controller: 'DashboardController',
+                templateUrl: 'dashboard/dashboard.view.html',
+                controllerAs: 'vm'
+            })
+
+            .when('/tableview',{
+                controller: 'TableController',
+                templateUrl: 'tafeloverzicht/tablieView.html',
+                controllerAs: 'vm'
+            })
+
             .otherwise({ redirectTo: '/login' });
     }
 
