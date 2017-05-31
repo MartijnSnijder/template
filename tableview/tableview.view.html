@@ -4,12 +4,17 @@
             <div class="row">
                 <div class="col-md-4 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsA">
-                        <button class="btn btn-success btn-pos btn-marginTop"  data-ng-bind="table.name" data-ng-repeat="table in tables" ng-if="table.name.indexOf('A') > -1" data-ng-click="getTable(table.id)"></button>
+                        <button class="btn btn-success btn-pos btn-marginTop"   data-ng-repeat="table in tables" ng-if="table.name.indexOf('A') > -1" data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsB">
                         <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tables" ng-if="table.name.indexOf('B') > -1"  data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <div role="tabpanel" class="tab-pane active" id="tafelsC">
+                        <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="table in tables" ng-if="table.name.indexOf('C') > -1"  data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
             </div>

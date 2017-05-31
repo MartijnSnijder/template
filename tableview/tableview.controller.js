@@ -78,6 +78,26 @@
             id: 11,
             name: "B-5",
             order: []
+        }, {
+            id: 12,
+            name: "C-1",
+            order: [{
+                name: "BIER",
+                price: "2",
+                qty: "27"
+            }]
+        }, {
+            id: 13,
+            name: "C-2",
+            order: []
+        }, {
+            id: 14,
+            name: "C-3",
+            order: []
+        }, {
+            id: 15,
+            name: "C-4",
+            order: []
         }
 
         ];
@@ -96,7 +116,7 @@
                 console.log($rootScope.tables[x].id + " test.. " + tableID);
                 if ($rootScope.tables[x].id.toString() === tableID.toString()) {
                     console.log("x = " + x);
-                    return arrayIndex;
+                    return x;
 
                 }
             }
@@ -107,13 +127,10 @@
         $rootScope.getTotal = function (tableID) {
             if(tableID !== 0) {
                 var arrayIndex = $rootScope.findIndexArray(tableID);
-            } else arrayIndex = 0;
-
 
             // Calculate the total amount of the order
             // if no table selected then arrayIndex = 0, thus total = 0.
             var tot = 0;
-            if(arrayIndex !== 0) {
 
                 for (var i = 0; i < $rootScope.tables[arrayIndex].order.length; i++) {
                     tot += ($rootScope.tables[arrayIndex].order[i].price * $rootScope.tables[arrayIndex].order[i].qty)
