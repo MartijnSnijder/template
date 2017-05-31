@@ -7,6 +7,7 @@
         .run(run);
 
     config.$inject = ['$routeProvider', '$locationProvider'];
+
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -46,12 +47,16 @@
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register', '/tableview']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');
             }
         });
-    }
 
+            //function to set navbar tab active, based on location
+        $rootScope.isActive = function (viewLocation) {
+            return viewLocation === $location.url();
+        };
+    }
 })();

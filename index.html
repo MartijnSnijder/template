@@ -7,18 +7,8 @@
     <link href="app-content/app.css" rel="stylesheet" />
 </head>
 <body>
-<!--<div class="col-md-12">
-    <div class="row">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Cafepos.nl | De beste kassasoftware van Nederland!</a><a class="navbar-brand" style="text-align:right": href=#!/login">Log uit</a>
-                </div>
-            </div>
-        </nav>
-    </div>
-</div>-->
 
+<!-- navbar -->
 <nav class="navbar navbar-default" role="navigation" bs-navbar>
     <div class="container">
         <div class="navbar-header">
@@ -32,10 +22,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#!/">Bestellingsoverzicht</a></li>
-                <li><a href="#!/tableview">Tafeloverzicht</a></li>
+                <li ng-class="{ active: isActive('/')}"><a href="#!/">Bestellingsoverzicht</a></li>
+                <li ng-class="{ active: isActive('/tableview')}"><a href="#!/tableview">Tafeloverzicht</a></li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle navbar-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiel<span class="caret"></span></a>
+                    <a ng-class="{ active: isActive('/login', '/register')}" href="" class="dropdown-toggle navbar-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiel<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#!/login">Uitloggen</a></li>
                     </ul>
@@ -76,9 +66,9 @@
 
 </body>
 </html>
-<script>
+<!--<script>
     $('.nav.navbar-nav > li').on('click', function(e) {
         $('.nav.navbar-nav > li').removeClass('active');
         $(this).addClass('active');
     });
-</script>
+</script>-->
