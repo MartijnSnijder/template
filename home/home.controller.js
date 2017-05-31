@@ -189,24 +189,6 @@
             //TODO
         };
 
-        $rootScope.addNewItem = function (item) {
-            if (item.category === "Dranken") {
-                item.id = $rootScope.dranken.length + $rootScope.eten.length;
-                $rootScope.dranken.push(item);
-                $rootScope.nieuw = [];
-                $('#myTab').find('a[href="#dranken"]').tab('show')
-            } else if (item.category === "Eten") {
-                item.id = $rootScope.eten.length + $rootScope.eten.length;
-                $rootScope.eten.push(item);
-                $rootScope.nieuw = [];
-                $('#myTab').find('a[href="#eten"]').tab('show')
-            } else if(item.category === "favorieten"){
-                item.id = $rootScope.favorieten.length + $rootScope.eten.length;
-                $rootScope.favorieten.push(item);
-                $rootScope.nieuw = [];
-            }
-        };
-
         $rootScope.submitComment = function (comment) {
             $rootScope.comments.push(comment);
             return $rootScope.comments;

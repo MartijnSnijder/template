@@ -1,0 +1,38 @@
+<div class="col-md-12">
+    <div class="row">
+        <!-- Producten -->
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4"><span class="panel-title">Nieuw product</span></div>
+                    </div>
+                </div>
+                <div class="panel-body" id = "nieuw">
+                    <form class="form" name="formCreate" novalidate>
+                        <div class="col-md-4">
+                            <label>Naam*</label>
+                            <input type="text" class="form-control" data-ng-model="nieuw.name" required />
+                        </div>
+                        <div class="col-md-2">
+                            <label>Prijs*</label>
+                            <input type="number" class="form-control" data-ng-model="nieuw.price" required />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Categorie*</label>
+                            <select class="form-control" data-ng-model="nieuw.category" required>
+                                <option>Dranken</option>
+                                <option>Eten</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <br />
+                            <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)" data-ng-disabled="formCreate.$invalid">Toevoegen</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
