@@ -60,7 +60,7 @@
         ];
 
         $rootScope.tableSectionB = [{
-            id: 23,
+            id: 30,
             name: "B-1",
             order: [{
                 name: "koffie",
@@ -103,14 +103,6 @@
         };
 
 
-        $rootScope.getTotal = function () {
-            var tot = 0;
-            for (var i = 0; i < $rootScope.tableSectionB.length; i++) {
-                tot += ($rootScope.tableSectionB[i].price * $rootScope.tableSectionB[i].qty)
-            }
-            return tot;
-        };
-
 
         $rootScope.getTable = function (tableID) {
             return tableID;
@@ -123,6 +115,19 @@
                 $rootScope.show = true;
             }
 
+        };
+
+        // get total needs table id // place in the array to show correct table totalprice
+        $rootScope.getTotal = function () {
+            // to test
+            var tableid = 23;
+            var tableinArray = 0;
+
+            var tot = 0;
+            for (var i = 0; i < $rootScope.tableSectionB[tableinArray].order.length; i++) {
+                tot += ($rootScope.tableSectionB[tableinArray].order[i].price * $rootScope.tableSectionB[tableinArray].order[i].qty)
+            }
+            return tot;
         };
 
         function initController() {

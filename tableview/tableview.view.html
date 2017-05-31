@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsB">
-                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tableSectionB" data-ng-bind="table.name" data-ng-click="getTotal()"></button>
+                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tableSectionB" data-ng-bind="table.name" data-ng-click="getTab()"></button>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     </div>
                     <ul class="list-group">
                         <!-- table in tableSectionB | filter: {id: 23} -->
-                        <li class="list-group-item" ng-repeat=" table in tableSectionB | filter: {id:23}">
+                        <li class="list-group-item" ng-repeat=" table in tableSectionB | filter: {id:30}">
                             <div class="row" ng-repeat="order in table.order">
                                 <div class="col-md-1 col-xs-1 ">
                                     <span class="badge badge-left" ng-bind="order.qty"></span>
@@ -86,13 +86,13 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-4">
-                                    <button class="btn btn-success btn-xs" ng-click="addToOrder(item,1)">
+                                    <button class="btn btn-success btn-xs" ng-click="">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
-                                    <button class="btn btn-warning btn-xs" ng-click="removeOneEntity(item)">
+                                    <button class="btn btn-warning btn-xs" ng-click="">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
-                                    <button class="btn btn-danger btn-xs" ng-click="removeItem(item)">
+                                    <button class="btn btn-danger btn-xs" ng-click="">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </div>
@@ -100,7 +100,7 @@
                                     <div class="">{{order.price | currency:"€":0}}</div>
                                 </div>
                                 <div class="col-md-1 col-md-push-2 col-xs-1">
-                                    <div class="">{{order.price * item.qty | currency:"€":0}}</div>
+                                    <div class="">{{order.price * order.qty | currency:"€":0}}</div>
                                 </div>
 
 
