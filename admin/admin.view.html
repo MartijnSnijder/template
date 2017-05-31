@@ -34,5 +34,45 @@
                 <div class="panel-footer"></div>
             </div>
         </div>
+        <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-4"><span class="panel-title">Gebruikers</span></div>
+                </div>
+            </div>
+            <div class="panel-body" style="max-height:320px; overflow:auto;">
+                <div class="row">
+                    <div class="col-md-4 quantity-sign mobile-hide" >
+                        <p class="">Naam</p>
+                    </div>
+                    <div class="col-md-4 quantity-sign mobile-hide" >
+                        <p class="">Gebruikersnaam</p>
+                    </div>
+                    <div class="col-md-4 quantity-sign mobile-hide" >
+                        <p class="">Verwijderen</p>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="user in vm.allUsers">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-3">
+                                {{user.firstName}} {{user.lastName}}
+                            </div>
+                            <div class="col-md-4 col-xs-3">
+                                {{user.username}}
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <button class="btn btn-danger btn-xs" ng-click="vm.deleteUser(user.id)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
     </div>
 </div>

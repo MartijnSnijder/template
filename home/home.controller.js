@@ -9,10 +9,6 @@
     function HomeController(UserService, $rootScope) {
         var vm = this;
 
-        vm.user = null;
-        vm.allUsers = [];
-        vm.deleteUser = deleteUser;
-
         initController();
 
         $rootScope.tafels = [{
@@ -122,29 +118,7 @@
         var url = window.location.protocol + "://" + window.location.host + "/" + window.location.pathname;
 
         function initController() {
-            loadCurrentUser();
-            loadAllUsers();
-        }
-
-        function loadCurrentUser() {
-            UserService.GetByUsername($rootScope.globals.currentUser.username)
-                .then(function (user) {
-                    vm.user = user;
-                });
-        }
-
-        function loadAllUsers() {
-            UserService.GetAll()
-                .then(function (users) {
-                    vm.allUsers = users;
-                });
-        }
-
-        function deleteUser(id) {
-            UserService.Delete(id)
-                .then(function () {
-                    loadAllUsers();
-                });
+            // todo init
         }
     }
 })();
