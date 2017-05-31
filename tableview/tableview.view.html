@@ -1,19 +1,23 @@
 <div class="col-md-12">
     <div class="row">
+        <!-- section tables  -->
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-4 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsA">
+                        <!-- show the tables with name = A...-->
                         <button class="btn btn-success btn-pos btn-marginTop"   data-ng-repeat="table in tables" ng-if="table.name.indexOf('A') > -1" data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsB">
+                        <!-- show the tables with name = B...-->
                         <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tables" ng-if="table.name.indexOf('B') > -1"  data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsC">
+                        <!-- show the tables with name = C...-->
                         <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="table in tables" ng-if="table.name.indexOf('C') > -1"  data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
@@ -21,7 +25,7 @@
 
         </div>
 
-
+        <!-- section order view -->
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -62,6 +66,7 @@
                                     {{order.name}}
                                 </div>
 
+                                <!-- @TODO do we need this buttons? Add/Remove/Minus -->
                                 <div class="col-md-2 col-xs-4">
                                     <button class="btn btn-success btn-xs" ng-click="">
                                         <span class="glyphicon glyphicon-plus"></span>
@@ -81,17 +86,18 @@
                                 </div>
 
 
-
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="panel-footer">
+                    <!-- show the total price on the current table -->
                     <h3><span class="label label-warning">Totaal: {{getTotal(currentTable) | currency:"€":0}}</span></h3>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
                         <div class="md-col-12">
+                            <!-- @TODO alert button -> confirmation before entire order is deleted -- annuleren -- -->
                             <span class="btn btn-default btn-marginTop col-md-3 col-xs-6" ng-click="clearOrder(currentTable)">Annuleren</span>
                             <span class="btn btn-success btn-marginTop btn-direct-checkout col-md-3 col-xs-12" ng-click="checkout()" ng-disabled="!order.length">Afrekenen</span>
                         </div>

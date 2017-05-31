@@ -13,11 +13,6 @@
     function tableViewController($rootScope) {
         var vm = this;
 
-        // variable
-        $rootScope.show = true;
-
-
-
         $rootScope.tables = [{
             id: 1,
             name: "A-1",
@@ -128,38 +123,31 @@
 
         // get total needs table id // place in the array to show correct table totalprice
         $rootScope.getTotal = function (tableID) {
+            var tot = 0;
+            // if no table is selected then the tableID will be 0.
             if(tableID !== 0) {
                 var arrayIndex = $rootScope.findIndexArray(tableID);
 
-            // Calculate the total amount of the order
-            // if no table selected then arrayIndex = 0, thus total = 0.
-            var tot = 0;
-
+                // Calculate the total amount of the order
                 for (var i = 0; i < $rootScope.tables[arrayIndex].order.length; i++) {
                     tot += ($rootScope.tables[arrayIndex].order[i].price * $rootScope.tables[arrayIndex].order[i].qty)
                 }
-
-            };
+            }
             return tot;
         };
 
+        // clear the entire order from the currentTable
         $rootScope.clearOrder = function (currentTable) {
             var arrayIndex = $rootScope.findIndexArray(currentTable);
             var order= $rootScope.tables[arrayIndex].order;
-            console.log(order);
 
+            // only clear order when order has items
             if(order.length > 0) {
                 $rootScope.tables[arrayIndex].order = [];
             }
         };
 
-        $rootScope.addToTable = function (currentTable) {
-            alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\n Toegevoegd aan tafel!");
-            $rootScope.order= [];
-            $rootScope.totOrders += 1;
-
-        };
-
+        //@TODO checkout function
         /*$rootScope.checkout = function (index) {
             alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
             $rootScope.order = [];
