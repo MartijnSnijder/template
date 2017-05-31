@@ -82,35 +82,44 @@
 
         ];
 
+        // variable current table ID
         $rootScope.currentTable = 0;
+
+        // gets the table ID when button is clicked and changes currentTable
         $rootScope.getTable = function (tableID) {
             $rootScope.currentTable = tableID;
-            console.log(tableID.toString() + ": joe");
         };
 
+        $rootScope.findIndexArray= function(tableID){
+            var arrayIndex = 0;
+            for (var x = 0; x < $rootScope.tables.length ; x++) {
+                console.log($rootScope.tables[x].id + " test.. " + tableID);
+                if ($rootScope.tables[x].id.toString() === tableID.toString()) {
+                    console.log("x = " + x);
+                    return arrayIndex;
 
-        $rootScope.tableFilter = function(tablename, tableSection) {
-            console.log("ik kom hier wel G");
-
-            console.log(tableSection + " " + tablename);
-
-                if (tablename.search(tableSection)) {
-                    return true;
                 }
-
-            return false;
+            }
+            return arrayIndex;
         };
 
         // get total needs table id // place in the array to show correct table totalprice
         $rootScope.getTotal = function (tableID) {
-            // to test
-           // var tableid = 23;
-           // var tableinArray = 0;
+            if(tableID !== 0) {
+                var arrayIndex = $rootScope.findIndexArray(tableID);
+            } else arrayIndex = 0;
 
+
+            // Calculate the total amount of the order
+            // if no table selected then arrayIndex = 0, thus total = 0.
             var tot = 0;
-            for (var i = 0; i < $rootScope.tableSectionB[tableinArray].order.length; i++) {
-                tot += ($rootScope.tableSectionB[tableinArray].order[i].price * $rootScope.tableSectionB[tableinArray].order[i].qty)
-            }
+            if(arrayIndex !== 0) {
+
+                for (var i = 0; i < $rootScope.tables[arrayIndex].order.length; i++) {
+                    tot += ($rootScope.tables[arrayIndex].order[i].price * $rootScope.tables[arrayIndex].order[i].qty)
+                }
+
+            };
             return tot;
         };
 

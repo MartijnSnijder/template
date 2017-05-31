@@ -82,7 +82,7 @@
                     </ul>
                 </div>
                 <div class="panel-footer">
-                    <h3><span class="label label-warning">Totaal: { | currency:"€":0}}</span></h3>
+                    <h3><span class="label label-warning">Totaal: {{getTotal(currentTable) | currency:"€":0}}</span></h3>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
                     <div class="row">
