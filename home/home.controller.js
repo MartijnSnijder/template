@@ -9,85 +9,7 @@
     function HomeController(UserService, $rootScope) {
         var vm = this;
 
-        vm.user = null;
-        vm.allUsers = [];
-        vm.deleteUser = deleteUser;
-
         initController();
-
-        $rootScope.favorieten = [{
-            id: 15,
-            name: "Rode wijn (glas)",
-            price: "4"
-
-        }, {
-            id: 16,
-            name: "Rode wijn (fles)",
-            price: "14"
-        }, {
-            id: 17,
-            name: "Koffie verkeerd",
-            price: "4.20"
-        }
-
-        ];
-
-        $rootScope.dranken = [{
-            id: 0,
-            name: "Cola",
-            price: "1.50"
-        },
-            {
-                id: 1,
-                name: "Sinas",
-                price: "1.50"
-            },
-            {
-                id: 2,
-                name: "Espresso",
-                price: "2.50"
-            },
-            {
-                id: 3,
-                name: "Cappuccino",
-                price: "2.50"
-            },
-            {
-                id: 4,
-                name: "Thee",
-                price: "1.90"
-            },
-            {
-                id: 5,
-                name: "Koffie",
-                price: "2.00"
-            },
-            {
-                id: 6,
-                name: "Bier",
-                price: "2.40"
-            },
-            {
-                id: 7,
-                name: "Radler",
-                price: "2.70"
-            }];
-
-        $rootScope.eten = [{
-            id: 8,
-            name: "Tosti",
-            price: "1.50"
-        },
-            {
-                id: 9,
-                name: "Taart",
-                price: "1.30"
-            },
-            {
-                id: 10,
-                name: "Nacho's",
-                price: "1.70"
-            }];
 
         $rootScope.tafels = [{
             id: 11,
@@ -104,7 +26,6 @@
             }];
 
         $rootScope.order = [];
-        $rootScope.nieuw = {};
         $rootScope.totOrders = 0;
         $rootScope.comments = {};
 
@@ -189,24 +110,6 @@
             //TODO
         };
 
-        $rootScope.addNewItem = function (item) {
-            if (item.category === "Dranken") {
-                item.id = $rootScope.dranken.length + $rootScope.eten.length;
-                $rootScope.dranken.push(item);
-                $rootScope.nieuw = [];
-                $('#myTab').find('a[href="#dranken"]').tab('show')
-            } else if (item.category === "Eten") {
-                item.id = $rootScope.eten.length + $rootScope.eten.length;
-                $rootScope.eten.push(item);
-                $rootScope.nieuw = [];
-                $('#myTab').find('a[href="#eten"]').tab('show')
-            } else if(item.category === "favorieten"){
-                item.id = $rootScope.favorieten.length + $rootScope.eten.length;
-                $rootScope.favorieten.push(item);
-                $rootScope.nieuw = [];
-            }
-        };
-
         $rootScope.submitComment = function (comment) {
             $rootScope.comments.push(comment);
             return $rootScope.comments;
@@ -215,29 +118,7 @@
         var url = window.location.protocol + "://" + window.location.host + "/" + window.location.pathname;
 
         function initController() {
-            loadCurrentUser();
-            loadAllUsers();
-        }
-
-        function loadCurrentUser() {
-            UserService.GetByUsername($rootScope.globals.currentUser.username)
-                .then(function (user) {
-                    vm.user = user;
-                });
-        }
-
-        function loadAllUsers() {
-            UserService.GetAll()
-                .then(function (users) {
-                    vm.allUsers = users;
-                });
-        }
-
-        function deleteUser(id) {
-            UserService.Delete(id)
-                .then(function () {
-                    loadAllUsers();
-                });
+            // todo init
         }
     }
 })();
