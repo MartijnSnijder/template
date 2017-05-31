@@ -110,6 +110,9 @@
             $rootScope.currentTable = tableID;
         };
 
+        // returns the index corresponding to the tableID.
+        //@TODO optimize it by checking if > or < than number..
+        //@TODO now it checks from 1>>
         $rootScope.findIndexArray= function(tableID){
             var arrayIndex = 0;
             for (var x = 0; x < $rootScope.tables.length ; x++) {

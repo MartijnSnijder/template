@@ -53,7 +53,7 @@
                         Nog geen producten geselecteerd!
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat=" table in tables | filter: {id:currentTable}">
+                        <li class="list-group-item" ng-repeat=" table in tables | filter: currentTable :true">
                             <div class="row" ng-repeat="order in table.order">
                                 <div class="col-md-1 col-xs-1 ">
                                     <span class="badge badge-left" ng-bind="order.qty"></span>
