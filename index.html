@@ -21,13 +21,14 @@
             <a class="navbar-brand" href="#">Cafepos.nl</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li ng-class="{ active: isActive('/')}"><a href="#!/">Bestellingsoverzicht</a></li>
-                <li ng-class="{ active: isActive('/tableview')}"><a href="#!/tableview">Tafeloverzicht</a></li>
+            <ul class="nav navbar-nav" ng-hide="isActive('/login')">
+                <li ng-hide="isActive('/register')" ng-class="{ active: isActive('/')}"><a href="#!/">Bestellingsoverzicht</a></li>
+                <li ng-hide="isActive('/register')" ng-class="{ active: isActive('/tableview')}"><a href="#!/tableview">Tafeloverzicht</a></li>
                 <li class="dropdown">
-                    <a ng-class="{ active: isActive('/login', '/register')}" href="" class="dropdown-toggle navbar-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiel<span class="caret"></span></a>
+                    <a ng-hide="isActive('/register')" href="" class="dropdown-toggle navbar-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiel<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#!/login">Uitloggen</a></li>
+                        <li><a href="#!/admin">Beheer</a></li>
                     </ul>
                 </li>
             </ul>
@@ -37,7 +38,7 @@
 
 <div class="col-md-12">
     <div class="row">
-        <div class="col-md-8" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        <div class="col-md-6" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
         <div ng-view></div>
     </div>
 </div>
@@ -59,6 +60,7 @@
 <!-- Fake user service for demo that uses local storage -->
 <script src="app-services/user.service.local-storage.js"></script>
 
+<script src="admin/admin.controller.js"></script>
 <script src="home/home.controller.js"></script>
 <script src="login/login.controller.js"></script>
 <script src="register/register.controller.js"></script>
