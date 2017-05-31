@@ -9,8 +9,8 @@
         .module('app')
         .controller('AdminController', AdminController);
 
-    AdminController.$inject = ['UserService', '$rootScope'];
-    function AdminController(UserService, $rootScope) {
+    AdminController.$inject = ['UserService', '$rootScope', 'FlashService'];
+    function AdminController(UserService, $rootScope, FlashService) {
 
         var vm = this;
 
@@ -58,11 +58,16 @@
                 });
         }
 
-        function deleteUser(id) {
-            UserService.Delete(id)
-                .then(function () {
-                    loadAllUsers();
-                });
+        function deleteUser(id, $timeout) {
+            if (id === vm.user.id) {
+                FlashService.Error('Je kan jezelf niet verwijderen', false);
+            }
+            else{
+                UserService.Delete(id)
+                    .then(function () {
+                        loadAllUsers();
+                    });
+            }
         }
     }
 })();
