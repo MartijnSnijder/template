@@ -16,51 +16,35 @@
         // variable
         $rootScope.show = true;
 
-        $rootScope.orderTemp = [{
-            id: 24,
-            name: "Thee",
-            price: "2",
-            qty: "4"
 
-        },
-            {
-                id:22,
-                name: "koffie",
-                price: "4",
-                qty: "1"
-            }];
 
-        $rootScope.tableSectionA = [{
-            id: 23,
+        $rootScope.tables = [{
+            id: 1,
             name: "A-1",
             order: []
 
         }, {
-            id: 21,
+            id: 2,
             name: "A-2",
             order: []
         }, {
-            id: 22,
+            id: 3,
             name: "A-3",
             order: []
         }, {
-            id: 22,
+            id: 4,
             name: "A-4",
             order: []
         }, {
-            id: 22,
+            id: 5,
             name: "A-5",
             order: []
         },{
-            id: 22,
+            id: 6,
             name: "A-6",
             order: []
-        }
-
-        ];
-
-        $rootScope.tableSectionB = [{
-            id: 30,
+        },{
+            id: 7,
             name: "B-1",
             order: [{
                 name: "koffie",
@@ -75,7 +59,7 @@
             ]
 
         }, {
-            id: 24,
+            id: 8,
             name: "B-2",
             order: [{
                 name: "BIER",
@@ -83,45 +67,45 @@
                 qty: "25"
             }]
         }, {
-            id: 25,
+            id: 9,
             name: "B-3",
             order: []
         }, {
-            id: 24,
+            id: 10,
             name: "B-4",
             order: []
         }, {
-            id: 25,
+            id: 11,
             name: "B-5",
             order: []
         }
 
         ];
 
-        $rootScope.test = function () {
-            return $rootScope.tableSectionB[1].price;
-        };
-
-
-
+        $rootScope.currentTable = 0;
         $rootScope.getTable = function (tableID) {
-            return tableID;
+            $rootScope.currentTable = tableID;
+            console.log(tableID.toString() + ": joe");
         };
 
-        $rootScope.showHide = function(){
-            if($rootScope.show = true){
-                $rootScope.show = false;
-            } else{
-                $rootScope.show = true;
-            }
 
+        $rootScope.tableFilter = function(tablename, tableSection) {
+            console.log("ik kom hier wel G");
+
+            console.log(tableSection + " " + tablename);
+
+                if (tablename.search(tableSection)) {
+                    return true;
+                }
+
+            return false;
         };
 
         // get total needs table id // place in the array to show correct table totalprice
-        $rootScope.getTotal = function () {
+        $rootScope.getTotal = function (tableID) {
             // to test
-            var tableid = 23;
-            var tableinArray = 0;
+           // var tableid = 23;
+           // var tableinArray = 0;
 
             var tot = 0;
             for (var i = 0; i < $rootScope.tableSectionB[tableinArray].order.length; i++) {

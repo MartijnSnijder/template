@@ -4,45 +4,18 @@
             <div class="row">
                 <div class="col-md-4 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsA">
-                        <button class="btn btn-success btn-pos btn-marginTop" data-ng-repeat="table in tableSectionA" data-ng-bind="table.name" data-ng-click=""></button>
+                        <button class="btn btn-success btn-pos btn-marginTop"  data-ng-bind="table.name" data-ng-repeat="table in tables" ng-if="table.name.indexOf('A') > -1" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsB">
-                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tableSectionB" data-ng-bind="table.name" data-ng-click="getTab()"></button>
+                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="table in tables" ng-if="table.name.indexOf('B') > -1"  data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="table in tableSectionB">
-                        <div class="row">
-                            <div class="col-md-1 col=md-push-1 col-xs-1">
-                                {{table.name}}
-                            </div>
 
-                            <ul class="list-group-item col-md-12" ng-repeat="order in table.order">
-                                <li><!--{{order.name}}, {{order.price}}, {{order.qty}}, {{order.price * order.qty}}-->
-
-                                    <div class="col-md-1 col-xs-3">
-                                        <div class="">{{order.name}}</div>
-                                    </div>
-                                    <div class="col-md-1 col-md-push-1 col-xs-1 ">
-                                        <div class="">{{order.price | currency:"€":0}}</div>
-                                    </div>
-                                    <div class="col-md-1 col-md-push-2 col-xs-1">
-                                        <div class="">{{order.price * order.qty | currency:"€":0}}</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -75,8 +48,7 @@
                         Nog geen producten geselecteerd!
                     </div>
                     <ul class="list-group">
-                        <!-- table in tableSectionB | filter: {id: 23} -->
-                        <li class="list-group-item" ng-repeat=" table in tableSectionB | filter: {id:30}">
+                        <li class="list-group-item" ng-repeat=" table in tables | filter: {id:currentTable}">
                             <div class="row" ng-repeat="order in table.order">
                                 <div class="col-md-1 col-xs-1 ">
                                     <span class="badge badge-left" ng-bind="order.qty"></span>
@@ -110,7 +82,7 @@
                     </ul>
                 </div>
                 <div class="panel-footer">
-                    <h3><span class="label label-warning">Totaal: {{getTotal() | currency:"€":0}}</span></h3>
+                    <h3><span class="label label-warning">Totaal: { | currency:"€":0}}</span></h3>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
                     <div class="row">
