@@ -143,6 +143,30 @@
             return tot;
         };
 
+        $rootScope.clearOrder = function (currentTable) {
+            var arrayIndex = $rootScope.findIndexArray(currentTable);
+            var order= $rootScope.tables[arrayIndex].order;
+            console.log(order);
+
+            if(order.length > 0) {
+                $rootScope.tables[arrayIndex].order = [];
+            }
+        };
+
+        $rootScope.addToTable = function (currentTable) {
+            alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\n Toegevoegd aan tafel!");
+            $rootScope.order= [];
+            $rootScope.totOrders += 1;
+
+        };
+
+        /*$rootScope.checkout = function (index) {
+            alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
+            $rootScope.order = [];
+            $rootScope.totOrders += 1;
+        };*/
+
+        //DONT REMOVE THIS IT WILL DESTROY EVERYTHING
         function initController() {
             // todo init
         }
