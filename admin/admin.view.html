@@ -1,11 +1,11 @@
 <div class="col-md-12">
     <div class="row">
-        <!-- Producten -->
+        <!-- Product toevoegen -->
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-4"><span class="panel-title">Nieuw product</span></div>
+                        <div class="col-md-4"><span class="panel-title">Product toevoegen</span></div>
                     </div>
                 </div>
                 <div class="panel-body" id = "nieuw">
@@ -34,6 +34,38 @@
                 <div class="panel-footer"></div>
             </div>
         </div>
+        <!-- Product verwijderen -->
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4"><span class="panel-title">Product verwijderen</span></div>
+                    </div>
+                </div>
+                <div class="panel-body" id = "verwijderen">
+                    <form class="form" name="formCreate" novalidate>
+                        <div class="col-md-4">
+                            <label>Categorie*</label>
+                            <select class="form-control" data-ng-model="verwijderen.category" required>
+                                <option>Dranken</option>
+                                <option>Eten</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Product*</label>
+                            <select class="form-control" data-ng-model="verwijderen.product" required>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <br />
+                            <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)" data-ng-disabled="formCreate.$invalid">Verwijderen</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <!-- Gebruiker verwijderen -->
         <div class="col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
