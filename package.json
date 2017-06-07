@@ -1,0 +1,25 @@
+{
+  "name": "cafepos",
+  "version": "1.0.0",
+  "description": "Cafepos.nl | De beste kassasoftware van Nederland!\r ==============================",
+  "main": "app.js",
+  "dependencies": {
+    "mysql": "^2.13.0",
+    "express":""
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartijnSnijder/template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MartijnSnijder/template/issues"
+  },
+  "homepage": "https://github.com/MartijnSnijder/template#readme"
+}
