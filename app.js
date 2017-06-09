@@ -66,19 +66,25 @@
         };
 
         $rootScope.favorieten = [{
-            id: 15,
-            name: "Rode wijn (glas)",
-            price: "4"
-
-        }, {
-            id: 16,
-            name: "Rode wijn (fles)",
-            price: "14"
-        }, {
-            id: 17,
-            name: "Koffie verkeerd",
-            price: "4.20"
-        }
+            id: 4,
+            name: "Thee",
+            price: "1.90"
+        },
+            {
+                id: 5,
+                name: "Koffie",
+                price: "2.00"
+            },
+            {
+                id: 6,
+                name: "Bier",
+                price: "2.40"
+            },
+            {
+                id: 8,
+                name: "Tosti",
+                price: "1.50"
+            }
 
         ];
 
