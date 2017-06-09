@@ -121,6 +121,20 @@
             return arrayIndex;
         };
 
+        /*TODO EEN PRODUCT FIND FUNCTION??
+        *
+        *
+        * */
+
+        $rootScope.findOrderProductIndex = function(arrayIndex, productname){
+            for (var i = 0; i < $rootScope.tables[arrayindex].order.length; i++){
+                if(productname === $rootScope.tables[arrayIndex].order[i].name){
+                    return i;
+                }
+            }
+
+        };
+
         // get total needs table id // place in the array to show correct table totalprice
         $rootScope.getTotal = function (tableID) {
             var tot = 0;
@@ -134,6 +148,30 @@
                 }
             }
             return tot;
+        };
+
+        $rootScope.changeOrderQty= function(tableID, productname, qty){
+            var arrayIndex = $rootScope.findIndexArray(tableID);
+            var order = $rootScope.tables[arrayIndex].order[$rootScope.findOrderProductIndex(arrayIndex,productname)].name;
+            console.log(order);
+            console.log("joe");
+            console.log(arrayIndex);
+            if(qty === -1){
+                console.log(order + "twice");
+                order.qty = order.qty -1;
+                console.log(order + "new");
+            } else if(qty === 1){
+                order.qty = order.qty +1;
+                console.log(order + "new");
+            }
+        };
+
+
+        $rootScope.popupClearOrder = function(currentTable){
+            if(confirm("-- Weet u zeker dat u de bestelling van tafel " + currentTable + " wilt annuleren?")){
+                $rootScope.clearOrder(currentTable);
+            }
+
         };
 
         // clear the entire order from the currentTable
