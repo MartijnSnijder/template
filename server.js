@@ -1,42 +1,24 @@
-var express   =    require("express");
-var mysql     =    require('mysql');
-var app       =    express();
+var express = require('express');
+var app = express();
 
-var pool      =    mysql.createPool({
-    connectionLimit : 100, //important
+app.use(express.static('public'))
+
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'cafepos',
-    debug    :  false
+    database : 'cafepos'
 });
+connection.connect();
 
-function handle_database(req,res) {
-    
-    pool.getConnection(function(err,connection){
-        if (err) {
-          res.json({"code" : 100, "status" : "Error in connection database"});
-          return;
-        }   
-
-        console.log('connected as id ' + connection.threadId);
-        
-        connection.query("select * from cafe",function(err,rows){
-            connection.release();
-            if(!err) {
-                res.json(rows);
-            }           
-        });
-
-        connection.on('error', function(err) {      
-              res.json({"code" : 100, "status" : "Error in connection database"});
-              return;     
-        });
-  });
-}
-
-app.get("/",function(req,res){-
-        handle_database(req,res);
+app.get('/api/:_id', function (req,res){
+    connection.query('select * from  '.concat(req.params._id),function (err,rows,fields)
+    {
+        if (err) throw err;
+        res.json(rows);
+    });
 });
-
-app.listen(3000);
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!');
+});
