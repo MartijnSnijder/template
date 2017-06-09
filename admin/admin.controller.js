@@ -58,7 +58,7 @@
                 });
         }
 
-        function deleteUser(id, $timeout) {
+        function deleteUser(id) {
             if (id === vm.user.id) {
                 FlashService.Error('Je kan jezelf niet verwijderen', false);
             }
