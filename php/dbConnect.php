@@ -14,6 +14,13 @@
     }
     echo json_encode($emparray);
 
+    <script type="text/javascript">
+    var test = <?php echo json_encode($emparray, JSON_PRETTY_PRINT) ?>;
+    console.log(test);
+    </script>
+
+
+
     //close the db connection
     mysqli_close($connection);
 ?>
