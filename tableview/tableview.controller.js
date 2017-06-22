@@ -13,7 +13,7 @@
     function tableViewController($rootScope, $http) {
         var vm = this;
 
-        $rootScope.tables = [{
+/*        $rootScope.tables = [{
             id: 1,
             name: "A-1",
             order: []
@@ -95,31 +95,51 @@
             order: []
         }
 
-        ];
+        ];*/
 
+        // DATA Collection
+        $rootScope.tafels = [];
+        $rootScope.product_orders = [];
+        $rootScope.extention;
+        //DB filler
+        $rootScope.Fill = function () {
+
+            /*if($rootScope.tafels.length === 0 && $rootScope.product_orders.length === 0){*/
+            $rootScope.extention = "tafels";
+            $rootScope.getter();
+
+            //@TODO werkt niet als deze ook aan staat...
+           /* $rootScope.extention = "product_orders";
+            $rootScope.getter();*/
+           /* }*/
+        };
 
         //LOCALHOST GETTEN
         $rootScope.getter = function() {
             console.log("getter");
-            return $http.get('http://localhost:3000/api/cafe').then(handleSuccess, handleError('Error bij getten..'));
+            return $http.get('http://localhost:3000/api/' + $rootScope.extention).then(handleSuccess, handleError('Error bij getten..'));
         };
 
-        //DB filler
-        $rootScope.DBFill = function () {
-            console.log("DB FILL");
-            if($rootScope.DB.length === 0){
-                $rootScope.getter();
-            }
-        };
-
-        $rootScope.DB = [];
+        // If connection succesfull
         function handleSuccess(res) {
-            console.log("DB");
-             $rootScope.DB = res.data;
-             console.log($rootScope.DB);
+            console.log("nu ben ik: " + $rootScope.extention);
+
+            if($rootScope.extention === "tafels"){
+                $rootScope.tafels = res.data;
+                console.log("Joe")
+
+            }
+
+            if($rootScope.extention === "product_orders"){
+                $rootScope.product_orders = res.data;
+                console.log("xx")
+            }
+
+            console.log(res.data);
             return res.data;
         }
 
+        // If connection Error
         function handleError(error) {
             return function () {
                 return { success: false, message: error };
