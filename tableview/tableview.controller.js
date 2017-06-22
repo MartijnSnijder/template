@@ -9,8 +9,8 @@
         .module('app')
         .controller('tableViewController', tableViewController);
 
-    tableViewController.$inject = ['$rootScope'];
-    function tableViewController($rootScope) {
+    tableViewController.$inject = ['$rootScope', '$http'];
+    function tableViewController($rootScope, $http) {
         var vm = this;
 
         $rootScope.tables = [{
@@ -96,6 +96,35 @@
         }
 
         ];
+
+
+        //LOCALHOST GETTEN
+        $rootScope.getter = function() {
+            console.log("getter");
+            return $http.get('http://localhost:3000/api/cafe').then(handleSuccess, handleError('Error bij getten..'));
+        };
+
+        //DB filler
+        $rootScope.DBFill = function () {
+            console.log("DB FILL");
+            if($rootScope.DB.length === 0){
+                $rootScope.getter();
+            }
+        };
+
+        $rootScope.DB = [];
+        function handleSuccess(res) {
+            console.log("DB");
+             $rootScope.DB = res.data;
+             console.log($rootScope.DB);
+            return res.data;
+        }
+
+        function handleError(error) {
+            return function () {
+                return { success: false, message: error };
+            };
+        }
 
         // variable current table ID
         $rootScope.currentTable = 0;

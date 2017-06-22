@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12" data-ng-init="DBFill()">
     <div class="row">
         <!-- section tables  -->
         <div class="col-md-6">
@@ -21,6 +21,13 @@
                         <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="table in tables" ng-if="table.name.indexOf('C') > -1"  data-ng-bind="table.name" data-ng-click="getTable(table.id)"></button>
                     </div>
                 </div>
+                <div class="col-md-2 col-xs-6">
+                    <div role="tabpanel" class="tab-pane active" id="DB">
+                        <!-- show the tables with name = C...-->
+                        <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="x in DB" data-ng-bind="x.naam"></button>
+                    </div>
+                </div>
+
             </div>
 
         </div>

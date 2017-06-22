@@ -5,6 +5,12 @@ const bodyParser = require('body-parser');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization')
+    next();
+});
+
 var mysql      = require('mysql');  
 var connection = mysql.createConnection({  
   host     : 'localhost',  
@@ -14,18 +20,17 @@ var connection = mysql.createConnection({
 });
 
 //  GEGEVENS VAN DE DB ONLINE
-var connectionReal = mysql.createConnection({
+/*var connectionReal = mysql.createConnection({
     host     : 'localhost',
     user     : 'u1183p12847_cafepos',
     password : 'hboict',
     database : 'u1183p12847_cafe'
-});
+});*/
 
 connection.connect();
 
 app.get('/api/:_id', function (req,res){
-	connection.query('select * from  `'.concat(req.params._id).concat('`'),function (err,rows,fields)
-	{
+	connection.query('select * from  `'.concat(req.params._id).concat('`'),function (err,rows,fields) {
 		if (err) throw err;
 		res.json(rows);
 	});
@@ -33,9 +38,9 @@ app.get('/api/:_id', function (req,res){
 
 app.post('/api/:_id', function (req,res){
 	var postData = req.body;
-connection.query('insert into `'.concat(req.params._id).concat('` SET ?'),postData,function(err,res){
-if(err) throw err;
-});
+    connection.query('insert into `'.concat(req.params._id).concat('` SET ?'),postData,function(err,res) {
+        if(err) throw err;
+        });
 });
 
 app.listen(3000, function () {
