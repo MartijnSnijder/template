@@ -13,89 +13,89 @@
     function tableViewController($rootScope, $http) {
         var vm = this;
 
-/*        $rootScope.tables = [{
-            id: 1,
-            name: "A-1",
-            order: []
+        /*        $rootScope.tables = [{
+         id: 1,
+         name: "A-1",
+         order: []
 
-        }, {
-            id: 2,
-            name: "A-2",
-            order: []
-        }, {
-            id: 3,
-            name: "A-3",
-            order: []
-        }, {
-            id: 4,
-            name: "A-4",
-            order: []
-        }, {
-            id: 5,
-            name: "A-5",
-            order: []
-        },{
-            id: 6,
-            name: "A-6",
-            order: []
-        },{
-            id: 7,
-            name: "B-1",
-            order: [{
-                name: "koffie",
-                price: "2",
-                qty: "4"
-            },{
-                name:"thee",
-                price:"3",
-                qty: "8"
-            }
+         }, {
+         id: 2,
+         name: "A-2",
+         order: []
+         }, {
+         id: 3,
+         name: "A-3",
+         order: []
+         }, {
+         id: 4,
+         name: "A-4",
+         order: []
+         }, {
+         id: 5,
+         name: "A-5",
+         order: []
+         },{
+         id: 6,
+         name: "A-6",
+         order: []
+         },{
+         id: 7,
+         name: "B-1",
+         order: [{
+         name: "koffie",
+         price: "2",
+         qty: "4"
+         },{
+         name:"thee",
+         price:"3",
+         qty: "8"
+         }
 
-            ]
+         ]
 
-        }, {
-            id: 8,
-            name: "B-2",
-            order: [{
-                name: "BIER",
-                price: "2",
-                qty: "25"
-            }]
-        }, {
-            id: 9,
-            name: "B-3",
-            order: []
-        }, {
-            id: 10,
-            name: "B-4",
-            order: []
-        }, {
-            id: 11,
-            name: "B-5",
-            order: []
-        }, {
-            id: 12,
-            name: "C-1",
-            order: [{
-                name: "BIER",
-                price: "2",
-                qty: "27"
-            }]
-        }, {
-            id: 13,
-            name: "C-2",
-            order: []
-        }, {
-            id: 14,
-            name: "C-3",
-            order: []
-        }, {
-            id: 15,
-            name: "C-4",
-            order: []
-        }
+         }, {
+         id: 8,
+         name: "B-2",
+         order: [{
+         name: "BIER",
+         price: "2",
+         qty: "25"
+         }]
+         }, {
+         id: 9,
+         name: "B-3",
+         order: []
+         }, {
+         id: 10,
+         name: "B-4",
+         order: []
+         }, {
+         id: 11,
+         name: "B-5",
+         order: []
+         }, {
+         id: 12,
+         name: "C-1",
+         order: [{
+         name: "BIER",
+         price: "2",
+         qty: "27"
+         }]
+         }, {
+         id: 13,
+         name: "C-2",
+         order: []
+         }, {
+         id: 14,
+         name: "C-3",
+         order: []
+         }, {
+         id: 15,
+         name: "C-4",
+         order: []
+         }
 
-        ];*/
+         ];*/
 
         // DATA Collection
         $rootScope.tafels = [];
@@ -109,9 +109,9 @@
             $rootScope.getter();
 
             //@TODO werkt niet als deze ook aan staat...
-           /* $rootScope.extention = "product_orders";
-            $rootScope.getter();*/
-           /* }*/
+            /* $rootScope.extention = "product_orders";
+             $rootScope.getter();*/
+            /* }*/
         };
 
         //LOCALHOST GETTEN
@@ -171,9 +171,9 @@
         };
 
         /*TODO EEN PRODUCT FIND FUNCTION??
-        *
-        *
-        * */
+         *
+         *
+         * */
 
         $rootScope.findOrderProductIndex = function(arrayIndex, productname){
             for (var i = 0; i < $rootScope.tables[arrayindex].order.length; i++){
@@ -236,10 +236,10 @@
 
         //@TODO checkout function
         /*$rootScope.checkout = function (index) {
-            alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
-            $rootScope.order = [];
-            $rootScope.totOrders += 1;
-        };*/
+         alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
+         $rootScope.order = [];
+         $rootScope.totOrders += 1;
+         };*/
 
         //DONT REMOVE THIS IT WILL DESTROY EVERYTHING
         function initController() {
