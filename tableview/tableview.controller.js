@@ -13,10 +13,16 @@
     function tableViewController($rootScope, $http) {
         var vm = this;
 
-        // DATA Collection
+        //// ARRAY & VAR Declarations
+
+        // ARRAYS
         $rootScope.tafels = [];
         $rootScope.product_view = [];
-        $rootScope.currentTableProducts = [];
+
+        // VARS
+        $rootScope.currentTable = "";
+
+
         //DB filler
         $rootScope.Fill = function () {
 
@@ -60,8 +66,6 @@
             };
         }
 
-        // variable current table name
-        $rootScope.currentTable = "";
 
         // gets the table ID when button is clicked and changes currentTable
         $rootScope.getTable = function (tableNaam) {
@@ -69,22 +73,74 @@
         };
 
 
-        $rootScope.addToList = function(tableNaam){
-
-            $rootScope.product_view.forEach(function(object){
-               if(object.tafel_naam === tableNaam){
-                   $rootScope.currentTableProducts.push(object);
-               }
+        // gets the total value of the order basis on the tableNaam
+        $rootScope.getTotal = function (tableNaam) {
+            var tot = 0;
+            $rootScope.product_view.forEach(function(product){
+                if(product.tafel_naam === tableNaam){
+                    tot += ((product.prijs * product.aantal) / 100);
+                }
             });
+            return tot;
+        };
 
+        $rootScope.changeOrderQty= function(tableNaam, prodProductNaam, plusOrMinusOne){
+            console.log("joe");
+            $rootScope.product_view.forEach(function(product){
+                if(product.product_naam === prodProductNaam){
+                    //@TODO update de DB
+                    if(plusOrMinusOne === 'plusOne'){
+                        product.aantal++;
+                    } else if(plusOrMinusOne === 'minusOne'){
+                        product.aantal--;
+                    }
+                }
+            })
         };
 
 
+        $rootScope.popupClearOrder = function(currentTable){
+            if(confirm("-- Weet u zeker dat u de bestelling van tafel " + currentTable + " wilt annuleren?")){
+                $rootScope.clearOrder(currentTable);
+            }
+
+        };
+
+        // clear the entire order from the currentTable
+        // @TODO DIT MOET NOG GEDAAN WORDEN.. UPDATE NAAR DB?
+        $rootScope.clearOrder = function (currentTable) {
+            var arrayIndex = $rootScope.findIndexArray(currentTable);
+            var order= $rootScope.tables[arrayIndex].order;
+
+            // only clear order when order has items
+            if(order.length > 0) {
+                $rootScope.tables[arrayIndex].order = [];
+            }
+        };
 
 
+        //DONT REMOVE THIS IT WILL DESTROY EVERYTHING
+        function initController() {
+            // todo init
+        }
 
 
-        // returns the index corresponding to the tableID.
+        /* TIJDELIJK NIET NODIGE DEZE CODE....
+        *
+        *
+        *
+        *
+        *
+        * ...............: : : */
+
+        //@TODO checkout function
+        /*$rootScope.checkout = function (index) {
+         alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
+         $rootScope.order = [];
+         $rootScope.totOrders += 1;
+         };*/
+
+        /*// returns the index corresponding to the tableID.
         //@TODO optimize it by checking if > or < than number..
         //@TODO now it checks from 1>>
         $rootScope.findIndexArray= function(tableNaam){
@@ -107,69 +163,6 @@
                 }
             }
 
-        };
-
-        // get total needs table id // place in the array to show correct table totalprice
-        // @TODO FIXEN GODVERDOMME
-        /*$rootScope.getTotal = function (tableNaam) {
-            var tot = 0;
-            // if no table is selected then the tableID will be 0.
-            if(table !== 0) {
-                var arrayIndex = $rootScope.findIndexArray(tableNaam);
-
-                // Calculate the total amount of the order
-                for (var i = 0; i < $rootScope.tables[arrayIndex].order.length; i++) {
-                    tot += ($rootScope.tables[arrayIndex].order[i].price * $rootScope.tables[arrayIndex].order[i].qty)
-                }
-            }
-            return tot;
         };*/
-
-        $rootScope.changeOrderQty= function(tableNaam, productname, qty){
-            var arrayIndex = $rootScope.findIndexArray(tableNaam);
-            var order = $rootScope.tables[arrayIndex].order[$rootScope.findOrderProductIndex(arrayIndex,productname)].name;
-            console.log(order);
-            console.log("joe");
-            console.log(arrayIndex);
-            if(qty === -1){
-                console.log(order + "twice");
-                order.qty = order.qty -1;
-                console.log(order + "new");
-            } else if(qty === 1){
-                order.qty = order.qty +1;
-                console.log(order + "new");
-            }
-        };
-
-
-        $rootScope.popupClearOrder = function(currentTable){
-            if(confirm("-- Weet u zeker dat u de bestelling van tafel " + currentTable + " wilt annuleren?")){
-                $rootScope.clearOrder(currentTable);
-            }
-
-        };
-
-        // clear the entire order from the currentTable
-        $rootScope.clearOrder = function (currentTable) {
-            var arrayIndex = $rootScope.findIndexArray(currentTable);
-            var order= $rootScope.tables[arrayIndex].order;
-
-            // only clear order when order has items
-            if(order.length > 0) {
-                $rootScope.tables[arrayIndex].order = [];
-            }
-        };
-
-        //@TODO checkout function
-        /*$rootScope.checkout = function (index) {
-         alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
-         $rootScope.order = [];
-         $rootScope.totOrders += 1;
-         };*/
-
-        //DONT REMOVE THIS IT WILL DESTROY EVERYTHING
-        function initController() {
-            // todo init
-        }
     }
 })();
