@@ -6,19 +6,19 @@
                 <div class="col-md-4 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsA">
                         <!-- show the tables with name = A...-->
-                        <button class="btn btn-success btn-pos btn-marginTop"   data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 1}" data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.id)"></button>
+                        <button class="btn btn-success btn-pos btn-marginTop"   data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 1}" data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsB">
                         <!-- show the tables with name = B...-->
-                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 2}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.id)"></button>
+                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 2}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsC">
                         <!-- show the tables with name = C... ng-if="tafel.naam.indexOf('C') > -1"   -->
-                        <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 3}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.id)"></button>
+                        <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 3}"  data-ng-bind="tafel.naam" data-ng-click="addToList(tafel.naam)"></button>
                     </div>
                 </div>
 
@@ -58,21 +58,21 @@
                         Nog geen producten geselecteerd!
                     </div>-->
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat=" table in tables | filter: currentTable :true">
-                            <div class="row" ng-repeat="order in table.order">
+                        <li class="list-group-item">
+                            <div class="row" ng-repeat="prod in product_view">
                                 <div class="col-md-1 col-xs-1 ">
-                                    <span class="badge badge-left" ng-bind="order.qty"></span>
+                                    <span class="badge badge-left" ng-bind="prod.aantal"></span>
                                 </div>
                                 <div class="col-md-4 col-xs-3">
-                                    {{order.name}}
+                                    {{prod.product_naam}}
                                 </div>
 
                                 <!-- @TODO do we need this buttons? Add/Remove/Minus -->
                                 <div class="col-md-2 col-xs-4">
-                                    <button class="btn btn-success btn-xs" ng-click="changeOrderQty(currentTable, order.name, plus)">
+                                    <button class="btn btn-success btn-xs" ng-click="changeOrderQty(currentTable, prod.naam, plus)">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
-                                    <button class="btn btn-warning btn-xs" ng-click="changeOrderQty(currentTable, order.name, minus)">
+                                    <button class="btn btn-warning btn-xs" ng-click="changeOrderQty(currentTable, prod.naam, minus)">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
                                     <button class="btn btn-danger btn-xs" ng-click="">
@@ -80,10 +80,10 @@
                                     </button>
                                 </div>
                                 <div class="col-md-1 col-md-push-1 col-xs-1 ">
-                                    <div class="">{{order.price | currency:"€":0}}</div>
+                                    <div class="">{{prod.prijs /100 | currency:"€":2}}</div>
                                 </div>
                                 <div class="col-md-1 col-md-push-2 col-xs-1">
-                                    <div class="">{{order.price * order.qty | currency:"€":0}}</div>
+                                    <div class="">{{(prod.prijs * prod.aantal) /100 | currency:"€":2}}</div>
                                 </div>
 
 

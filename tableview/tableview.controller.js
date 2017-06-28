@@ -13,17 +13,17 @@
     function tableViewController($rootScope, $http) {
         var vm = this;
 
-
         // DATA Collection
         $rootScope.tafels = [];
-        $rootScope.product_orders = [];
+        $rootScope.product_view = [];
+        $rootScope.currentTableProducts = [];
         //DB filler
         $rootScope.Fill = function () {
 
             /*if($rootScope.tafels.length === 0 && $rootScope.product_orders.length === 0){*/
             $rootScope.getter("tafels");
 
-            $rootScope.getter("product_orders");
+            $rootScope.getter("product_view");
         };
 
         //LOCALHOST GETTEN
@@ -44,8 +44,8 @@
 
             }
 
-            if(table === "product_orders"){
-                $rootScope.product_orders = res.data;
+            if(table === "product_view"){
+                $rootScope.product_view = res.data;
                 console.log("xx")
             }
 
@@ -60,22 +60,37 @@
             };
         }
 
-        // variable current table ID
-        $rootScope.currentTable = 0;
+        // variable current table name
+        $rootScope.currentTable = "";
 
         // gets the table ID when button is clicked and changes currentTable
-        $rootScope.getTable = function (tableID) {
-            $rootScope.currentTable = tableID;
+        $rootScope.getTable = function (tableNaam) {
+            $rootScope.currentTable = tableNaam;
         };
+
+
+        $rootScope.addToList = function(tableNaam){
+
+            $rootScope.product_view.forEach(function(object){
+               if(object.tafel_naam === tableNaam){
+                   $rootScope.currentTableProducts.push(object);
+               }
+            });
+
+        };
+
+
+
+
+
 
         // returns the index corresponding to the tableID.
         //@TODO optimize it by checking if > or < than number..
         //@TODO now it checks from 1>>
-        $rootScope.findIndexArray= function(tableID){
+        $rootScope.findIndexArray= function(tableNaam){
             var arrayIndex = 0;
-            for (var x = 0; x < $rootScope.tables.length ; x++) {
-                console.log($rootScope.tables[x].id + " test.. " + tableID);
-                if ($rootScope.tables[x].id.toString() === tableID.toString()) {
+            for (var x = 0; x < $rootScope.tafels.length ; x++) {
+                if ($rootScope.tafels[x].naam === tableNaam) {
                     console.log("x = " + x);
                     return x;
 
@@ -84,10 +99,6 @@
             return arrayIndex;
         };
 
-        /*TODO EEN PRODUCT FIND FUNCTION??
-         *
-         *
-         * */
 
         $rootScope.findOrderProductIndex = function(arrayIndex, productname){
             for (var i = 0; i < $rootScope.tables[arrayindex].order.length; i++){
@@ -99,11 +110,12 @@
         };
 
         // get total needs table id // place in the array to show correct table totalprice
-        $rootScope.getTotal = function (tableID) {
+        // @TODO FIXEN GODVERDOMME
+        /*$rootScope.getTotal = function (tableNaam) {
             var tot = 0;
             // if no table is selected then the tableID will be 0.
-            if(tableID !== 0) {
-                var arrayIndex = $rootScope.findIndexArray(tableID);
+            if(table !== 0) {
+                var arrayIndex = $rootScope.findIndexArray(tableNaam);
 
                 // Calculate the total amount of the order
                 for (var i = 0; i < $rootScope.tables[arrayIndex].order.length; i++) {
@@ -111,10 +123,10 @@
                 }
             }
             return tot;
-        };
+        };*/
 
-        $rootScope.changeOrderQty= function(tableID, productname, qty){
-            var arrayIndex = $rootScope.findIndexArray(tableID);
+        $rootScope.changeOrderQty= function(tableNaam, productname, qty){
+            var arrayIndex = $rootScope.findIndexArray(tableNaam);
             var order = $rootScope.tables[arrayIndex].order[$rootScope.findOrderProductIndex(arrayIndex,productname)].name;
             console.log(order);
             console.log("joe");
