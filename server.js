@@ -36,11 +36,34 @@ app.get('/api/:_id', function (req,res){
 	});
 });
 
-app.post('/api/:_id', function (req,res){
-	var postData = req.body;
-    connection.query('insert into `'.concat(req.params._id).concat('` SET ?'),postData,function(err,res) {
-        if(err) throw err;
-        });
+app.post('/api/:_id', function (req, res) {
+    var postData = req.body,
+        query = 'INSERT INTO `'.concat(req.params._id).concat('` (');
+
+    for (var key in postData) {
+        if (!postData.hasOwnProperty(key))
+            continue;
+
+        query = query.concat('`').concat(key).concat('`,');
+    }
+
+    var data = [];
+    query = query.slice(0, -1);
+    query = query.concat(') VALUES(');
+    for ( key in postData) {
+        if (!postData.hasOwnProperty(key))
+            continue;
+
+        query = query.concat('?,');
+        data.push(postData[key]);
+    }
+
+    query = query.slice(0, -1);
+    query = query.concat(')');
+    var queryResult = connection.query(query, data, function (err, res2) {
+        if (err) throw err;
+        res.json(true);
+    });
 });
 
 app.listen(3000, function () {
