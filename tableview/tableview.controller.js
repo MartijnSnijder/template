@@ -13,124 +13,38 @@
     function tableViewController($rootScope, $http) {
         var vm = this;
 
-        /*        $rootScope.tables = [{
-         id: 1,
-         name: "A-1",
-         order: []
-
-         }, {
-         id: 2,
-         name: "A-2",
-         order: []
-         }, {
-         id: 3,
-         name: "A-3",
-         order: []
-         }, {
-         id: 4,
-         name: "A-4",
-         order: []
-         }, {
-         id: 5,
-         name: "A-5",
-         order: []
-         },{
-         id: 6,
-         name: "A-6",
-         order: []
-         },{
-         id: 7,
-         name: "B-1",
-         order: [{
-         name: "koffie",
-         price: "2",
-         qty: "4"
-         },{
-         name:"thee",
-         price:"3",
-         qty: "8"
-         }
-
-         ]
-
-         }, {
-         id: 8,
-         name: "B-2",
-         order: [{
-         name: "BIER",
-         price: "2",
-         qty: "25"
-         }]
-         }, {
-         id: 9,
-         name: "B-3",
-         order: []
-         }, {
-         id: 10,
-         name: "B-4",
-         order: []
-         }, {
-         id: 11,
-         name: "B-5",
-         order: []
-         }, {
-         id: 12,
-         name: "C-1",
-         order: [{
-         name: "BIER",
-         price: "2",
-         qty: "27"
-         }]
-         }, {
-         id: 13,
-         name: "C-2",
-         order: []
-         }, {
-         id: 14,
-         name: "C-3",
-         order: []
-         }, {
-         id: 15,
-         name: "C-4",
-         order: []
-         }
-
-         ];*/
 
         // DATA Collection
         $rootScope.tafels = [];
         $rootScope.product_orders = [];
-        $rootScope.extention;
         //DB filler
         $rootScope.Fill = function () {
 
             /*if($rootScope.tafels.length === 0 && $rootScope.product_orders.length === 0){*/
-            $rootScope.extention = "tafels";
-            $rootScope.getter();
+            $rootScope.getter("tafels");
 
-            //@TODO werkt niet als deze ook aan staat...
-            /* $rootScope.extention = "product_orders";
-             $rootScope.getter();*/
-            /* }*/
+            $rootScope.getter("product_orders");
         };
 
         //LOCALHOST GETTEN
-        $rootScope.getter = function() {
+        $rootScope.getter = function(table) {
             console.log("getter");
-            return $http.get('http://localhost:3000/api/' + $rootScope.extention).then(handleSuccess, handleError('Error bij getten..'));
+            return $http.get('http://localhost:3000/api/' + table).then(function (res) {
+                handleSuccess(table, res);
+            }, handleError('Error bij getten..'));
         };
 
         // If connection succesfull
-        function handleSuccess(res) {
-            console.log("nu ben ik: " + $rootScope.extention);
+        function handleSuccess(table, res) {
+            console.log("nu ben ik: " + table);
 
-            if($rootScope.extention === "tafels"){
+            if(table === "tafels"){
                 $rootScope.tafels = res.data;
                 console.log("Joe")
 
             }
 
-            if($rootScope.extention === "product_orders"){
+            if(table === "product_orders"){
                 $rootScope.product_orders = res.data;
                 console.log("xx")
             }
