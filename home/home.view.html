@@ -14,7 +14,7 @@
                             <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in favorieten" data-ng-bind="item.naam" data-ng-click="addToOrder(item, 1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="dranken">
-                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter: item.type = drinken" data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter: Drankfilter" data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="eten">
                             <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="object in producten" data-ng-bind="object.naam" data-ng-click=""></button>
@@ -62,7 +62,7 @@
                                     <span class="badge badge-left" ng-bind="item.qty"></span>
                                 </div>
                                 <div class="col-md-4 col-xs-3">
-                                    {{item.name}}
+                                    {{item.naam}}
                                 </div>
 
                                 <div class="col-md-2 col-xs-4">
@@ -77,10 +77,10 @@
                                     </button>
                                 </div>
                                 <div class="col-md-1 col-md-push-1 col-xs-1 ">
-                                    <div class="">{{item.price | currency:"€":0}}</div>
+                                    <div class="">{{item.prijs /100 | currency:"€":2}}</div>
                                 </div>
                                 <div class="col-md-1 col-md-push-2 col-xs-1">
-                                    <div class="">{{item.price * item.qty | currency:"€":0}}</div>
+                                    <div class="">{{item.prijs * item.qty /100 | currency:"€":2}}</div>
                                 </div>
 
                             </div>

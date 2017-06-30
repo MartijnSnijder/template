@@ -13,12 +13,6 @@
     function tableViewController($rootScope, $http) {
         var vm = this;
 
-        //// ARRAY & VAR Declarations
-
-        // ARRAYS
-        $rootScope.tafels = [];
-        $rootScope.product_view = [];
-
         // VARS
         $rootScope.currentTable = "";
 

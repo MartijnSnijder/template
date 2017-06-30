@@ -28,7 +28,7 @@
         $rootScope.order = [];
         $rootScope.totOrders = 0;
         $rootScope.comments = {};
-        $rootScope.producten = [];
+
 
         $rootScope.getDate = function () {
             var today = new Date();
@@ -42,6 +42,8 @@
         };
 
         $rootScope.addToOrder = function (item, qty) {
+            console.log("hoihoi");
+            console.log($rootScope.order.length + " joe ");
             var flag = 0;
             if ($rootScope.order.length > 0) {
                 for (var i = 0; i < $rootScope.order.length; i++) {
@@ -62,6 +64,14 @@
                 $rootScope.order.push(item);
             }
         };
+
+        // FILTER?
+        /*$rootScope.DrankFilter= function(item){
+            if(item.type === "drinken"){
+                return item;
+            }
+        };*/
+
 
         $rootScope.removeOneEntity = function (item) {
             for (var i = 0; i < $rootScope.order.length; i++) {

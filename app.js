@@ -65,6 +65,11 @@
             return viewLocation === $location.url();
         };
 
+        // ARRAYS
+        $rootScope.tafels = [];
+        $rootScope.producten = [];
+        $rootScope.product_view = [];
+
         //DB filler
         $rootScope.Fill = function () {
             $rootScope.getter("tafels");
@@ -85,20 +90,21 @@
         function handleSuccess(table, res) {
             console.log("nu ben ik: " + table);
 
-            if(table === "eten"){
-                console.log(table);
-                $rootScope.eten = res.data;
-            }
-
             if(table === "producten"){
                 console.log(table);
                 $rootScope.producten = res.data;
             }
 
+            /*if(table === "eten"){
+                console.log(table);
+                $rootScope.eten = res.data;
+            }
+
+
             if(table === "drinken"){
                 console.log(table);
                 $rootScope.drinken = res.data;
-            }
+            }*/
 
             if(table === "tafels"){
                 console.log(table);
