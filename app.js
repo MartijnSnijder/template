@@ -65,86 +65,60 @@
             return viewLocation === $location.url();
         };
 
-        $rootScope.favorieten = [{
-            id: 4,
-            name: "Thee",
-            price: "1.90"
-        },
-            {
-                id: 5,
-                name: "Koffie",
-                price: "2.00"
-            },
-            {
-                id: 6,
-                name: "Bier",
-                price: "2.40"
-            },
-            {
-                id: 8,
-                name: "Tosti",
-                price: "1.50"
+        //DB filler
+        $rootScope.Fill = function () {
+            $rootScope.getter("tafels");
+            $rootScope.getter("product_view");
+            $rootScope.getter("producten");
+        };
+
+        //LOCALHOST GETTEN
+        $rootScope.getter = function(table) {
+
+            console.log("getter");
+            return $http.get('http://localhost:3000/api/' + table).then(function (res) {
+                handleSuccess(table, res);
+            }, handleError('Error bij getten..'));
+        };
+
+        // If connection succesfull
+        function handleSuccess(table, res) {
+            console.log("nu ben ik: " + table);
+
+            if(table === "eten"){
+                console.log(table);
+                $rootScope.eten = res.data;
             }
 
-        ];
+            if(table === "producten"){
+                console.log(table);
+                $rootScope.producten = res.data;
+            }
 
-        $rootScope.dranken = [{
-            id: 0,
-            name: "Cola",
-            price: "1.50"
-        },
-            {
-                id: 1,
-                name: "Sinas",
-                price: "1.50"
-            },
-            {
-                id: 2,
-                name: "Espresso",
-                price: "2.50"
-            },
-            {
-                id: 3,
-                name: "Cappuccino",
-                price: "2.50"
-            },
-            {
-                id: 4,
-                name: "Thee",
-                price: "1.90"
-            },
-            {
-                id: 5,
-                name: "Koffie",
-                price: "2.00"
-            },
-            {
-                id: 6,
-                name: "Bier",
-                price: "2.40"
-            },
-            {
-                id: 7,
-                name: "Radler",
-                price: "2.70"
-            }];
+            if(table === "drinken"){
+                console.log(table);
+                $rootScope.drinken = res.data;
+            }
 
-        $rootScope.eten = [{
-            id: 8,
-            name: "Tosti",
-            price: "1.50"
-        },
-            {
-                id: 9,
-                name: "Taart",
-                price: "1.30"
-            },
-            {
-                id: 10,
-                name: "Nacho's",
-                price: "1.70"
-            }];
+            if(table === "tafels"){
+                console.log(table);
+                $rootScope.tafels = res.data;
+            }
 
-        $rootScope.nieuw = {};
+            if(table === "product_view"){
+                console.log(table);
+                $rootScope.product_view = res.data;
+            }
+
+            console.log(res.data);
+            return res.data;
+        }
+
+        // If connection Error
+        function handleError(error) {
+            return function () {
+                return { success: false, message: error };
+            };
+        }
     }
 })();

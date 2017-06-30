@@ -75,7 +75,7 @@
                                     <button class="btn btn-warning btn-xs" ng-click="changeOrderQty(currentTable, prod.product_naam, 'minusOne')">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
-                                    <button class="btn btn-danger btn-xs" ng-click="">
+                                    <button class="btn btn-danger btn-xs" ng-click="popupClear(prod.product_naam)">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </div>
@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="md-col-12">
                             <!-- @TODO alert button -> confirmation before entire order is deleted -- annuleren -- -->
-                            <span class="btn btn-default btn-marginTop col-md-3 col-xs-6" ng-click="popupClearOrder(currentTable)">Annuleren</span>
+                            <span class="btn btn-default btn-marginTop col-md-3 col-xs-6" ng-click="popupClear(currentTable)">Annuleren</span>
                             <span class="btn btn-success btn-marginTop btn-direct-checkout col-md-3 col-xs-12" ng-click="checkout()" ng-disabled="!order.length">Afrekenen</span>
                         </div>
                     </div>

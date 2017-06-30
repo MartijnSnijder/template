@@ -11,13 +11,13 @@
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="favorieten">
-                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in favorieten" data-ng-bind="item.name" data-ng-click="addToOrder(item, 1)"></button>
+                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in favorieten" data-ng-bind="item.naam" data-ng-click="addToOrder(item, 1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="dranken">
-                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in dranken" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter: item.type = drinken" data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="eten">
-                            <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in eten" data-ng-bind="item.name" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="object in producten" data-ng-bind="object.naam" data-ng-click=""></button>
                         </div>
                     </div>
                 </div>

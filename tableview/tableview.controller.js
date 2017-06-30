@@ -22,51 +22,6 @@
         // VARS
         $rootScope.currentTable = "";
 
-
-        //DB filler
-        $rootScope.Fill = function () {
-
-            /*if($rootScope.tafels.length === 0 && $rootScope.product_orders.length === 0){*/
-            $rootScope.getter("tafels");
-
-            $rootScope.getter("product_view");
-        };
-
-        //LOCALHOST GETTEN
-        $rootScope.getter = function(table) {
-            console.log("getter");
-            return $http.get('http://localhost:3000/api/' + table).then(function (res) {
-                handleSuccess(table, res);
-            }, handleError('Error bij getten..'));
-        };
-
-        // If connection succesfull
-        function handleSuccess(table, res) {
-            console.log("nu ben ik: " + table);
-
-            if(table === "tafels"){
-                $rootScope.tafels = res.data;
-                console.log("Joe")
-
-            }
-
-            if(table === "product_view"){
-                $rootScope.product_view = res.data;
-                console.log("xx")
-            }
-
-            console.log(res.data);
-            return res.data;
-        }
-
-        // If connection Error
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
-        }
-
-
         // gets the table ID when button is clicked and changes currentTable
         $rootScope.getTable = function (tableNaam) {
             $rootScope.currentTable = tableNaam;
@@ -85,7 +40,6 @@
         };
 
         $rootScope.changeOrderQty= function(tableNaam, prodProductNaam, plusOrMinusOne){
-            console.log("joe");
             $rootScope.product_view.forEach(function(product){
                 if(product.product_naam === prodProductNaam){
                     //@TODO update de DB
@@ -99,9 +53,9 @@
         };
 
 
-        $rootScope.popupClearOrder = function(currentTable){
-            if(confirm("-- Weet u zeker dat u de bestelling van tafel " + currentTable + " wilt annuleren?")){
-                $rootScope.clearOrder(currentTable);
+        $rootScope.popupClear = function(orderOrProduct){
+            if(confirm("-- Weet u zeker dat u " + orderOrProduct + " wilt annuleren?")){
+                //@TODO DB DINGEN
             }
 
         };

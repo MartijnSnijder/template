@@ -28,6 +28,7 @@
         $rootScope.order = [];
         $rootScope.totOrders = 0;
         $rootScope.comments = {};
+        $rootScope.producten = [];
 
         $rootScope.getDate = function () {
             var today = new Date();
