@@ -129,7 +129,7 @@
         }
 
 
-        $rootScope.poster = function (table, data) {
+        $rootScope.poster = function (data, table) {
             var urr = 'http://localhost:3000/api/' + table;
             data = JSON.stringify(data);
 

@@ -47,54 +47,21 @@ app.get('/api/:_id', function (req,res){
 
 app.post('/api/gebruikers', function (req, res) {
     console.log("ik word aangeroepen, post INLOGGEN");
-    console.log(req.params._id);
 
-    var username = req.post.username;
-    var pw = req.post.password;
+    var username = req.body.username;
+    var pw = req.body.password;
 
-    console.log("username & pw" + username + " " + pw);
+    console.log("username & pw " + username + " " + pw);
 
-    /*console.log(connection.query);
-    connection.query = 'SELECT * FROM gebruikers where '.concat(req.params._id).concat('` (');
-    console.log(query);
-        //if(err) throw err;
-        //console.log(res);*/
+    var query = "select * from gebruikers where username = '" + username + "' AND password = '" + pw + "'";
+     var queryResult = connection.query(query, function (err, response) {
+         console.log("dit is de error message: " + JSON.stringify(err));
+         console.log("dit is de succes message: " + JSON.stringify(response));
+         if (err) throw err;
 
-    /*var postData = req.body,*/
-        //query = 'SELECT * FROM gebruikers where '.concat(req.params._id).concat('` (');
-
-
-    /*console.log("logdata: "+ postData);
-
-    for (var key in postData) {
-        console.log(key + " Dingen!");
-        if (!postData.hasOwnProperty(key))
-            continue;
-
-        query = query.concat('`').concat(key).concat('`,');
-    }
-
-    var data = [];
-    query = query.slice(0, -1);
-    query = query.concat(') VALUES(');
-    for ( key in postData) {
-        if (!postData.hasOwnProperty(key))
-            continue;
-
-        query = query.concat('?,');
-        data.push(postData[key]);
-    }
-
-    query = query.slice(0, -1);
-    query = query.concat(')');
-    console.log(query);*/
-        query = "SELECT * FROM gebruikers where id=1";
-    var queryResult = connection.query(query, function (err, res) {
-        //console.log("dit is de error message: " + JSON.stringify(err));
-        //console.log("dit is de succes message: " + JSON.stringify(res));
-        if (err) throw err;
-    });
+     });
 });
+
 
 app.post('/api/:_id', function (req, res) {
     console.log("gewone post aangeroepen..");

@@ -33,6 +33,9 @@
             //$rootScope.poster(item, 'producten');*/
             //$rootScope.nieuw = [];
 
+            //ROBERT MONGO GEDOE
+            $rootScope.insertProduct(item);
+
         };
 
 

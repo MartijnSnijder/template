@@ -21,6 +21,7 @@
 
         function login() {
             vm.dataLoading = true;
+            console.log(vm.username + " ::: " + vm.password);
             AuthenticationService.Login(vm.username, vm.password, function (response) {
                 if (response.success) {
                     AuthenticationService.SetCredentials(vm.username, vm.password);
@@ -30,7 +31,7 @@
                     vm.dataLoading = false;
                 }
             });
-        };
+        }
     }
 
 })();
