@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
 app.use(express.static('public'));
@@ -19,13 +20,12 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     next();*/
 });
-
 var mysql      = require('mysql');  
 var connection = mysql.createConnection({  
-  host     : 'localhost',  
-  user     : 'root',  
-  password : 'root',
-  database : 'cafepos'  
+    host     : 'localhost',
+    user     : 'root',
+    password : 'root',
+    database : 'cafepos'
 });
 
 //  GEGEVENS VAN DE DB ONLINE
@@ -39,10 +39,10 @@ var connection = mysql.createConnection({
 connection.connect();
 
 app.get('/api/:_id', function (req,res){
-	connection.query('select * from  `'.concat(req.params._id).concat('`'),function (err,rows,fields) {
-		if (err) throw err;
-		res.json(rows);
-	});
+    connection.query('select * from  `'.concat(req.params._id).concat('`'),function (err,rows,fields) {
+        if (err) throw err;
+        res.json(rows);
+    });
 });
 
 app.post('/api/gebruikers', function (req, res) {
