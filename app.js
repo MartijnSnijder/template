@@ -128,31 +128,15 @@
             };
         }
 
-        /*$rootScope.data = {naam: 'Gouden carolus', prijs: 240, type: 'drinken', cafe_id: 1};
-*/
 
-        $rootScope.poster = function () {
-            console.log("Ik ben uitgevoerd...");
-
-            /*var req = {
-             method: 'POST',
-             url: 'http://localhost:3000/api/producten',
-             headers: {
-             'Content-Type': undefined
-             },
-             data: {naam: 'test', prijs: 230, type: 'drinken'}
-             };*!/
-             return $http.post('http://localhost:3000/api/producten' , {naam: 'test', prijs: 230, type: 'drinken'},{
-             headers : {
-             'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-             }).then()
-             };*/
-
-            var urr = 'http://localhost:3000/api/producten';
-            var data = {naam: 'Bax Bier', prijs: 290, barcode: null, type: 'drinken', cafe_id: 2};
+        $rootScope.poster = function (table, data) {
+            var urr = 'http://localhost:3000/api/' + table;
             data = JSON.stringify(data);
 
-            $http.post(urr, data).then(postFail(), postSuccess());
+            // make sure there is data to post, otherwise server will crash
+            if(data.length > 0) {
+                $http.post(urr, data).then(postFail(), postSuccess());
+            }
 
 
             function postFail() {

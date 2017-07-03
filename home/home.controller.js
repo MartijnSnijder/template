@@ -92,7 +92,6 @@
 
         $rootScope.addToTable = function () {
             alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\n Toegevoegd aan tafel!");
-            $rootScope.poster();
             $rootScope.order= [];
             $rootScope.totOrders += 1;
 
