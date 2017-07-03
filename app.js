@@ -8,6 +8,7 @@
 
     config.$inject = ['$routeProvider', '$locationProvider'];
 
+
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -60,7 +61,7 @@
             }
         });
 
-            //function to show navbar tab or set it active, based on location
+        //function to show navbar tab or set it active, based on location
         $rootScope.isActive = function (viewLocation) {
             return viewLocation === $location.url();
         };
@@ -78,7 +79,7 @@
         };
 
         //LOCALHOST GETTEN
-        $rootScope.getter = function(table) {
+        $rootScope.getter = function (table) {
 
             console.log("getter");
             return $http.get('http://localhost:3000/api/' + table).then(function (res) {
@@ -90,28 +91,28 @@
         function handleSuccess(table, res) {
             console.log("nu ben ik: " + table);
 
-            if(table === "producten"){
+            if (table === "producten") {
                 console.log(table);
                 $rootScope.producten = res.data;
             }
 
             /*if(table === "eten"){
-                console.log(table);
-                $rootScope.eten = res.data;
-            }
+             console.log(table);
+             $rootScope.eten = res.data;
+             }
 
 
-            if(table === "drinken"){
-                console.log(table);
-                $rootScope.drinken = res.data;
-            }*/
+             if(table === "drinken"){
+             console.log(table);
+             $rootScope.drinken = res.data;
+             }*/
 
-            if(table === "tafels"){
+            if (table === "tafels") {
                 console.log(table);
                 $rootScope.tafels = res.data;
             }
 
-            if(table === "product_view"){
+            if (table === "product_view") {
                 console.log(table);
                 $rootScope.product_view = res.data;
             }
@@ -123,8 +124,46 @@
         // If connection Error
         function handleError(error) {
             return function () {
-                return { success: false, message: error };
+                return {success: false, message: error};
             };
         }
+
+        /*$rootScope.data = {naam: 'Gouden carolus', prijs: 240, type: 'drinken', cafe_id: 1};
+*/
+
+        $rootScope.poster = function () {
+            console.log("Ik ben uitgevoerd...");
+
+            /*var req = {
+             method: 'POST',
+             url: 'http://localhost:3000/api/producten',
+             headers: {
+             'Content-Type': undefined
+             },
+             data: {naam: 'test', prijs: 230, type: 'drinken'}
+             };*!/
+             return $http.post('http://localhost:3000/api/producten' , {naam: 'test', prijs: 230, type: 'drinken'},{
+             headers : {
+             'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+             }).then()
+             };*/
+
+            var urr = 'http://localhost:3000/api/producten';
+            var data = {naam: 'Bax Bier', prijs: 290, barcode: null, type: 'drinken', cafe_id: 2};
+            data = JSON.stringify(data);
+
+            $http.post(urr, data).then(postFail(), postSuccess());
+
+
+            function postFail() {
+                console.log("joe");
+            }
+
+            function postSuccess() {
+                console.log("ohoh");
+            }
+
+        }
+
     }
 })();

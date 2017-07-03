@@ -11,20 +11,6 @@
 
         initController();
 
-        $rootScope.tafels = [{
-            id: 11,
-            name: "1"
-        },
-            {
-                id: 12,
-                name: "2"
-            },
-            {
-                id: 13,
-                name: "3"
-
-            }];
-
         $rootScope.order = [];
         $rootScope.totOrders = 0;
         $rootScope.comments = {};
@@ -106,6 +92,7 @@
 
         $rootScope.addToTable = function () {
             alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\n Toegevoegd aan tafel!");
+            $rootScope.poster();
             $rootScope.order= [];
             $rootScope.totOrders += 1;
 
