@@ -12,22 +12,22 @@
                     <form class="form" name="formCreate" novalidate>
                         <div class="col-md-4">
                             <label>Naam*</label>
-                            <input type="text" class="form-control" data-ng-model="nieuw.name" required />
+                            <input type="text" class="form-control" data-ng-model="nieuw.naam" required />
                         </div>
                         <div class="col-md-2">
                             <label>Prijs*</label>
-                            <input type="number" class="form-control" data-ng-model="nieuw.price" required />
+                            <input type="number" class="form-control" data-ng-model="nieuw.prijs" required />
                         </div>
                         <div class="col-md-3">
                             <label>Categorie*</label>
-                            <select class="form-control" data-ng-model="nieuw.category" required>
-                                <option>Dranken</option>
+                            <select class="form-control" data-ng-model="nieuw.categorie" required>
+                                <option>Drinken</option>
                                 <option>Eten</option>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <br />
-                            <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)" data-ng-disabled="formCreate.$invalid">Toevoegen</button>
+                            <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)">Toevoegen</button>
                         </div>
                     </form>
                 </div>
@@ -102,6 +102,31 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="panel-body" id = "gebruiker-nieuw">
+                <form class="form" name="formCreate" novalidate>
+                    <div class="col-md-4">
+                        <label>Naam*</label>
+                        <input type="text" class="form-control" data-ng-model="gebruiker-nieuw.naam" required />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Gebruikersnaam*</label>
+                        <input type="number" class="form-control" data-ng-model="gebruiker-nieuw.username" required />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Wachtwoord*</label>
+                        <input type="text" class="form-control" data-ng-model="gebruiker-nieuw.password" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Rechten*</label>
+                        <input type="text" class="form-control" data-ng-model="gebruiker-nieuw.rechten" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <br />
+                        <button class="btn btn-default btn-marginTop" data-ng-click="addNewUser(nieuw)">Toevoegen</button>
+                    </div>
+                </form>
             </div>
             <div class="panel-footer"></div>
         </div>

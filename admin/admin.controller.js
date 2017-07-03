@@ -21,21 +21,18 @@
         initController();
 
         $rootScope.addNewItem = function (item) {
-            if (item.category === "Dranken") {
-                item.id = $rootScope.dranken.length + $rootScope.eten.length;
-                $rootScope.dranken.push(item);
-                $rootScope.nieuw = [];
-                $('#myTab').find('a[href="#dranken"]').tab('show')
-            } else if (item.category === "Eten") {
-                item.id = $rootScope.eten.length + $rootScope.eten.length;
-                $rootScope.eten.push(item);
-                $rootScope.nieuw = [];
-                $('#myTab').find('a[href="#eten"]').tab('show')
-            } else if(item.category === "favorieten"){
-                item.id = $rootScope.favorieten.length + $rootScope.eten.length;
-                $rootScope.favorieten.push(item);
-                $rootScope.nieuw = [];
-            }
+
+            // when price in euros instead of cents (2.30 instead of 230)
+            //@ TODO replace comma with '' (replace function)
+            item.prijs = Math.round(item.prijs * 100);
+
+
+            item.categorie = item.categorie.toLocaleLowerCase();
+
+            console.log(JSON.stringify(item));
+            //$rootScope.poster(item, 'producten');*/
+            //$rootScope.nieuw = [];
+
         };
 
 
@@ -56,6 +53,14 @@
                 .then(function (users) {
                     vm.allUsers = users;
                 });
+        }
+
+        // @TODO cafe_id must be current user cafe_id
+        function addUser(user) {
+            //user[cafe_id] = ""
+
+            //post
+            //$rootScope.poster(user, 'gebruikers');
         }
 
         function deleteUser(id) {
