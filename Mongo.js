@@ -52,14 +52,14 @@ var insertOneLogFile = function(db, callback) {
     // Get the documents collection
     var collection = db.collection('log');
 
-    collection.insertOne([{
+    collection.insertOne({
         // _id veld wordt automatisch aangemaakt
         errorname: "bluescreen",
         date: new Date(),
         description: "Omschrijving error",
         errorNumber: 1,
         status: "Undefiend"
-    }], function(err, result) {
+    }, function(err, result) {
         console.log("Inserted 1 errors into the collection");
         callback(result);
     });
