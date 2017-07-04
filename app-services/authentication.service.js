@@ -91,12 +91,14 @@
             cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
             $cookies.put('userCafeID', $rootScope.userCafeID, { expires: cookieExp});
+            $cookies.put('cafeUsers', $rootScope.cafeUsers, {expires: cookieExp});
         }
 
         function ClearCredentials() {
             $rootScope.globals = {};
             $cookies.remove('globals');
             $cookies.remove('userCafeID');
+            $cookies.remove('cafeUsers');
             $http.defaults.headers.common.Authorization = 'Basic';
         }
     }

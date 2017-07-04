@@ -54,7 +54,9 @@
         }
         // keeps user CafeID
         $rootScope.userCafeID = $cookies.get('userCafeID') || {} ;
-        console.log($rootScope.userCafeID);
+
+        // keeps cafeEmployees
+        $rootScope.cafeUsers = $cookies.get('cafeUsers') || {} ;
 
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -85,9 +87,6 @@
             $rootScope.getter("product_view");
             $rootScope.getter("producten");
             $rootScope.getter("subcategorieen");
-            /*if($rootScope.userCafeID.length === 0){
-                $cookies.get('userCafeID');
-            }*/
         };
 
 
