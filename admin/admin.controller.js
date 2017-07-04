@@ -38,30 +38,13 @@
                 console.log(JSON.stringify(item));
                 $rootScope.postProduct(item, "producten");
 
-
-                //ROBERT MONGO GEDOE
-                //$rootScope.insertProduct(item);
             }
         };
 
         $rootScope.removeItem = function (item) {
-
-            // when price in euros instead of cents (2.30 instead of 230)
-            //@ TODO replace comma with '' (replace function)
-            if(item.prijs %1 !== 0){
-                item.prijs = Math.round(item.prijs * 100);
-            }
-
-            // Category name to lower case
-            item.categorie = item.categorie.toLocaleLowerCase();
-
             console.log(JSON.stringify(item));
 
-            //$rootScope.postProduct(item, 'producten');
-            //$rootScope.nieuw = [];
-
-            //ROBERT MONGO GEDOE
-            $rootScope.insertProduct(item);
+            //@TODO REMOVE ITEM
 
         };
 
@@ -86,13 +69,25 @@
         }
 
         // @TODO cafe_id must be current user cafe_id
-        function addUser(user) {
-            console.log("Dingen");
-            //user[cafe_id] = ""
+        $rootScope.addNewUser= function(user) {
+            console.log(JSON.stringify(user));
+
+            // change rights to the correct type
+            if(user.rechten === "Personeel"){
+                user.rechten = "cafeUser";
+            } else if(user.rechten === "Administrator"){
+                user.rechten = "cafeAdmin"
+            }
+
+            // ADD CAFE ID
+            user.cafe_id = 1;
+
+
+            console.log("nu is het: " + JSON.stringify(user));
 
             //post
-            //$rootScope.poster(user, 'gebruikers');
-        }
+            $rootScope.postProduct(user, 'gebruikers');
+        };
 
         function deleteUser(id) {
             if (id === vm.user.id) {
