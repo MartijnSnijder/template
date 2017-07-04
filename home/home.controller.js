@@ -9,11 +9,12 @@
     function HomeController(UserService, $rootScope) {
         var vm = this;
 
+
         initController();
 
-        $rootScope.order = [];
-        $rootScope.totOrders = 0;
-        $rootScope.comments = {};
+         $rootScope.order = [];
+         $rootScope.totOrders = 0;
+         $rootScope.comments = {};
 
 
         $rootScope.getDate = function () {
@@ -91,6 +92,7 @@
 
         $rootScope.addToTable = function () {
             alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\n Toegevoegd aan tafel!");
+            $rootScope.postOrder($rootScope.order);
             $rootScope.order= [];
             $rootScope.totOrders += 1;
 

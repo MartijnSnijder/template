@@ -1,10 +1,12 @@
 var express = require('express');
 var app = express();
-/*var MongoClient = require('mongodb').MongoClient;*/
+var MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
+
+
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -208,6 +210,7 @@ app.post('/api/gebruikers/getCafeUsers', function (req, res) {
 });
 
 
+
 // STATUS UPDATER
 // @TODO KIJKEN OF DIT WERKT
 
@@ -254,15 +257,23 @@ app.post('/api/new/order', function (req,res){
 
     var postData= req.body;
     var query ='INSERT INTO orders (tijd,tafel_id,order_status,comment) VALUES(?,?,?,?)';
+    var data=[new Date(),postData["tafel_id"],"besteld",postData["comment"]];
     var data=[new Date(),postData["tafel_id"],postData["order_status"],postData["comment"]];
 
+    console.log("query voor de product_orders start");
     connection.query(query,data,function(err,result){
         if (err) throw err;
+        console.log("ben ik al bij de postdata in de buurt ??? zou mooi zijn");
         for(var key in postData["producten"]){
+            console.log("ben ik hier ook al ?");
             var query ='INSERT INTO product_orders (order_id,product_id,aantal) VALUES (?,?,?)';
-            var data = [result.insertId,postData["producten"][key]["id"],postData["producten"][key]["aantal"]];
-            connection.query(query,data,function(err,result2){
+            var data = [result.insertId,postData["producten"][key]["id"],postData["producten"][key]["qty"]];
+            console.log(JSON.stringify(data));
+            connection.query(query,data,function(err,res2){
+                console.log(JSON.stringify(err));
+                console.log(JSON.stringify(res2));
                 if (err) throw err;
+
             });
         }
     });

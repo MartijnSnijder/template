@@ -120,6 +120,28 @@
         }
 
 
+        $rootScope.postOrder = function (data) {
+            console.log("Post order wordt aangeroepen...: ");
+            var urr = 'http://localhost:3000/api/new/order';
+            console.log(JSON.stringify(data));
+            // data = JSON.stringify(data);
+
+            var orderPost = {};
+            orderPost.tafel_id = 3; // @TODO uit order trekken;
+            orderPost.comment = "Opmerking";
+            orderPost.producten = data;
+
+
+            console.log(JSON.stringify(orderPost));
+            // orderPost.qty = data.qty;order_id,product_id,aantal
+            $http.post(urr, orderPost).then(postSuccess).catch(postFail);
+
+
+
+            //afel_id":1,"order_status":"besteld","comment":"stuff","producten":
+
+        };
+
         $rootScope.postProduct = function (data) {
             var urr = 'http://localhost:3000/api/producten/toevoegen';
             data = JSON.stringify(data);
@@ -130,6 +152,9 @@
             }
 
         };
+
+
+
 
         $rootScope.postUser = function (data) {
             var urr = 'http://localhost:3000/api/gebruikers/toevoegen';
@@ -193,6 +218,7 @@
             console.log(error.data);
             console.log("Ehm foutje");
         }
+
 
 
     }
