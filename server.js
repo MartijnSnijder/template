@@ -120,7 +120,7 @@ app.post('/api/gebruikers/toevoegen', function (req, res) {
         console.log("dit is de error message: " + JSON.stringify(err));
         console.log("dit is de succes message: " + JSON.stringify(res2));
         if (err) throw err;
-        res.json(true);
+        res.json(res2);
     });
 });
 
@@ -163,21 +163,28 @@ app.post('/api/producten/toevoegen', function (req, res) {
         console.log("dit is de error message: " + JSON.stringify(err));
         console.log("dit is de succes message: " + JSON.stringify(res2));
         if (err) throw err;
-        res.json(true);
+        res.json(res2);
     });
 });
 
 // USER RIGHTS & CAFE ID
-app.get('api/gebruikers/currentUser', function(req, res){
-    var username = req.body.username;
-    var query= "SELECT 'rechten', 'cafe_id' FROM gebruikers WHERE user is " + username;
+app.post('/api/gebruikers/currentuser', function (req, res) {
+    console.log("ik doe iets..");
+    console.log("de username: " + req.body.username);
+
+    var data =  req.body.username;
+
+    var query= "SELECT `rechten`, `cafe_id` FROM gebruikers WHERE username= '" + data + "'";
+    console.log(query);
     connection.query(query, function (err, res2) {
-        console.log(JSON.stringify(err));
-        console.log(JSON.stringify(res2))
+        console.log(JSON.stringify(JSON.stringify(err)));
+        console.log(JSON.stringify(JSON.stringify(res2)));
+
+        if(err) throw err;
+        res.json(res2);
     });
 
-    if(err) throw err;
-    res.json(true);
+
 
 });
 

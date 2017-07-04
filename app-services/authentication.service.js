@@ -68,16 +68,18 @@
 
 
         function SetCredentials(username, password) {
+            console.log("username: " + username + " en password: " + password);
             var authdata = Base64.encode(username + ':' + password);
 
             console.log("hier ben ik!");
-            var pikkebijter = $rootScope.getUserDat(username);
-            console.log(JSON.stringify(pikkebijter));
+            $rootScope.getUserDat(username);
+
 
             $rootScope.globals = {
                 currentUser: {
                     username: username,
                     authdata: authdata
+
                 }
             };
 
