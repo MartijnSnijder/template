@@ -33,10 +33,12 @@
 
                 item.subcategorieen_id = 1;
 
-                item.cafe_id = 1;
+                item.cafe_id = $rootScope.currentUser.cafe_id;
 
                 console.log(JSON.stringify(item));
                 $rootScope.postProduct(item);
+
+                console.log("nu kan het wel.." + $rootScope.currentUser.cafe_id);
 
             }
         };
@@ -62,13 +64,17 @@
         }
 
         function loadAllUsers() {
+           /* console.log("Nu de medewerkers laden..");
+            var cafe_id = $rootScope.currentUser.cafe_id;
+            console.log("de id: " + cafe_id);
+            $rootScope.getCafeUsers($rootScope.currentUser.cafe_id);*/
+
             UserService.GetAll()
                 .then(function (users) {
                     vm.allUsers = users;
                 });
         }
 
-        // @TODO cafe_id must be current user cafe_id
         $rootScope.addNewUser= function(user) {
             console.log(JSON.stringify(user));
 
@@ -80,8 +86,7 @@
             }
 
             // ADD CAFE ID
-            user.cafe_id = 1;
-
+            user.cafe_id = $rootScope.currentUser.cafe_id;
 
             console.log("nu is het: " + JSON.stringify(user));
 

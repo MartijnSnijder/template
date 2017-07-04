@@ -70,12 +70,14 @@
         $rootScope.tafels = [];
         $rootScope.producten = [];
         $rootScope.product_view = [];
+        $rootScope.currentUser = {};
 
         //DB filler
         $rootScope.Fill = function () {
             $rootScope.getter("tafels");
             $rootScope.getter("product_view");
             $rootScope.getter("producten");
+
         };
 
         //LOCALHOST GETTEN
@@ -95,17 +97,6 @@
                 console.log(table);
                 $rootScope.producten = res.data;
             }
-
-            /*if(table === "eten"){
-             console.log(table);
-             $rootScope.eten = res.data;
-             }
-
-
-             if(table === "drinken"){
-             console.log(table);
-             $rootScope.drinken = res.data;
-             }*/
 
             if (table === "tafels") {
                 console.log(table);
@@ -138,16 +129,6 @@
                 return $http.post(urr, data).then(postSuccess).catch(postFail);
             }
 
-            /*function postSuccess(response) {
-                console.log("dit is de response: " + response);
-                console.log(response.status);
-                console.log("Gelukt!");
-            }
-
-            function postFail(error) {
-                console.log(error.data);
-                console.log("Ehm foutje");
-            }*/
         };
 
         $rootScope.postUser = function (data) {
@@ -161,19 +142,9 @@
 
         };
 
-        function postSuccess(response) {
-            console.log("dit is de response: " + response);
-            console.log(response.status);
-            console.log("Gelukt!");
 
-            return response.data;
-        }
 
-        function postFail(error) {
-            console.log(error.data);
-            console.log("Ehm foutje");
-        }
-
+        //  gets the rights & cafe_id (getUserData already used..)
         $rootScope.getUserDat = function (username) {
             var urr = 'http://localhost:3000/api/gebruikers/currentuser';
             var data = {username: username};
@@ -183,11 +154,45 @@
             return $http.post(urr, data).then(getUserSuccess).catch(postFail);
         };
 
-            function getUserSuccess(response) {
-                console.log(JSON.stringify(response));
-                $rootScope.currentUser = response.data;
-                console.log("de huidige user heeft: " + JSON.stringify($rootScope.currentUser));
+        // gets the users from current user cafe_id
+        $rootScope.getCafeUsers = function (cafe_id) {
+            console.log("dit is de cafe-id: " + cafe_id);
+            var urr = 'http://localhost:3000/api/gebruikers/getCafeUsers';
+            var data = {cafeID: cafe_id};
+            //data = JSON.stringify(data);
+            console.log(data);
+
+            return $http.post(urr, data).then(postSuccess).catch(postFail);
+        };
+
+
+        // Specific function for the user data
+        function getUserSuccess(response) {
+            console.log(JSON.stringify(response));
+            $rootScope.currentUser = response.data;
+            console.log("de huidige user heeft: " + JSON.stringify($rootScope.currentUser));
+            console.log("proberen: " + JSON.stringify($rootScope.currentUser.cafe_id));
             }
+
+        function getCafeUserSuccess(response) {
+            console.log(JSON.stringify(response));
+            $rootScope.cafeUsers = response.data;
+            console.log("Het huidige cafe heeft: " + JSON.stringify($rootScope.cafeUsers));
+        }
+
+        // General succes notice
+        function postSuccess(response) {
+            console.log("dit is de response: " + response);
+            console.log(response.status);
+            console.log("Gelukt!");
+
+            return response.data;
+        }
+        // General fail notice
+        function postFail(error) {
+            console.log(error.data);
+            console.log("Ehm foutje");
+        }
 
 
     }
