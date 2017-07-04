@@ -70,6 +70,8 @@
         $rootScope.tafels = [];
         $rootScope.producten = [];
         $rootScope.product_view = [];
+        $rootScope.currentUser = [];
+        $rootScope.categorieen = [];
         $rootScope.currentUser = {};
 
         //DB filler
@@ -77,6 +79,7 @@
             $rootScope.getter("tafels");
             $rootScope.getter("product_view");
             $rootScope.getter("producten");
+            $rootScope.getter("subcategorieen");
 
         };
 
@@ -101,6 +104,11 @@
             if (table === "tafels") {
                 console.log(table);
                 $rootScope.tafels = res.data;
+            }
+
+            if (table === "subcategorieen") {
+                console.log(table);
+                $rootScope.categorieen = res.data;
             }
 
             if (table === "product_view") {
@@ -141,6 +149,18 @@
             //afel_id":1,"order_status":"besteld","comment":"stuff","producten":
 
         };
+
+        $rootScope.deleteProduct = function (data) {
+            var urr = 'http://localhost:3000/api/producten/verwijderen';
+            console.log(JSON.stringify(data));
+            data = JSON.stringify(data);
+
+            var productDelete = {};
+            productDelete.product_id = data;
+
+
+            $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
+        }
 
         $rootScope.postProduct = function (data) {
             var urr = 'http://localhost:3000/api/producten/toevoegen';

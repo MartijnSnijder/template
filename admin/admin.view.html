@@ -46,14 +46,14 @@
                     <form class="form" name="formCreate" novalidate>
                         <div class="col-md-4">
                             <label>Categorie*</label>
-                            <select class="form-control" data-ng-model="verwijderen.category" required>
-                                <option>Dranken</option>
-                                <option>Eten</option>
+                            <select class="form-control"  required>
+                                <option id="cat" ng-repeat="categorie in categorieen">{{categorie.naam}}</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label>Product*</label>
-                            <select class="form-control" data-ng-model="verwijderen.product" required>
+                            <select class="form-control" required>
+                                <option ng-repeat="item in producten | filter:cat">{{item.naam}}</option>
                             </select>
                         </div>
                         <div class="col-md-4">

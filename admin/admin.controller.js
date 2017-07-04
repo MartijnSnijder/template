@@ -47,7 +47,8 @@
             console.log(JSON.stringify(item));
             var data;
             //@TODO REMOVE ITEM
-            //return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
+            $rootScope.deleteProduct(item);
+            // return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
         };
 
 
@@ -55,6 +56,9 @@
             loadCurrentUser();
             loadAllUsers();
         }
+
+        $rootScope.productShow = document.getElementById("cat");
+
 
         function loadCurrentUser() {
             UserService.GetByUsername($rootScope.globals.currentUser.username)
