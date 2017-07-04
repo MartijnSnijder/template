@@ -18,9 +18,8 @@
         vm.allUsers = [];
         vm.deleteUser = deleteUser;
 
-        initController();
 
-            $rootScope.addNewItem = function (item) {
+        $rootScope.addNewItem = function (item) {
 
                 // price should be higher than zero
                 if (item.prijs > 0) {
@@ -40,7 +39,7 @@
 
 
                 }
-            };
+        };
 
             $rootScope.removeItem = function (item) {
                 console.log(JSON.stringify(item));
@@ -60,7 +59,7 @@
             }
 
             // ADD CAFE ID
-            user.cafe_id = $rootScope.currentUser.cafe_id;
+            user.cafe_id = $rootScope.userCafeID;
 
             console.log("nu is het: " + JSON.stringify(user));
 

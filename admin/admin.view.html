@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="cafeUser in cafeUsers">
+                    <li class="list-group-item" ng-repeat="cafeUser in cafeUsers track by $index">
                         <div class="row">
                             <div class="col-md-4 col-xs-3">
                                 {{cafeUser.naam}}
