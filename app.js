@@ -129,23 +129,28 @@
         }
 
 
-        $rootScope.poster = function (data, table) {
+        $rootScope.postProduct = function (data, table) {
+            console.log("table: " + table);
             var urr = 'http://localhost:3000/api/' + table;
             data = JSON.stringify(data);
 
             // make sure there is data to post, otherwise server will crash
             if(data.length > 0) {
-                $http.post(urr, data).then(postFail(), postSuccess());
+                $http.post(urr, data).then(postSuccess).catch(postFail);
+            }
+
+            function postSuccess(response) {
+                console.log("dit is de response: " + response);
+                console.log(response.status);
+                console.log("Gelukt!");
+            }
+
+            function postFail(error) {
+                console.log(error.data);
+                console.log("Ehm foutje");
             }
 
 
-            function postFail() {
-                console.log("joe");
-            }
-
-            function postSuccess() {
-                console.log("ohoh");
-            }
 
         }
 
