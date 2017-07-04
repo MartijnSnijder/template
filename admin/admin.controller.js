@@ -38,7 +38,7 @@
                 console.log(JSON.stringify(item));
                 $rootScope.postProduct(item);
 
-                console.log("nu kan het wel.." + $rootScope.currentUser.cafe_id);
+                console.log("zo kan het wel.." + JSON.stringify($rootScope.currentUser));
 
             }
         };

@@ -71,7 +71,7 @@
             console.log("username: " + username + " en password: " + password);
             var authdata = Base64.encode(username + ':' + password);
 
-            console.log("hier ben ik!");
+            // Rights & cafe ID
             $rootScope.getUserDat(username);
 
 
