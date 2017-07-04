@@ -20,7 +20,8 @@
             .when('/admin', {
                 controller: 'AdminController',
                 templateUrl: 'admin/admin.view.html',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                access: {cafeRights: "cafeAdmin"}
             })
 
             .when('/login', {
@@ -51,6 +52,7 @@
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
+
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
@@ -174,8 +176,6 @@
         };
 
 
-
-
         $rootScope.postUser = function (data) {
             var urr = 'http://localhost:3000/api/gebruikers/toevoegen';
             data = JSON.stringify(data);
@@ -207,22 +207,32 @@
             //data = JSON.stringify(data);
             console.log(data);
 
-            return $http.post(urr, data).then(postSuccess).catch(postFail);
+            return $http.post(urr, data).then(getCafeUserSuccess).catch(postFail);
         };
 
 
         // Specific function for the user data
         function getUserSuccess(response) {
+            console.log("hallo?");
             console.log(JSON.stringify(response));
-            $rootScope.currentUser = response.data;
-            console.log("de huidige user heeft: " + JSON.stringify($rootScope.currentUser));
-            console.log("proberen: " + JSON.stringify($rootScope.currentUser.cafe_id));
+            var currentUser = response.data;
+            $rootScope.userID = currentUser[0].id;
+            $rootScope.userRights = currentUser[0].rechten;
+            $rootScope.userCafeID = currentUser[0].cafe_id;
+
+            //chain reaction, load employees..
+            console.log("de user id is: " + $rootScope.userID);
+            console.log($rootScope.userCafeID + "ehm...");
+            console.log("Nu de medewerkers laden..");
+             $rootScope.getCafeUsers($rootScope.userCafeID);
+
             }
 
         function getCafeUserSuccess(response) {
             console.log(JSON.stringify(response));
-            $rootScope.cafeUsers = response.data;
-            console.log("Het huidige cafe heeft: " + JSON.stringify($rootScope.cafeUsers));
+            console.log("xxx");
+            $rootScope.cafeUsers = JSON.stringify(response.data);
+            console.log("Het huidige cafe heeft: " + $rootScope.cafeUsers);
         }
 
         // General succes notice

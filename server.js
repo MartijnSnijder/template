@@ -175,11 +175,11 @@ app.post('/api/gebruikers/currentuser', function (req, res) {
 
     var data =  req.body.username;
 
-    var query= "SELECT `rechten`, `cafe_id` FROM gebruikers WHERE username= '" + data + "'";
+    var query= "SELECT `id`, `rechten`, `cafe_id` FROM gebruikers WHERE username= '" + data + "'";
     console.log(query);
     connection.query(query, function (err, res2) {
-        console.log(JSON.stringify(JSON.stringify(err)));
-        console.log(JSON.stringify(JSON.stringify(res2)));
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(res2));
 
         if(err) throw err;
         res.json(res2);
@@ -198,8 +198,8 @@ app.post('/api/gebruikers/getCafeUsers', function (req, res) {
     var query= "SELECT * FROM gebruikers WHERE cafe_id= '" + data + "'";
     console.log(query);
     connection.query(query, function (err, res2) {
-        console.log(JSON.stringify(JSON.stringify(err)));
-        console.log(JSON.stringify(JSON.stringify(res2)));
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(res2));
 
         if(err) throw err;
         res.json(res2);

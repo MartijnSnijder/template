@@ -20,67 +20,37 @@
 
         initController();
 
-        $rootScope.addNewItem = function (item) {
+            $rootScope.addNewItem = function (item) {
 
-            // price should be higher than zero
-            if(item.prijs > 0) {
+                // price should be higher than zero
+                if (item.prijs > 0) {
 
-                // when price in euros instead of cents (2.30 instead of 230)
-                //@ TODO replace comma with '' (replace function)
-                if (item.prijs % 1 !== 0) {
-                    item.prijs = Math.round(item.prijs * 100);
+                    // when price in euros instead of cents (2.30 instead of 230)
+                    //@ TODO replace comma with '' (replace function)
+                    if (item.prijs % 1 !== 0) {
+                        item.prijs = Math.round(item.prijs * 100);
+                    }
+
+                    item.subcategorieen_id = 1;
+
+                    item.cafe_id = $rootScope.userCafeID;
+
+                    console.log(JSON.stringify(item));
+                    $rootScope.postProduct(item);
+
+
                 }
+            };
 
-                item.subcategorieen_id = 1;
-
-                item.cafe_id = $rootScope.currentUser.cafe_id;
-
+            $rootScope.removeItem = function (item) {
                 console.log(JSON.stringify(item));
-                $rootScope.postProduct(item);
+                var data;
+                //@TODO REMOVE ITEM
+                //return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
+            };
 
-                console.log("nu kan het wel.." + $rootScope.currentUser.cafe_id);
-
-            }
-        };
-
-        $rootScope.removeItem = function (item) {
-            console.log(JSON.stringify(item));
-            var data;
-            //@TODO REMOVE ITEM
-            $rootScope.deleteProduct(item);
-            // return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
-        };
-
-
-        function initController() {
-            loadCurrentUser();
-            loadAllUsers();
-        }
-
-        $rootScope.productShow = document.getElementById("cat");
-
-
-        function loadCurrentUser() {
-            UserService.GetByUsername($rootScope.globals.currentUser.username)
-                .then(function (user) {
-                    vm.user = user;
-                });
-        }
-
-        function loadAllUsers() {
-           /* console.log("Nu de medewerkers laden..");
-            var cafe_id = $rootScope.currentUser.cafe_id;
-            console.log("de id: " + cafe_id);
-            $rootScope.getCafeUsers($rootScope.currentUser.cafe_id);*/
-
-            UserService.GetAll()
-                .then(function (users) {
-                    vm.allUsers = users;
-                });
-        }
-
-        $rootScope.addNewUser= function(user) {
-            console.log(JSON.stringify(user));
+            $rootScope.addNewUser = function (user) {
+                console.log(JSON.stringify(user));
 
             // change rights to the correct type
             if(user.rechten === "Personeel"){
