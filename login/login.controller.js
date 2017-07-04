@@ -23,6 +23,7 @@
             vm.dataLoading = true;
             console.log(vm.username + " ::: " + vm.password);
             AuthenticationService.Login(vm.username, vm.password, function (response) {
+                console.log("Kom ik hier weer?");
                 if (response.success) {
                     AuthenticationService.SetCredentials(vm.username, vm.password);
                     $location.path('/');

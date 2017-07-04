@@ -46,22 +46,10 @@
 
         $rootScope.removeItem = function (item) {
 
-            // when price in euros instead of cents (2.30 instead of 230)
-            //@ TODO replace comma with '' (replace function)
-            if(item.prijs %1 !== 0){
-                item.prijs = Math.round(item.prijs * 100);
-            }
 
-            // Category name to lower case
-            item.categorie = item.categorie.toLocaleLowerCase();
 
             console.log(JSON.stringify(item));
 
-            //$rootScope.postProduct(item, 'producten');
-            //$rootScope.nieuw = [];
-
-            //ROBERT MONGO GEDOE
-            $rootScope.insertProduct(item);
 
         };
 

@@ -14,6 +14,8 @@ app.use(function(req, res, next) {
     next();
 
 });
+
+
 var mysql      = require('mysql');  
 var connection = mysql.createConnection({  
     host     : 'localhost',
@@ -32,6 +34,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+// Gets the results from a specified table
 app.get('/api/:_id', function (req,res){
     connection.query('select * from  `'.concat(req.params._id).concat('`'),function (err,rows,fields) {
         if (err) throw err;
@@ -39,6 +42,7 @@ app.get('/api/:_id', function (req,res){
     });
 });
 
+// LOGIN
 app.post('/api/gebruikers', function (req, res) {
     console.log("ik word aangeroepen, post INLOGGEN");
 
@@ -48,15 +52,39 @@ app.post('/api/gebruikers', function (req, res) {
     console.log("username & pw " + username + " " + pw);
 
     var query = "select * from gebruikers where username = '" + username + "' AND password = '" + pw + "'";
-     var queryResult = connection.query(query, function (err, response) {
-         console.log("dit is de error message: " + JSON.stringify(err));
-         console.log("dit is de succes message: " + JSON.stringify(response));
+    connection.query(query, function (err, res2) {
+         console.log("dit is de error message: " + err);
+         console.log("dit is de succes message: " + JSON.stringify(res2));
          if (err) throw err;
 
+         if(res2.length > 0) {
+             console.log("er is resultaat?");
+             res.json(true);
+         } else res.json(false);
      });
 });
 
+// Delete a product based on product ID
+app.post('/api/producten', function (req, res) {
+    console.log("ik word aangeroepen, post PRODUCT VERWIJDEREN");
 
+    var product_id = req.body.id;
+
+    console.log("product id : " + product_id );
+
+    var query = "delete * from producten where id = '" + product_id;
+    var queryResult = connection.query(query, function (err, res) {
+        console.log("dit is de error message: " + JSON.stringify(err));
+        console.log("dit is de succes message: " + JSON.stringify(res));
+        if (err) throw err;
+        res.json(true);
+    });
+
+    console.log("de response van product verwijderen  = " + res);
+    return res;
+});
+
+// Insert into..
 app.post('/api/:_id', function (req, res) {
     console.log("gewone post aangeroepen..");
     var postData = req.body,
@@ -87,8 +115,10 @@ app.post('/api/:_id', function (req, res) {
         console.log("dit is de error message: " + JSON.stringify(err));
         console.log("dit is de succes message: " + JSON.stringify(res));
         if (err) throw err;
+        res.json(true);
     });
 });
+
 
 
 
@@ -121,7 +151,7 @@ app.put('/api/adv_order/:_id', function (req, res){
         }
         var query = "UPDATE orders SET order_status = '".concat(status).concat("' WHERE id =").concat(req.params._id);
         console.log(query);
-        connection.query(query,function(err){
+        connection.query(query,function(err, res2){
             if(err) throw err;
             res.json(true)
         });

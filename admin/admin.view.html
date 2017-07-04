@@ -107,24 +107,27 @@
                 <form class="form" name="formCreate" novalidate>
                     <div class="col-md-4">
                         <label>Naam*</label>
-                        <input type="text" class="form-control" data-ng-model="gebruiker-nieuw.naam" required />
+                        <input type="text" class="form-control" data-ng-model="gebruikerNieuw.naam" required />
                     </div>
                     <div class="col-md-2">
                         <label>Gebruikersnaam*</label>
-                        <input type="number" class="form-control" data-ng-model="gebruiker-nieuw.username" required />
+                        <input type="text" class="form-control" data-ng-model="gebruikerNieuw.username" required />
                     </div>
                     <div class="col-md-2">
                         <label>Wachtwoord*</label>
-                        <input type="text" class="form-control" data-ng-model="gebruiker-nieuw.password" required>
+                        <input type="password" class="form-control" data-ng-model="gebruikerNieuw.password" required>
                     </div>
                     <div class="col-md-2">
                         <label>Rechten*</label>
-                        <input type="text" class="form-control" data-ng-model="gebruiker-nieuw.rechten" required>
+                        <select class="form-control" data-ng-model="gebruikerNieuw.rechten" required>
+                            <option>Cafe gebruiker</option>
+                            <option>Cafe administrator</option>
+                        </select>
                     </div>
 
                     <div class="col-md-3">
                         <br />
-                        <button class="btn btn-default btn-marginTop" data-ng-click="addNewUser(nieuw)">Toevoegen</button>
+                        <button class="btn btn-default btn-marginTop" data-ng-click="addNewUser(gebruikerNieuw)">Toevoegen</button>
                     </div>
                 </form>
             </div>

@@ -136,7 +136,7 @@
 
             // make sure there is data to post, otherwise server will crash
             if(data.length > 0) {
-                $http.post(urr, data).then(postSuccess).catch(postFail);
+                return $http.post(urr, data).then(postSuccess).catch(postFail);
             }
 
             function postSuccess(response) {

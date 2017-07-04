@@ -19,7 +19,7 @@
             console.log(username + ";;;" + password);
             /* Dummy authentication for testing, uses $timeout to simulate api call
              ----------------------------------------------*/
-             $timeout(function () {
+            /* $timeout(function () {
              var response;
              UserService.GetByUsername(username)
              .then(function (user) {
@@ -30,27 +30,41 @@
              }
              callback(response);
              });
-             }, 1000);
+             }, 1000);*/
 
             /* Use this for real authentication
              ----------------------------------------------*/
-            /* $http.post('http://localhost:3000/api/gebruikers', { username: username, password: password })
+            /*$http.post('http://localhost:3000/api/gebruikers', { username: username, password: password })
              .then(function (response) {
              callback(response);
              });*/
 
-            /*var urr = 'http://localhost:3000/api/gebruikers';
+            var urr = 'http://localhost:3000/api/gebruikers';
             var data = {username: username, password: password};
             data = JSON.stringify(data);
 
             // make sure there is data to post, otherwise server will crash
             console.log("nu ga ik posten..");
-            $http.post(urr, data).then(function (response) {
+            return $http.post(urr, data).then(function (response) {
                 console.log("wtf doe ik hier");
-                response = { success: true};
+                console.log(JSON.stringify(response));
+                if(response.data === true){
+                    response = {success: true};
+                    callback(response);
+                } else if(response.data === false){
+                    response = {success: false};
+                    callback(response);
+                }
+
+            }, function (response) {
+                console.log("error");
+                console.log(response);
+                //response = {success: false, message: error};
                 callback(response);
-            });*/
+
+            });
         }
+
 
         function SetCredentials(username, password) {
             var authdata = Base64.encode(username + ':' + password);
