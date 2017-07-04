@@ -169,12 +169,31 @@ app.post('/api/producten/toevoegen', function (req, res) {
 
 // USER RIGHTS & CAFE ID
 app.post('/api/gebruikers/currentuser', function (req, res) {
-    console.log("ik doe iets..");
-    console.log("de username: " + req.body.username);
+    console.log("Current user rechten en cafe_id worden opgevraagd..");
 
     var data =  req.body.username;
 
     var query= "SELECT `rechten`, `cafe_id` FROM gebruikers WHERE username= '" + data + "'";
+    console.log(query);
+    connection.query(query, function (err, res2) {
+        console.log(JSON.stringify(JSON.stringify(err)));
+        console.log(JSON.stringify(JSON.stringify(res2)));
+
+        if(err) throw err;
+        res.json(res2);
+    });
+
+
+
+});
+
+// ALL CAFE USERS
+app.post('/api/gebruikers/getCafeUsers', function (req, res) {
+    console.log("Cafe user worden ingeladen op basis van current user cafe_id");
+
+    var data =  req.body.cafeID;
+
+    var query= "SELECT * FROM gebruikers WHERE cafe_id= '" + data + "'";
     console.log(query);
     connection.query(query, function (err, res2) {
         console.log(JSON.stringify(JSON.stringify(err)));

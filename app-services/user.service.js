@@ -19,6 +19,7 @@
         return service;
 
         function GetAll() {
+            console.log("getAll wordt wel aangeroepen maar...");
             return $http.get('/api/gebruikers').then(handleSuccess, handleError('Error bij het ophalen van alle gebruikers'));
         }
 
