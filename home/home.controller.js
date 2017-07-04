@@ -51,12 +51,11 @@
         $rootScope.showTables = function (tableName) {
             if(tableName === "A"){
                 console.log("Gelukt.. A");
-                console.log($rootScope.userCafeID);
+
             } else if(tableName === "B"){
                 console.log("Gelukt.. B");
             } else if(tableName === "C"){
                 console.log("Gelukt.. C");
-                console.log(JSON.stringify($rootScope.order));
             }
         };
 
@@ -83,7 +82,7 @@
         $rootScope.getTotal = function () {
             var tot = 0;
             for (var i = 0; i < $rootScope.order.length; i++) {
-                tot += ($rootScope.order[i].price * $rootScope.order[i].qty)
+                tot += (($rootScope.order[i].prijs * $rootScope.order[i].qty) /100)
             }
             return tot;
         };
