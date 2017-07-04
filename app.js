@@ -162,7 +162,7 @@
             //data = JSON.stringify(data);
             console.log(data);
 
-            return $http.post(urr, data).then(postSuccess).catch(postFail);
+            return $http.post(urr, data).then(getCafeUserSuccess).catch(postFail);
         };
 
 
