@@ -6,19 +6,19 @@
                 <div class="col-md-4 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsA">
                         <!-- show the tables with name = A...-->
-                        <button class="btn btn-success btn-pos btn-marginTop"   data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 1}" data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
+                        <button class="btn btn-success btn-pos btn-marginTop"   data-ng-repeat="tafel in tafels | filter:{cafe_id: userCafeID, naam : 'A'}" data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsB">
                         <!-- show the tables with name = B...-->
-                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 2}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
+                        <button class="btn btn-warning btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: userCafeID, naam : 'B'}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-6">
                     <div role="tabpanel" class="tab-pane active" id="tafelsC">
                         <!-- show the tables with name = C... ng-if="tafel.naam.indexOf('C') > -1"   -->
-                        <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: 1, naam : 3}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
+                        <button class="btn btn-primary btn-pos btn-marginTop" data-ng-repeat="tafel in tafels | filter:{cafe_id: userCafeID, naam : 'C'}"  data-ng-bind="tafel.naam" data-ng-click="getTable(tafel.naam)"></button>
                     </div>
                 </div>
 
