@@ -9,9 +9,6 @@
     function HomeController(UserService, $rootScope) {
         var vm = this;
 
-
-        initController();
-
          $rootScope.order = [];
          $rootScope.totOrders = 0;
          $rootScope.comments = {};
@@ -25,7 +22,7 @@
 
             var date = dd + "/" + mm + "/" + yyyy;
 
-            return date
+            return date;
         };
 
         $rootScope.addToOrder = function (item, qty) {
@@ -51,12 +48,17 @@
             }
         };
 
-        // FILTER?
-        /*$rootScope.DrankFilter= function(item){
-            if(item.type === "drinken"){
-                return item;
+        $rootScope.showTables = function (tableName) {
+            if(tableName === "A"){
+                console.log("Gelukt.. A");
+                console.log($rootScope.userCafeID);
+            } else if(tableName === "B"){
+                console.log("Gelukt.. B");
+            } else if(tableName === "C"){
+                console.log("Gelukt.. C");
+                console.log(JSON.stringify($rootScope.order));
             }
-        };*/
+        };
 
 
         $rootScope.removeOneEntity = function (item) {

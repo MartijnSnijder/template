@@ -78,7 +78,6 @@
             $rootScope.globals = {
                 currentUser: {
                     username: username,
-                    cafeRights: $rootScope.userRights,
                     authdata: authdata
 
                 }
@@ -91,11 +90,13 @@
             var cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+            $cookies.put('userCafeID', $rootScope.userCafeID, { expires: cookieExp});
         }
 
         function ClearCredentials() {
             $rootScope.globals = {};
             $cookies.remove('globals');
+            $cookies.remove('userCafeID');
             $http.defaults.headers.common.Authorization = 'Basic';
         }
     }

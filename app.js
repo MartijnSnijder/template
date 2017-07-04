@@ -20,8 +20,7 @@
             .when('/admin', {
                 controller: 'AdminController',
                 templateUrl: 'admin/admin.view.html',
-                controllerAs: 'vm',
-                access: {cafeRights: "cafeAdmin"}
+                controllerAs: 'vm'
             })
 
             .when('/login', {
@@ -49,9 +48,13 @@
     function run($rootScope, $location, $cookies, $http) {
         // keep user logged in after page refresh
         $rootScope.globals = $cookies.getObject('globals') || {};
+
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
+        // keeps user CafeID
+        $rootScope.userCafeID = $cookies.get('userCafeID') || {} ;
+        console.log($rootScope.userCafeID);
 
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -82,8 +85,11 @@
             $rootScope.getter("product_view");
             $rootScope.getter("producten");
             $rootScope.getter("subcategorieen");
-
+            /*if($rootScope.userCafeID.length === 0){
+                $cookies.get('userCafeID');
+            }*/
         };
+
 
         //LOCALHOST GETTEN
         $rootScope.getter = function (table) {

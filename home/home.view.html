@@ -94,11 +94,14 @@
                     <br />
                     <div class="table-select">
                         <label class="col-md-12 col-xs-12">Selecteer bijbehorende tafel:</label>
-                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-repeat="item in tafels" data-ng-bind="item.name"></button>
+                        <!-- data-ng-repeat="item in tafels" data-ng-bind="item.name"> -->
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('A')"> A </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('B')"> B </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('C')"> C </button>
                     </div>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
-                    <h3><span class="label label-warning">Totaal: {{getTotal() | currency:"€":0}}</span></h3>
+                    <h3><span class="label label-warning">Totaal: {{getTotal() | currency:"€":2}}</span></h3>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
                     <div class="row">
