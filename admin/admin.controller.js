@@ -38,18 +38,13 @@
                 console.log(JSON.stringify(item));
                 $rootScope.postProduct(item, "producten");
 
-
-                //ROBERT MONGO GEDOE
-                //$rootScope.insertProduct(item);
             }
         };
 
         $rootScope.removeItem = function (item) {
-
-
-
             console.log(JSON.stringify(item));
 
+            //@TODO REMOVE ITEM
 
         };
 
@@ -74,13 +69,25 @@
         }
 
         // @TODO cafe_id must be current user cafe_id
-        function addUser(user) {
-            console.log("Dingen");
-            //user[cafe_id] = ""
+        $rootScope.addNewUser= function(user) {
+            console.log(JSON.stringify(user));
+
+            // change rights to the correct type
+            if(user.rechten === "Personeel"){
+                user.rechten = "cafeUser";
+            } else if(user.rechten === "Administrator"){
+                user.rechten = "cafeAdmin"
+            }
+
+            // ADD CAFE ID
+            user.cafe_id = 1;
+
+
+            console.log("nu is het: " + JSON.stringify(user));
 
             //post
-            //$rootScope.poster(user, 'gebruikers');
-        }
+            $rootScope.postProduct(user, 'gebruikers');
+        };
 
         function deleteUser(id) {
             if (id === vm.user.id) {

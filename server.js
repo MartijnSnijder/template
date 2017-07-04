@@ -34,7 +34,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-// Gets the results from a specified table
+// GETS RESULT FROM TABLE
 app.get('/api/:_id', function (req,res){
     connection.query('select * from  `'.concat(req.params._id).concat('`'),function (err,rows,fields) {
         if (err) throw err;
@@ -57,14 +57,16 @@ app.post('/api/gebruikers', function (req, res) {
          console.log("dit is de succes message: " + JSON.stringify(res2));
          if (err) throw err;
 
+         // Result will either be [] -> length 0 when no match is found or [...] (so length > 0) when match
          if(res2.length > 0) {
-             console.log("er is resultaat?");
              res.json(true);
          } else res.json(false);
      });
 });
 
-// Delete a product based on product ID
+// DELETE PRODUCT BASED ON PRODUCT ID
+// @TODO WERKEND MAKEN
+
 app.post('/api/producten', function (req, res) {
     console.log("ik word aangeroepen, post PRODUCT VERWIJDEREN");
 
@@ -84,9 +86,9 @@ app.post('/api/producten', function (req, res) {
     return res;
 });
 
-// Insert into..
+// INSERT INTO...
 app.post('/api/:_id', function (req, res) {
-    console.log("gewone post aangeroepen..");
+    console.log("gewone POST aangeroepen.. INSERT INTO");
     var postData = req.body,
         query = 'INSERT INTO `'.concat(req.params._id).concat('` (');
 
@@ -119,8 +121,31 @@ app.post('/api/:_id', function (req, res) {
     });
 });
 
+app.post('/api/new/order', function (req,res){
+    console.log("Ik word aangeroepen... ORDER TOEVOEGEN");
+    //{"tafel_id":1,"order_status":"besteld","comment":"stuff","producten":[{"id":1,"aantal":2},{"id":3,"aantal":4}]}
+
+    var postData= req.body;
+    var query ='INSERT INTO orders (tijd,tafel_id,order_status,comment) VALUES(?,?,?,?)';
+    var data=[new Date(),postData["tafel_id"],postData["order_status"],postData["comment"]];
+
+    connection.query(query,data,function(err,result){
+        if (err) throw err;
+        for(var key in postData["producten"]){
+            var query ='INSERT INTO product_orders (order_id,product_id,aantal) VALUES (?,?,?)';
+            var data = [result.insertId,postData["producten"][key]["id"],postData["producten"][key]["aantal"]];
+            connection.query(query,data,function(err,result2){
+                if (err) throw err;
+            });
+        }
+    });
+    res.json(true);
+});
 
 
+
+// STATUS UPDATER
+// @TODO KIJKEN OF DIT WERKT
 
 app.put('/api/adv_order/:_id', function (req, res){
     connection.query('select * from  orders where id='.concat(req.params._id),function (err,rows,fields)
@@ -158,6 +183,7 @@ app.put('/api/adv_order/:_id', function (req, res){
     });
 });
 
+// ORDER UPDATE -- GEEN IDEE OF DIT WERKT
 app.put('/api/update/:_table/:_id', function (req, res){
     var postData = req.body,
         query = 'UPDATE '.concat(req.params._table).concat(' SET ');
@@ -180,7 +206,7 @@ app.put('/api/update/:_table/:_id', function (req, res){
     });
 });
 
-
+// DO NOT TOUCH
 app.listen(3000, function () {
   console.log('Listening on port 3000!');
 });
