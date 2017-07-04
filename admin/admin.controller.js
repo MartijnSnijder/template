@@ -22,23 +22,26 @@
 
         $rootScope.addNewItem = function (item) {
 
-            // when price in euros instead of cents (2.30 instead of 230)
-            //@ TODO replace comma with '' (replace function)
-            if(item.prijs %1 !== 0){
-                item.prijs = Math.round(item.prijs * 100);
+            // price should be higher than zero
+            if(item.prijs > 0) {
+
+                // when price in euros instead of cents (2.30 instead of 230)
+                //@ TODO replace comma with '' (replace function)
+                if (item.prijs % 1 !== 0) {
+                    item.prijs = Math.round(item.prijs * 100);
+                }
+
+                item.categorie = item.categorie.toLocaleLowerCase();
+
+                item.cafe_id = 1;
+
+                console.log(JSON.stringify(item));
+                $rootScope.postProduct(item, "producten");
+
+
+                //ROBERT MONGO GEDOE
+                //$rootScope.insertProduct(item);
             }
-
-            item.categorie = item.categorie.toLocaleLowerCase();
-
-            item.cafe_id = 1;
-
-            console.log(JSON.stringify(item));
-            $rootScope.postProduct(item, "producten");
-
-
-            //ROBERT MONGO GEDOE
-            //$rootScope.insertProduct(item);
-
         };
 
         $rootScope.removeItem = function (item) {
