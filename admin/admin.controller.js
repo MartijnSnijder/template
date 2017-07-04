@@ -23,14 +23,16 @@
 
                 // price should be higher than zero
                 if (item.prijs > 0) {
-
+                    if(item.prijs < 1){
+                        confirm("Weet u zeker dat de prijs goed is? Minder dan een euro lijkt fout..");
+                    }
                     // when price in euros instead of cents (2.30 instead of 230)
                     //@ TODO replace comma with '' (replace function)
                     if (item.prijs % 1 !== 0) {
                         item.prijs = Math.round(item.prijs * 100);
                     }
 
-                    item.subcategorieen_id = 1;
+                    item.subcategorieen_id = 1; // TODO
 
                     item.cafe_id = $rootScope.userCafeID;
 

@@ -5,15 +5,11 @@
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#favorieten" role="tab" data-toggle="tab">Favorieten</a></li>
-                        <li role="presentation"><a href="#dranken" role="tab" data-toggle="tab">Dranken</a></li>
+                        <li role="presentation" class="active"><a href="#dranken" role="tab" data-toggle="tab">Dranken</a></li>
                         <li role="presentation"><a href="#eten" role="tab" data-toggle="tab">Eten</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="favorieten">
-                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in favorieten" data-ng-bind="item.naam" data-ng-click="addToOrder(item, 1)"></button>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="dranken">
+                        <div role="tabpanel" class="tab-pane" active id="dranken">
                             <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter: Drankfilter" data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="eten">

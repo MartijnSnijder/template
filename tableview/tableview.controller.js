@@ -11,7 +11,6 @@
 
     tableViewController.$inject = ['$rootScope', '$http'];
     function tableViewController($rootScope, $http) {
-        var vm = this;
 
         // VARS
         $rootScope.currentTable = "";

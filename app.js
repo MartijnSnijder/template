@@ -147,9 +147,6 @@
             $http.post(urr, orderPost).then(postSuccess).catch(postFail);
 
 
-
-            //afel_id":1,"order_status":"besteld","comment":"stuff","producten":
-
         };
 
         $rootScope.deleteProduct = function (data) {
@@ -162,7 +159,7 @@
 
 
             $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
-        }
+        };
 
         $rootScope.postProduct = function (data) {
             var urr = 'http://localhost:3000/api/producten/toevoegen';

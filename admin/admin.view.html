@@ -21,8 +21,7 @@
                         <div class="col-md-3">
                             <label>Categorie*</label>
                             <select class="form-control" data-ng-model="nieuw.subcategorieen_id" required>
-                                <option>Drinken</option>
-                                <option>Eten</option>
+                                <option ng-repeat="categorie in categorieen">{{categorie.naam}}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
