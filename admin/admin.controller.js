@@ -45,7 +45,7 @@
                 console.log(JSON.stringify(item));
                 var data;
                 //@TODO REMOVE ITEM
-                //return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
+                //return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail()); ..
             };
 
             $rootScope.addNewUser = function (user) {
