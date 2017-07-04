@@ -39,7 +39,7 @@
              callback(response);
              });*/
 
-            var urr = 'http://localhost:3000/api/gebruikers';
+            var urr = 'http://localhost:3000/api/gebruikers/inloggen';
             var data = {username: username, password: password};
             data = JSON.stringify(data);
 
@@ -49,6 +49,7 @@
                 console.log("wtf doe ik hier");
                 console.log(JSON.stringify(response));
                 if(response.data === true){
+                    console.log(JSON.stringify(response.config.data));
                     response = {success: true};
                     callback(response);
                 } else if(response.data === false){
@@ -68,6 +69,10 @@
 
         function SetCredentials(username, password) {
             var authdata = Base64.encode(username + ':' + password);
+
+            console.log("hier ben ik!");
+            var pikkebijter = $rootScope.getUserDat(username);
+            console.log(JSON.stringify(pikkebijter));
 
             $rootScope.globals = {
                 currentUser: {

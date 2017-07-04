@@ -43,7 +43,7 @@ app.get('/api/:_id', function (req,res){
 });
 
 // LOGIN
-app.post('/api/gebruikers', function (req, res) {
+app.post('/api/gebruikers/inloggen', function (req, res) {
     console.log("ik word aangeroepen, post INLOGGEN");
 
     var username = req.body.username;
@@ -67,7 +67,7 @@ app.post('/api/gebruikers', function (req, res) {
 // DELETE PRODUCT BASED ON PRODUCT ID
 // @TODO WERKEND MAKEN
 
-app.post('/api/producten', function (req, res) {
+app.post('/api/producten/verwijderen', function (req, res) {
     console.log("ik word aangeroepen, post PRODUCT VERWIJDEREN");
 
     var product_id = req.body.id;
@@ -86,11 +86,14 @@ app.post('/api/producten', function (req, res) {
     return res;
 });
 
-// INSERT INTO...
-app.post('/api/:_id', function (req, res) {
-    console.log("gewone POST aangeroepen.. INSERT INTO");
-    var postData = req.body,
-        query = 'INSERT INTO `'.concat(req.params._id).concat('` (');
+// INSERT INTO USERS
+app.post('/api/gebruikers/toevoegen', function (req, res) {
+    console.log("POST - INSERT INTO GEBRUIKERS");
+    var postData = req.body;
+    console.log(req.body);
+    console.log(JSON.stringify(req.body));
+
+    var query = 'INSERT INTO GEBRUIKERS (';
 
     for (var key in postData) {
         console.log(key + " Dingen!");
@@ -113,35 +116,70 @@ app.post('/api/:_id', function (req, res) {
 
     query = query.slice(0, -1);
     query = query.concat(')');
-    var queryResult = connection.query(query, data, function (err, res) {
+    var queryResult = connection.query(query, data, function (err, res2) {
         console.log("dit is de error message: " + JSON.stringify(err));
-        console.log("dit is de succes message: " + JSON.stringify(res));
+        console.log("dit is de succes message: " + JSON.stringify(res2));
         if (err) throw err;
         res.json(true);
     });
 });
 
-app.post('/api/new/order', function (req,res){
-    console.log("Ik word aangeroepen... ORDER TOEVOEGEN");
-    //{"tafel_id":1,"order_status":"besteld","comment":"stuff","producten":[{"id":1,"aantal":2},{"id":3,"aantal":4}]}
+// INSERT INTO PRODUCTS
+app.post('/api/producten/toevoegen', function (req, res) {
+    console.log("POST -- INSERT INTO PRODUCTEN");
 
-    var postData= req.body;
-    var query ='INSERT INTO orders (tijd,tafel_id,order_status,comment) VALUES(?,?,?,?)';
-    var data=[new Date(),postData["tafel_id"],postData["order_status"],postData["comment"]];
+    var postData = req.body;
+    console.log(req.body);
+    console.log(JSON.stringify(req.body));
 
-    connection.query(query,data,function(err,result){
+
+
+    var query = 'INSERT INTO PRODUCTEN (';
+
+    for (var key in postData) {
+        console.log(key + " Dingen!");
+        if (!postData.hasOwnProperty(key))
+            continue;
+
+        query = query.concat('`').concat(key).concat('`,');
+    }
+
+    var data = [];
+    query = query.slice(0, -1);
+    query = query.concat(') VALUES(');
+    for ( key in postData) {
+        if (!postData.hasOwnProperty(key))
+            continue;
+
+        query = query.concat('?,');
+        data.push(postData[key]);
+    }
+
+    query = query.slice(0, -1);
+    query = query.concat(')');
+
+    console.log("dit is de query" + query + data);
+    var queryResult = connection.query(query, data, function (err, res2) {
+        console.log("dit is de error message: " + JSON.stringify(err));
+        console.log("dit is de succes message: " + JSON.stringify(res2));
         if (err) throw err;
-        for(var key in postData["producten"]){
-            var query ='INSERT INTO product_orders (order_id,product_id,aantal) VALUES (?,?,?)';
-            var data = [result.insertId,postData["producten"][key]["id"],postData["producten"][key]["aantal"]];
-            connection.query(query,data,function(err,result2){
-                if (err) throw err;
-            });
-        }
+        res.json(true);
     });
-    res.json(true);
 });
 
+// USER RIGHTS & CAFE ID
+app.get('api/gebruikers/currentUser', function(req, res){
+    var username = req.body.username;
+    var query= "SELECT 'rechten', 'cafe_id' FROM gebruikers WHERE user is " + username;
+    connection.query(query, function (err, res2) {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(res2))
+    });
+
+    if(err) throw err;
+    res.json(true);
+
+});
 
 
 // STATUS UPDATER
@@ -181,6 +219,28 @@ app.put('/api/adv_order/:_id', function (req, res){
             res.json(true)
         });
     });
+});
+
+
+app.post('/api/new/order', function (req,res){
+    console.log("Ik word aangeroepen... ORDER TOEVOEGEN");
+    //{"tafel_id":1,"order_status":"besteld","comment":"stuff","producten":[{"id":1,"aantal":2},{"id":3,"aantal":4}]}
+
+    var postData= req.body;
+    var query ='INSERT INTO orders (tijd,tafel_id,order_status,comment) VALUES(?,?,?,?)';
+    var data=[new Date(),postData["tafel_id"],postData["order_status"],postData["comment"]];
+
+    connection.query(query,data,function(err,result){
+        if (err) throw err;
+        for(var key in postData["producten"]){
+            var query ='INSERT INTO product_orders (order_id,product_id,aantal) VALUES (?,?,?)';
+            var data = [result.insertId,postData["producten"][key]["id"],postData["producten"][key]["aantal"]];
+            connection.query(query,data,function(err,result2){
+                if (err) throw err;
+            });
+        }
+    });
+    res.json(true);
 });
 
 // ORDER UPDATE -- GEEN IDEE OF DIT WERKT
