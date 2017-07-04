@@ -78,6 +78,7 @@
             $rootScope.globals = {
                 currentUser: {
                     username: username,
+                    cafeRights: $rootScope.userRights,
                     authdata: authdata
 
                 }

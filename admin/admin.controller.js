@@ -72,14 +72,14 @@
 
 
             $rootScope.deleteUser = function(id) {
-                if (id === vm.user.id) {
-                    FlashService.Error('Je kan jezelf niet verwijderen', false);
+                if (id === $rootScope.userID) {
+                    FlashService.Error('Je kan jezelf niet verwijderen');
                 }
                 else {
-                    UserService.Delete(id)
-                        .then(function () {
-                            loadAllUsers();
-                        });
+                    // @TODO delete the user..
+                    
+                    // reload all users?
+                    $rootScope.getCafeUsers($rootScope.userCafeID);
                 }
             }
         }

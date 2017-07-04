@@ -20,7 +20,8 @@
             .when('/admin', {
                 controller: 'AdminController',
                 templateUrl: 'admin/admin.view.html',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                access: {cafeRights: "cafeAdmin"}
             })
 
             .when('/login', {
@@ -51,6 +52,7 @@
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
+
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
@@ -194,10 +196,12 @@
             console.log("hallo?");
             console.log(JSON.stringify(response));
             var currentUser = response.data;
+            $rootScope.userID = currentUser[0].id;
             $rootScope.userRights = currentUser[0].rechten;
             $rootScope.userCafeID = currentUser[0].cafe_id;
 
             //chain reaction, load employees..
+            console.log("de user id is: " + $rootScope.userID);
             console.log($rootScope.userCafeID + "ehm...");
             console.log("Nu de medewerkers laden..");
              $rootScope.getCafeUsers($rootScope.userCafeID);

@@ -175,7 +175,7 @@ app.post('/api/gebruikers/currentuser', function (req, res) {
 
     var data =  req.body.username;
 
-    var query= "SELECT `rechten`, `cafe_id` FROM gebruikers WHERE username= '" + data + "'";
+    var query= "SELECT `id`, `rechten`, `cafe_id` FROM gebruikers WHERE username= '" + data + "'";
     console.log(query);
     connection.query(query, function (err, res2) {
         console.log(JSON.stringify(err));
