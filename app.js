@@ -174,12 +174,21 @@
             console.log("Ehm foutje");
         }
 
-        $rootScope.getUserDat = function (data) {
-            var urr = 'http://localhost:3000/api/gebruikers/currentUser';
-            data = JSON.stringify(data);
+        $rootScope.getUserDat = function (username) {
+            var urr = 'http://localhost:3000/api/gebruikers/currentuser';
+            var data = {username: username};
+            //data = JSON.stringify(data);
+            console.log(data);
 
-            return $http.post(urr, data).then(postSuccess).catch(postFail);
-        }
+            return $http.post(urr, data).then(getUserSuccess).catch(postFail);
+        };
+
+            function getUserSuccess(response) {
+                console.log(JSON.stringify(response));
+                $rootScope.currentUser = response.data;
+                console.log("de huidige user heeft: " + JSON.stringify($rootScope.currentUser));
+            }
+
 
     }
 })();
