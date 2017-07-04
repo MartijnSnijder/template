@@ -29,7 +29,10 @@
                     tot += ((product.prijs * product.aantal) / 100);
                 }
             });
-            return tot;
+
+            if(tot > 0){
+                return tot;
+            } else return 0;
         };
 
         $rootScope.changeOrderQty= function(tableNaam, prodProductNaam, plusOrMinusOne){
@@ -39,7 +42,12 @@
                     if(plusOrMinusOne === 'plusOne'){
                         product.aantal++;
                     } else if(plusOrMinusOne === 'minusOne'){
+                        if(product.aantal >0){
                         product.aantal--;
+                            }
+                        if(product.aantal === 0){
+                            alert("Product wordt niet meegerekend in totaalprijs, maar blijft op de bon staan voor administratieve doeleinden.");
+                        }
                     }
                 }
             })

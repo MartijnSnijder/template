@@ -258,7 +258,7 @@ app.post('/api/new/order', function (req,res){
     var postData= req.body;
     var query ='INSERT INTO orders (tijd,tafel_id,order_status,comment) VALUES(?,?,?,?)';
     var data=[new Date(),postData["tafel_id"],"besteld",postData["comment"]];
-    var data=[new Date(),postData["tafel_id"],postData["order_status"],postData["comment"]];
+    var data=[new Date(),postData["tafel_id"],"in behandeling",postData["comment"]];
 
     console.log("query voor de product_orders start");
     connection.query(query,data,function(err,result){

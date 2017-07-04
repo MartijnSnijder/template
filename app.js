@@ -150,7 +150,7 @@
             console.log(JSON.stringify(orderPost));
             // orderPost.qty = data.qty;order_id,product_id,aantal
             $http.post(urr, orderPost).then(postSuccess).catch(postFail);
-
+            $rootScope.$apply.getter("tafels");
 
         };
 
