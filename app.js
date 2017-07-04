@@ -154,8 +154,6 @@
         };
 
 
-
-
         $rootScope.postUser = function (data) {
             var urr = 'http://localhost:3000/api/gebruikers/toevoegen';
             data = JSON.stringify(data);
@@ -193,16 +191,24 @@
 
         // Specific function for the user data
         function getUserSuccess(response) {
+            console.log("hallo?");
             console.log(JSON.stringify(response));
-            $rootScope.currentUser = response.data;
-            console.log("de huidige user heeft: " + JSON.stringify($rootScope.currentUser));
-            console.log("proberen: " + JSON.stringify($rootScope.currentUser.cafe_id));
+            var currentUser = response.data;
+            $rootScope.userRights = currentUser[0].rechten;
+            $rootScope.userCafeID = currentUser[0].cafe_id;
+
+            //chain reaction, load employees..
+            console.log($rootScope.userCafeID + "ehm...");
+            console.log("Nu de medewerkers laden..");
+             $rootScope.getCafeUsers($rootScope.userCafeID);
+
             }
 
         function getCafeUserSuccess(response) {
             console.log(JSON.stringify(response));
-            $rootScope.cafeUsers = response.data;
-            console.log("Het huidige cafe heeft: " + JSON.stringify($rootScope.cafeUsers));
+            console.log("xxx");
+            $rootScope.cafeUsers = JSON.stringify(response.data);
+            console.log("Het huidige cafe heeft: " + $rootScope.cafeUsers);
         }
 
         // General succes notice
