@@ -28,7 +28,6 @@
         };
 
         $rootScope.addToOrder = function (item, qty) {
-            console.log("hoihoi");
             console.log($rootScope.order.length + " joe ");
             var flag = 0;
             if ($rootScope.order.length > 0) {

@@ -129,9 +129,8 @@
         }
 
 
-        $rootScope.postProduct = function (data, table) {
-            console.log("table: " + table);
-            var urr = 'http://localhost:3000/api/' + table;
+        $rootScope.postProduct = function (data) {
+            var urr = 'http://localhost:3000/api/producten/toevoegen';
             data = JSON.stringify(data);
 
             // make sure there is data to post, otherwise server will crash
@@ -139,7 +138,7 @@
                 return $http.post(urr, data).then(postSuccess).catch(postFail);
             }
 
-            function postSuccess(response) {
+            /*function postSuccess(response) {
                 console.log("dit is de response: " + response);
                 console.log(response.status);
                 console.log("Gelukt!");
@@ -148,10 +147,38 @@
             function postFail(error) {
                 console.log(error.data);
                 console.log("Ehm foutje");
+            }*/
+        };
+
+        $rootScope.postUser = function (data) {
+            var urr = 'http://localhost:3000/api/gebruikers/toevoegen';
+            data = JSON.stringify(data);
+
+            // make sure there is data to post, otherwise server will crash
+            if(data.length > 0) {
+                return $http.post(urr, data).then(postSuccess).catch(postFail);
             }
 
+        };
 
+        function postSuccess(response) {
+            console.log("dit is de response: " + response);
+            console.log(response.status);
+            console.log("Gelukt!");
 
+            return response.data;
+        }
+
+        function postFail(error) {
+            console.log(error.data);
+            console.log("Ehm foutje");
+        }
+
+        $rootScope.getUserDat = function (data) {
+            var urr = 'http://localhost:3000/api/gebruikers/currentUser';
+            data = JSON.stringify(data);
+
+            return $http.post(urr, data).then(postSuccess).catch(postFail);
         }
 
     }

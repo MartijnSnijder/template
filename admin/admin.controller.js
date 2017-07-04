@@ -31,21 +31,21 @@
                     item.prijs = Math.round(item.prijs * 100);
                 }
 
-                item.categorie = item.categorie.toLocaleLowerCase();
+                item.subcategorieen_id = 1;
 
                 item.cafe_id = 1;
 
                 console.log(JSON.stringify(item));
-                $rootScope.postProduct(item, "producten");
+                $rootScope.postProduct(item);
 
             }
         };
 
         $rootScope.removeItem = function (item) {
             console.log(JSON.stringify(item));
-
+            var data;
             //@TODO REMOVE ITEM
-
+            //return $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
         };
 
 
@@ -86,7 +86,7 @@
             console.log("nu is het: " + JSON.stringify(user));
 
             //post
-            $rootScope.postProduct(user, 'gebruikers');
+            $rootScope.postUser(user);
         };
 
         function deleteUser(id) {
