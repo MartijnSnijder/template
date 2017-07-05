@@ -50,12 +50,18 @@
 
         $rootScope.showTables = function (tableName) {
             if(tableName === "A"){
-                console.log("Gelukt.. A");
-
+                console.log("Gelukt.. A (tafel id= 1");
+                // @TODO ALLE A SECTIE TAFELS LATEN ZIEN..
+                $rootScope.tableSelect = 1;
             } else if(tableName === "B"){
-                console.log("Gelukt.. B");
+                console.log("Gelukt.. B (tafel id= 3");
+                // @TODO ALLE B SECTIE TAFELS LATEN ZIEN..
+                $rootScope.tableSelect = 3;
             } else if(tableName === "C"){
-                console.log("Gelukt.. C");
+                console.log("Gelukt.. C (tafel id= 4" );
+                // @TODO ALLE C SECTIE TAFELS LATEN ZIEN..
+                $rootScope.tableSelect = 4;
+
             }
         };
 

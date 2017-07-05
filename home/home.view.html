@@ -10,11 +10,11 @@
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane" active id="dranken">
-                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten" data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter:{cafe_id: userCafeID}" ng-if="item.type === 'Drinken' " data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="eten">
                             <!-- @TODO HIJ KAN GEEN ETEN SELECTEREN??!?! -->
-                            <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten" data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
+                            <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter:{cafe_id: userCafeID}" ng-if="item.type === 'Eten' " data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                     </div>
                 </div>

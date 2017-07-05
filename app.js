@@ -142,7 +142,7 @@
             // data = JSON.stringify(data);
 
             var orderPost = {};
-            orderPost.tafel_id = 3; // @TODO uit order trekken;
+            orderPost.tafel_id = $rootScope.tableSelect; // @TODO uit order trekken;
             orderPost.comment = "Opmerking";
             orderPost.producten = data;
 
@@ -150,7 +150,7 @@
             console.log(JSON.stringify(orderPost));
             // orderPost.qty = data.qty;order_id,product_id,aantal
             $http.post(urr, orderPost).then(postSuccess).catch(postFail);
-            $rootScope.$apply.getter("tafels");
+            $rootScope.getter("tafels");
 
         };
 
@@ -210,6 +210,17 @@
             console.log(data);
 
             return $http.post(urr, data).then(getCafeUserSuccess).catch(postFail);
+        };
+
+        // finalizes the order
+        $rootScope.finishOrder = function (tafel_id) {
+            console.log("dit is de order-id: " + tafel_id);
+            var urr = 'http://localhost:3000/api/update/order/betaald';
+            var data = {tafelID: tafel_id};
+            //data = JSON.stringify(data);
+            console.log(data);
+
+            return $http.post(urr, data).then(postSuccess).catch(postFail);
         };
 
 

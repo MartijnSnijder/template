@@ -22,7 +22,7 @@
 
 
         // gets the total value of the order basis on the tableNaam
-        $rootScope.getTotal = function (tableNaam) {
+        $rootScope.getTotalTable = function (tableNaam) {
             var tot = 0;
             $rootScope.product_view.forEach(function(product){
                 if(product.tafel_naam === tableNaam){
@@ -64,12 +64,27 @@
         // clear the entire order from the currentTable
         // @TODO DIT MOET NOG GEDAAN WORDEN.. UPDATE NAAR DB?
         $rootScope.clearOrder = function (currentTable) {
-            var arrayIndex = $rootScope.findIndexArray(currentTable);
-            var order= $rootScope.tables[arrayIndex].order;
+            //var arrayIndex = $rootScope.findIndexArray(currentTable);
+            //var order= $rootScope.tables[arrayIndex].order;
 
             // only clear order when order has items
             if(order.length > 0) {
-                $rootScope.tables[arrayIndex].order = [];
+                //$rootScope.tables[arrayIndex].order = [];
+            }
+        };
+
+        $rootScope.checkoutTable = function (table) {
+            if($rootScope.currentTable !== "") {
+                if ($rootScope.getTotalTable($rootScope.currentTable) > 0) {
+                var conf = confirm(" - Tafel : " + table + " wordt afgerekend.." + ($rootScope.totOrders + 1) + "\n\nTotaalbedrag: €" + $rootScope.getTotalTable($rootScope.currentTable).toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
+
+                if(conf){
+                    $rootScope.order = [];
+                    $rootScope.totOrders += 1;
+                    $rootScope.finishOrder($rootScope.currentTable);
+                }
+
+                }
             }
         };
 

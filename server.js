@@ -280,6 +280,7 @@ app.post('/api/new/order', function (req,res){
     res.json(true);
 });
 
+
 // ORDER UPDATE -- GEEN IDEE OF DIT WERKT
 app.put('/api/update/:_table/:_id', function (req, res){
     var postData = req.body,
@@ -300,6 +301,20 @@ app.put('/api/update/:_table/:_id', function (req, res){
     connection.query(query, data, function (err, res2) {
         if (err) throw err;
         res.json(true);
+    });
+});
+
+// ORDER NAAR BETAALD ZETTEN
+app.post('/api/update/order/betaald', function (req, res){
+    var data = req.body.tafelID;
+    console.log(JSON.stringify(data));
+    var query = "UPDATE orders SET order_status='betaald' WHERE order_status='in behandeling' AND tafel_id = '" + data + "'";
+
+    connection.query(query,function (err, res2) {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(res2));
+        if (err) throw err;
+        res.json(res2);
     });
 });
 

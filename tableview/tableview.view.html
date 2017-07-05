@@ -90,14 +90,14 @@
                 </div>
                 <div class="panel-footer">
                     <!-- show the total price on the current table -->
-                    <h3><span class="label label-warning">Totaal: {{getTotal(currentTable) | currency:"€":2}}</span></h3>
+                    <h3><span class="label label-warning">Totaal: {{getTotalTable(currentTable) | currency:"€":2}}</span></h3>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
                         <div class="md-col-12">
                             <!-- @TODO alert button -> confirmation before entire order is deleted -- annuleren -- -->
                             <span class="btn btn-default btn-marginTop col-md-3 col-xs-6" ng-click="popupClear(currentTable)">Annuleren</span>
-                            <span class="btn btn-success btn-marginTop btn-direct-checkout col-md-3 col-xs-12" ng-click="checkout()" ng-disabled="!order.length">Afrekenen</span>
+                            <span class="btn btn-success btn-marginTop btn-direct-checkout col-md-3 col-xs-12" ng-click="checkoutTable(currentTable)">Afrekenen</span>
                         </div>
                     </div>
                 </div>
