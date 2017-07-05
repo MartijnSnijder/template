@@ -223,6 +223,17 @@
             return $http.post(urr, data).then(postSuccess).catch(postFail);
         };
 
+        // cancels the order
+        $rootScope.cancelOrder = function (tafel_id) {
+            console.log("dit is de order-id: " + tafel_id);
+            var urr = 'http://localhost:3000/api/update/order/annuleren';
+            var data = {tafelID: tafel_id};
+            //data = JSON.stringify(data);
+            console.log(data);
+
+            return $http.post(urr, data).then(postSuccess).catch(postFail);
+        };
+
 
         // Specific function for the user data
         function getUserSuccess(response) {

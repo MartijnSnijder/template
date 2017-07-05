@@ -318,6 +318,20 @@ app.post('/api/update/order/betaald', function (req, res){
     });
 });
 
+// ORDER NAAR GEANNULEERD ZETTEN
+app.post('/api/update/order/annuleren', function (req, res){
+    var data = req.body.tafelID;
+    console.log(JSON.stringify(data));
+    var query = "UPDATE orders SET order_status='geannuleerd' WHERE order_status='in behandeling' AND tafel_id = '" + data + "'";
+
+    connection.query(query,function (err, res2) {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(res2));
+        if (err) throw err;
+        res.json(res2);
+    });
+});
+
 // DO NOT TOUCH
 app.listen(3000, function () {
   console.log('Listening on port 3000!');

@@ -63,20 +63,25 @@
 
         // clear the entire order from the currentTable
         // @TODO DIT MOET NOG GEDAAN WORDEN.. UPDATE NAAR DB?
-        $rootScope.clearOrder = function (currentTable) {
-            //var arrayIndex = $rootScope.findIndexArray(currentTable);
-            //var order= $rootScope.tables[arrayIndex].order;
+        $rootScope.deleteOrder = function (currentTable) {
+            if($rootScope.currentTable !== "") {
+                if ($rootScope.getTotalTable($rootScope.currentTable) > 0) {
+                    var conf = confirm(" - Tafel : " + currentTable + " wordt geannuleerd.." + ($rootScope.totOrders + 1) + "\n\nTotaalbedrag: €" + $rootScope.getTotalTable($rootScope.currentTable).toFixed(2) + "\n\nZeker weten?");
 
-            // only clear order when order has items
-            if(order.length > 0) {
-                //$rootScope.tables[arrayIndex].order = [];
+                    if(conf){
+                        $rootScope.order = [];
+                        $rootScope.totOrders += 1;
+                        $rootScope.cancelOrder($rootScope.currentTable);
+                    }
+
+                }
             }
         };
 
-        $rootScope.checkoutTable = function (table) {
+        $rootScope.checkoutTable = function (currentTable) {
             if($rootScope.currentTable !== "") {
                 if ($rootScope.getTotalTable($rootScope.currentTable) > 0) {
-                var conf = confirm(" - Tafel : " + table + " wordt afgerekend.." + ($rootScope.totOrders + 1) + "\n\nTotaalbedrag: €" + $rootScope.getTotalTable($rootScope.currentTable).toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
+                var conf = confirm(" - Tafel : " + currentTable + " wordt afgerekend.." + ($rootScope.totOrders + 1) + "\n\nTotaalbedrag: €" + $rootScope.getTotalTable($rootScope.currentTable).toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
 
                 if(conf){
                     $rootScope.order = [];
