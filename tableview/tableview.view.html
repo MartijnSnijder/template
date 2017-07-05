@@ -59,7 +59,8 @@
                     </div>-->
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <div class="row" ng-repeat="prod in product_view | filter: currentTable : true">
+                            <!-- filter: currentTable : true  ||  | groupBy : 'product_naam' -->
+                            <div class="row" ng-repeat="prod in product_view" ng-if="prod.tafel_naam === currentTable">
                                 <div class="col-md-1 col-xs-1 ">
                                     <span class="badge badge-left" ng-bind="prod.aantal"></span>
                                 </div>

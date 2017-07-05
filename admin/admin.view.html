@@ -2,69 +2,79 @@
     <div class="row">
         <!-- Product toevoegen -->
         <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-4"><span class="panel-title">Product toevoegen</span></div>
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-4"><span class="panel-title">Product toevoegen</span></div>
+                        </div>
                     </div>
+                    <div class="panel-body" id = "nieuw">
+                        <form class="form" name="formCreate" novalidate>
+                            <div class="col-md-4">
+                                <label>Naam*</label>
+                                <input type="text" class="form-control" data-ng-model="nieuw.naam" required />
+                            </div>
+                            <div class="col-md-2">
+                                <label>Prijs*</label>
+                                <input type="number" class="form-control" data-ng-model="nieuw.prijs" required />
+                            </div>
+                            <div class="col-md-3">
+                                <label>Type</label>
+                                <select class="form-control" data-ng-model="nieuw.type" required>
+                                    <option>Eten</option>
+                                    <option>Drinken</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Categorie*</label>
+                                <select class="form-control" data-ng-model="nieuw.subcategorieen_id" required>
+                                    <option ng-repeat="categorie in categorieen">{{categorie.naam}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <br />
+                                <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)">Toevoegen</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer"></div>
                 </div>
-                <div class="panel-body" id = "nieuw">
-                    <form class="form" name="formCreate" novalidate>
-                        <div class="col-md-4">
-                            <label>Naam*</label>
-                            <input type="text" class="form-control" data-ng-model="nieuw.naam" required />
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-4"><span class="panel-title">Product verwijderen</span></div>
                         </div>
-                        <div class="col-md-2">
-                            <label>Prijs*</label>
-                            <input type="number" class="form-control" data-ng-model="nieuw.prijs" required />
-                        </div>
-                        <div class="col-md-3">
-                            <label>Categorie*</label>
-                            <select class="form-control" data-ng-model="nieuw.subcategorieen_id" required>
-                                <option ng-repeat="categorie in categorieen">{{categorie.naam}}</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <br />
-                            <button class="btn btn-default btn-marginTop" data-ng-click="addNewItem(nieuw)">Toevoegen</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="panel-body" id = "verwijderen">
+                        <form class="form" name="formCreate" novalidate>
+                            <div class="col-md-4">
+                                <label>Categorie*</label>
+                                <select class="form-control"  required>
+                                    <option id="cat" ng-repeat="categorie in categorieen">{{categorie.naam}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Product*</label>
+                                <select class="form-control" required>
+                                    <option ng-repeat="item in producten | filter:cat">{{item.naam}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <br />
+                                <button class="btn btn-default btn-marginTop" data-ng-click="removeItem(verwijderen)" data-ng-disabled="formCreate.$invalid">Verwijderen</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer"></div>
                 </div>
-                <div class="panel-footer"></div>
             </div>
         </div>
         <!-- Product verwijderen -->
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-4"><span class="panel-title">Product verwijderen</span></div>
-                    </div>
-                </div>
-                <div class="panel-body" id = "verwijderen">
-                    <form class="form" name="formCreate" novalidate>
-                        <div class="col-md-4">
-                            <label>Categorie*</label>
-                            <select class="form-control"  required>
-                                <option id="cat" ng-repeat="categorie in categorieen">{{categorie.naam}}</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Product*</label>
-                            <select class="form-control" required>
-                                <option ng-repeat="item in producten | filter:cat">{{item.naam}}</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <br />
-                            <button class="btn btn-default btn-marginTop" data-ng-click="removeItem(verwijderen)" data-ng-disabled="formCreate.$invalid">Verwijderen</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="panel-footer"></div>
-            </div>
-        </div>
-        <!-- Gebruiker verwijderen -->
+
+        <!-- Gebruikers -->
         <div class="col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -85,7 +95,7 @@
                     </div>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="cafeUser in cafeUsers track by $index">
+                    <li class="list-group-item" ng-repeat="cafeUser in cafeUsers track by $index" ng-if="cafeUser.cafe_id === userCafeID">
                         <div class="row">
                             <div class="col-md-4 col-xs-3">
                                 {{cafeUser.naam}}

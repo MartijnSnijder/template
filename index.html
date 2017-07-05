@@ -22,8 +22,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" ng-hide="isActive('/login')">
-                <li ng-hide="isActive('/register')" ng-class="{ active: isActive('/')}"><a href="#!/">Bestellingsoverzicht</a></li>
-                <li ng-hide="isActive('/register')" ng-class="{ active: isActive('/tableview')}"><a href="#!/tableview">Tafeloverzicht</a></li>
+                <li ng-hide="isActive('/register')" data-ng-init="fill()" ng-class="{ active: isActive('/')}"><a href="#!/">Bestellingsoverzicht</a></li>
+                <li ng-hide="isActive('/register')" data-ng-init="fill()" ng-class="{ active: isActive('/tableview')}"><a href="#!/tableview">Tafeloverzicht</a></li>
                 <li class="dropdown">
                     <a ng-hide="isActive('/register')" href="" class="dropdown-toggle navbar-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profiel<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -68,6 +68,8 @@
 <script src="register/register.controller.js"></script>
 <script src="tableview/tableview.controller.js"></script>
 <script src="Mongo.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.4.7/angular-filter.js"></script>
+<!--<script src="node_modules/angular-filter/dist/angular-filter.min.js"></script>-->
 
 </body>
 </html>

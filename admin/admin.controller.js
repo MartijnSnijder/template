@@ -31,6 +31,9 @@
                     if (item.prijs % 1 !== 0) {
                         item.prijs = Math.round(item.prijs * 100);
                     }
+                    if(item.type === "Drinken"){
+
+                    }
 
                     item.subcategorieen_id = 1; // TODO
 

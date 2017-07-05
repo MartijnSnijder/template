@@ -90,7 +90,7 @@
             var cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
-            $cookies.put('userCafeID', $rootScope.userCafeID, { expires: cookieExp});
+            $cookies.put('userCafeID', 1, { expires: cookieExp});
             $cookies.put('cafeUsers', $rootScope.cafeUsers, {expires: cookieExp});
         }
 
