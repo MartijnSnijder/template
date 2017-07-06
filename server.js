@@ -83,9 +83,6 @@ app.post('/api/producten/verwijderen', function (req, res) {
         if (err) throw err;
         res.json(true);
     });
-
-    console.log("de response van product verwijderen  = " + res);
-    return res;
 });
 
 // INSERT INTO USERS
@@ -126,15 +123,12 @@ app.post('/api/gebruikers/toevoegen', function (req, res) {
     });
 });
 
+
 // INSERT INTO PRODUCTS
 app.post('/api/producten/toevoegen', function (req, res) {
     console.log("POST -- INSERT INTO PRODUCTEN");
 
     var postData = req.body;
-    console.log(req.body);
-    console.log(JSON.stringify(req.body));
-
-
 
     var query = 'INSERT INTO PRODUCTEN (';
 
@@ -169,7 +163,8 @@ app.post('/api/producten/toevoegen', function (req, res) {
     });
 });
 
-// USER RIGHTS & CAFE ID
+
+// ID & USER RIGHTS & CAFE ID
 app.post('/api/gebruikers/currentuser', function (req, res) {
     console.log("Current user rechten en cafe_id worden opgevraagd..");
 

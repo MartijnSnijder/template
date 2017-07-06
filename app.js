@@ -74,15 +74,17 @@
         };
 
         // ARRAYS
-        $rootScope.tafels = [];
-        $rootScope.producten = [];
-        $rootScope.product_view = [];
         $rootScope.currentUser = [];
-        $rootScope.categorieen = [];
-        $rootScope.currentUser = {};
 
         //DB filler
         $rootScope.Fill = function () {
+            // first empty them
+            $rootScope.producten = [];
+            $rootScope.tafels = [];
+            $rootScope.product_view = [];
+            $rootScope.categorieen = [];
+
+            // then fill
             $rootScope.getter("tafels");
             $rootScope.getter("product_view");
             $rootScope.getter("producten");
@@ -136,10 +138,8 @@
 
 
         $rootScope.postOrder = function (data) {
-            console.log("Post order wordt aangeroepen...: ");
             var urr = 'http://localhost:3000/api/new/order';
             console.log(JSON.stringify(data));
-            // data = JSON.stringify(data);
 
             var orderPost = {};
             orderPost.tafel_id = $rootScope.tableSelect; // @TODO uit order trekken;
@@ -154,6 +154,7 @@
 
         };
 
+
         $rootScope.deleteProduct = function (data) {
             var urr = 'http://localhost:3000/api/producten/verwijderen';
             console.log(JSON.stringify(data));
@@ -166,6 +167,8 @@
             $http.post('http://localhost:3000/producten/verwijderen', data ).then(postSuccess(), postFail());
         };
 
+
+        // creates new product in current cafeID
         $rootScope.postProduct = function (data) {
             var urr = 'http://localhost:3000/api/producten/toevoegen';
             data = JSON.stringify(data);
@@ -178,6 +181,7 @@
         };
 
 
+        // creates new user in the current cafeID
         $rootScope.postUser = function (data) {
             var urr = 'http://localhost:3000/api/gebruikers/toevoegen';
             data = JSON.stringify(data);
@@ -190,12 +194,10 @@
         };
 
 
-
         //  gets the rights & cafe_id (getUserData already used..)
         $rootScope.getUserDat = function (username) {
             var urr = 'http://localhost:3000/api/gebruikers/currentuser';
             var data = {username: username};
-            //data = JSON.stringify(data);
             console.log(data);
 
             return $http.post(urr, data).then(getUserSuccess).catch(postFail);
@@ -203,10 +205,8 @@
 
         // gets the users from current user cafe_id
         $rootScope.getCafeUsers = function (cafe_id) {
-            console.log("dit is de cafe-id: " + cafe_id);
             var urr = 'http://localhost:3000/api/gebruikers/getCafeUsers';
             var data = {cafeID: cafe_id};
-            //data = JSON.stringify(data);
             console.log(data);
 
             return $http.post(urr, data).then(getCafeUserSuccess).catch(postFail);
@@ -214,10 +214,8 @@
 
         // finalizes the order
         $rootScope.finishOrder = function (tafel_id) {
-            console.log("dit is de order-id: " + tafel_id);
             var urr = 'http://localhost:3000/api/update/order/betaald';
             var data = {tafelID: tafel_id};
-            //data = JSON.stringify(data);
             console.log(data);
 
             return $http.post(urr, data).then(postSuccess).catch(postFail);
@@ -228,7 +226,6 @@
             console.log("dit is de order-id: " + tafel_id);
             var urr = 'http://localhost:3000/api/update/order/annuleren';
             var data = {tafelID: tafel_id};
-            //data = JSON.stringify(data);
             console.log(data);
 
             return $http.post(urr, data).then(postSuccess).catch(postFail);

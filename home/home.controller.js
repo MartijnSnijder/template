@@ -7,11 +7,11 @@
 
     HomeController.$inject = ['UserService', '$rootScope'];
     function HomeController(UserService, $rootScope) {
-        var vm = this;
+        initController();
 
-         $rootScope.order = [];
-         $rootScope.totOrders = 0;
-         $rootScope.comments = {};
+        $rootScope.order = [];
+        $rootScope.totOrders = 0;
+        $rootScope.comments = {};
 
 
         $rootScope.getDate = function () {
@@ -26,7 +26,6 @@
         };
 
         $rootScope.addToOrder = function (item, qty) {
-            console.log($rootScope.order.length + " joe ");
             var flag = 0;
             if ($rootScope.order.length > 0) {
                 for (var i = 0; i < $rootScope.order.length; i++) {
@@ -49,15 +48,17 @@
         };
 
         $rootScope.showTables = function (tableName) {
-            if(tableName === "A"){
+            tableName = tableName.toUpperCase();
+            $rootScope.tableSelect = tableName;
+            if(tableName === "1A"){
                 console.log("Gelukt.. A (tafel id= 1");
                 // @TODO ALLE A SECTIE TAFELS LATEN ZIEN..
                 $rootScope.tableSelect = 1;
-            } else if(tableName === "B"){
+            } else if(tableName === "1B"){
                 console.log("Gelukt.. B (tafel id= 3");
                 // @TODO ALLE B SECTIE TAFELS LATEN ZIEN..
                 $rootScope.tableSelect = 3;
-            } else if(tableName === "C"){
+            } else if(tableName === "1C"){
                 console.log("Gelukt.. C (tafel id= 4" );
                 // @TODO ALLE C SECTIE TAFELS LATEN ZIEN..
                 $rootScope.tableSelect = 4;
@@ -111,10 +112,6 @@
             $rootScope.totOrders += 1;
         };
 
-        $rootScope.selectTable = function(table){
-            //TODO
-        };
-
         $rootScope.submitComment = function (comment) {
             $rootScope.comments.push(comment);
             return $rootScope.comments;
@@ -123,7 +120,7 @@
         var url = window.location.protocol + "://" + window.location.host + "/" + window.location.pathname;
 
         function initController() {
-            // todo init
+            $rootScope.Fill();
         }
     }
 })();

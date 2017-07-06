@@ -12,11 +12,11 @@
     AdminController.$inject = ['UserService', '$rootScope', 'FlashService'];
     function AdminController(UserService, $rootScope, FlashService) {
 
-        var vm = this;
+/*        var vm = this;
 
         vm.user = null;
         vm.allUsers = [];
-        vm.deleteUser = deleteUser;
+        vm.deleteUser = deleteUser;*/
 
 
         $rootScope.addNewItem = function (item) {
@@ -31,16 +31,14 @@
                     if (item.prijs % 1 !== 0) {
                         item.prijs = Math.round(item.prijs * 100);
                     }
-                    if(item.type === "Drinken"){
-
-                    }
 
                     item.subcategorieen_id = 1; // TODO
-
                     item.cafe_id = $rootScope.userCafeID;
 
                     console.log(JSON.stringify(item));
                     $rootScope.postProduct(item);
+
+                    FlashService.Success("Product succesvol toegevoegd!");
 
 
                 }
@@ -70,6 +68,7 @@
 
             //post
             $rootScope.postUser(user);
+            FlashService.Success("Gebruiker succesvol toegevoegd!");
         };
 
         function deleteUser(id) {

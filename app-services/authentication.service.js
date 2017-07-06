@@ -16,38 +16,12 @@
         return service;
 
         function Login(username, password, callback) {
-            console.log(username + ";;;" + password);
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-            /* $timeout(function () {
-             var response;
-             UserService.GetByUsername(username)
-             .then(function (user) {
-             if (user !== null && user.password === password) {
-             response = { success: true };
-             } else {
-             response = { success: false, message: 'Gebruikersnaam of wachtwoord is incorrect' };
-             }
-             callback(response);
-             });
-             }, 1000);*/
-
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            /*$http.post('http://localhost:3000/api/gebruikers', { username: username, password: password })
-             .then(function (response) {
-             callback(response);
-             });*/
-
             var urr = 'http://localhost:3000/api/gebruikers/inloggen';
             var data = {username: username, password: password};
             data = JSON.stringify(data);
 
             // make sure there is data to post, otherwise server will crash
-            console.log("nu ga ik posten..");
             return $http.post(urr, data).then(function (response) {
-                console.log("wtf doe ik hier");
-                console.log(JSON.stringify(response));
                 if(response.data === true){
                     console.log(JSON.stringify(response.config.data));
                     response = {success: true};

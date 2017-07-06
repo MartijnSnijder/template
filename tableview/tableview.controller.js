@@ -61,8 +61,7 @@
 
         };
 
-        // clear the entire order from the currentTable
-        // @TODO DIT MOET NOG GEDAAN WORDEN.. UPDATE NAAR DB?
+        // clear the entire order from the currentTable and DB
         $rootScope.deleteOrder = function (currentTable) {
             if($rootScope.currentTable !== "") {
                 if ($rootScope.getTotalTable($rootScope.currentTable) > 0) {
@@ -78,6 +77,7 @@
             }
         };
 
+        // checkout the currentTable & change order status in DB
         $rootScope.checkoutTable = function (currentTable) {
             if($rootScope.currentTable !== "") {
                 if ($rootScope.getTotalTable($rootScope.currentTable) > 0) {
@@ -98,46 +98,5 @@
         function initController() {
             // todo init
         }
-
-
-        /* TIJDELIJK NIET NODIGE DEZE CODE....
-        *
-        *
-        *
-        *
-        *
-        * ...............: : : */
-
-        //@TODO checkout function
-        /*$rootScope.checkout = function (index) {
-         alert($rootScope.getDate() + " - Ordernummer: " + ($rootScope.totOrders+1) + "\n\nTotaalbedrag: €" + $rootScope.getTotal().toFixed(2) + "\n\nBetaling ontvangen. Bedankt!");
-         $rootScope.order = [];
-         $rootScope.totOrders += 1;
-         };*/
-
-        /*// returns the index corresponding to the tableID.
-        //@TODO optimize it by checking if > or < than number..
-        //@TODO now it checks from 1>>
-        $rootScope.findIndexArray= function(tableNaam){
-            var arrayIndex = 0;
-            for (var x = 0; x < $rootScope.tafels.length ; x++) {
-                if ($rootScope.tafels[x].naam === tableNaam) {
-                    console.log("x = " + x);
-                    return x;
-
-                }
-            }
-            return arrayIndex;
-        };
-
-
-        $rootScope.findOrderProductIndex = function(arrayIndex, productname){
-            for (var i = 0; i < $rootScope.tables[arrayindex].order.length; i++){
-                if(productname === $rootScope.tables[arrayIndex].order[i].name){
-                    return i;
-                }
-            }
-
-        };*/
     }
 })();

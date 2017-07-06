@@ -1,4 +1,4 @@
-﻿<div class="col-md-12">
+﻿<div class="col-md-12" data-ng-init="Fill()">
     <div class="row">
         <!-- Producten -->
         <div class="col-md-6">
@@ -17,7 +17,6 @@
                             <button class="btn btn-primary btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter:{cafe_id: userCafeID}" ng-if="item.type === 'Drinken' " data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="eten">
-                            <!-- @TODO HIJ KAN GEEN ETEN SELECTEREN??!?! -->
                             <button class="btn btn-warning btn-pos btn-marginTop col-md-3 col-xs-2" data-ng-repeat="item in producten | filter:{cafe_id: userCafeID}" ng-if="item.type === 'Eten' " data-ng-bind="item.naam" data-ng-click="addToOrder(item,1)"></button>
                         </div>
                     </div>
@@ -99,9 +98,12 @@
                     <div class="table-select">
                         <label class="col-md-12 col-xs-12">Selecteer bijbehorende tafel:</label>
                         <!-- data-ng-repeat="item in tafels" data-ng-bind="item.name"> -->
-                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('A')"> A </button>
-                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('B')"> B </button>
-                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('C')"> C </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('1A')"> 1A </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('2A')"> 2A </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('3A')"> 3A </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('1B')"> 1B </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('1C')"> 1C </button>
+                        <button class="btn btn-success btn-pos btn-xs col-md-1 col-xs-2" data-ng-click="showTables('2C')"> 2C </button>
                     </div>
                 </div>
                 <div class="panel-footer" ng-show="order.length">
